@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Register</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+	<body>
+        <!--Im not sure how to reference the navigation bar in a better way
+        than copying and pasting this. Feel free to implement that with the JavaScript
+        or any other way that is cleaner-->
+
+            <a href="index.html" class ="logo">
+                <img src="images/luscious-sweet-gourmet-bakery__logo.png" alt="LS-logo" class="logo-image">
+            </a>
+        <ul class="nav-bar">
+            <li><a href="order.html">Order Now</a></li>
+            <li><a href="index.html" class = "active">Home</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+        <!--end of nav bar-->
+
+        <section>
+            <div class="register">
+                <h1>Register</h1>
+                <form action="register.html" method="post" autocomplete="off">
+                    <label for="username">
+                        <i class="fas fa-user"></i>
+                    </label>
+                    <input type="text" name="username" placeholder="Username" id="username" required>
+                    
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                    </label>
+                    <input type="password" name="password" placeholder="Password" id="password" required>
+                    
+                    <label for="email">
+                        <i class="fas fa-envelope"></i>
+                    </label>
+                    <input type="email" name="email" placeholder="Email" id="email" required>
+
+                    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                    <input type="submit" value="Register">
+                    
+                    <div class="container signin">
+                        <p>Already have an account? <a href="login.html">Sign in</a>.</p>
+                      </div>
+                </form>
+            </div>
+        </section>
+	</body>
+</html>
