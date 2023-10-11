@@ -4,7 +4,7 @@
 from flask import Flask as fl
 from flask import url_for, request, render_template, redirect
 from markupsafe import escape
-import mysql.connector as msql
+# import mysql.connector as msql
 
 #Database connection set up
 #mydb = msql.connect(
@@ -13,7 +13,7 @@ import mysql.connector as msql
  #   password = "root"
 #)
 
-app = fl(__name__)
+app = fl(__name__, static_url_path='/static')
 app.secret_key = "Team3Project"
 
 
