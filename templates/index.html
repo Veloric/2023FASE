@@ -1,3 +1,4 @@
+{% from 'navbar.html' import navbar, signInRegister, headerEnd %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,27 +19,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap" rel="stylesheet">
     </head>
     <body>
-        <header>
-            <a href="{{ url_for('homepage') }}" class ="logo">
-                <img src="{{ url_for('static', filename='images/luscious-sweet-gourmet-bakery__logo.png') }}" alt="LS-logo" class="logo-image">
-            </a>
-        <nav>
-            <ul class="nav-bar">
-                <li><a href="{{ url_for('order') }}">Order Now</a></li>
-                <li><a href="{{ url_for('homepage') }}" class = "active">Home</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
-            </ul>
-        </nav>
+        {{ navbar() }} 
+        {{ signInRegister() }}
+        {{ headerEnd() }}
         <!-- Javascript link <3333 -->
         <!--script type="text/Javascript" src="js/script.js"></script-->
-
-
-        <div class="login">
-            <a href="{{ url_for('login') }}" class="user"><i class= "ri-user-fill"></i>Sign In</a>
-            <a href="{{ url_for('register') }}">Register</a>
-            <div class="bx bx-menu" id="menu-icon"></div>             
-        </div>
-        </header>
 
     </body>
 </html>
