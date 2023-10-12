@@ -6,11 +6,11 @@ from flask import url_for, request, render_template, redirect
 from markupsafe import escape
 import mysql.connector
 
-#Initialize FLASK
+# Initialize FLASK
 app = fl(__name__, static_url_path='/static')
 app.secret_key = "Team3Project"
 
-#Database connection functions
+# Database connection functions
 def connectdb():
     try:
         mydb = mysql.connector.connect(
@@ -48,7 +48,7 @@ def order():
             values = (flavor, size, quantity, decor)
             cursor.execute(command, values)
             mydb.commit()
-            #for testing purposes only
+            # for testing purposes only
             print(cursor.rowcount, " record inserted")
             disconnectdb(mydb)
             msg = "Order placed!"
