@@ -16,7 +16,7 @@ def connectdb():
         mydb = mysql.connector.connect(
             host = "localhost",
             user = "root",
-            password = "root",
+            password = "mysql",
             database = "bakery"
         )
         print("Connected!")
@@ -43,7 +43,7 @@ def order():
         decor = request.form["decor"]
         mydb = connectdb()
         cursor = mydb.cursor()
-        command = "INSERT INTO Orders (flavor, size, quantity, decor) VALUES (%s, %s, %d, %s)"
+        command = "INSERT INTO Orders (CupcakeFlavor, CupcakeSize, CupcakeQuantity, DecorRequests) VALUES (%s, %s, %d, %s)"
         values = (flavor, size, quantity, decor)
         cursor.execute(command, values)
         mydb.commit()
