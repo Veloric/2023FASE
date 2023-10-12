@@ -19,14 +19,14 @@
     </head>
     <body>
         <header>
-            <a href="index.html" class ="logo">
+            <a href="{{ url_for('homepage') }}" class ="logo">
                 <img src="{{ url_for('static', filename='images/luscious-sweet-gourmet-bakery__logo.png') }}" alt="LS-logo" class="logo-image">
             </a>
         <nav>
             <ul class="nav-bar">
-                <li><a href="order.html">Order Now</a></li>
-                <li><a href="index.html" class = "active">Home</a></li>
-                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="{{ url_for('order') }}">Order Now</a></li>
+                <li><a href="{{ url_for('homepage') }}" class = "active">Home</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
             </ul>
         </nav>
         <!-- Javascript link <3333 -->
@@ -34,8 +34,8 @@
 
 
         <div class="login">
-            <a href="register.html" class="user"><i class= "ri-user-fill"></i>Sign In</a>
-            <a href="register.html">Register</a>
+            <a href="{{ url_for('login') }}" class="user"><i class= "ri-user-fill"></i>Sign In</a>
+            <a href="{{ url_for('register') }}">Register</a>
             <div class="bx bx-menu" id="menu-icon"></div>             
         </div>
         </header>

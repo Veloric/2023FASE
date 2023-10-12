@@ -21,8 +21,8 @@ app.secret_key = "Team3Project"
 def homepage():
     return render_template("index.html")
 
-@app.route("/order", methods = ["GET", "POST"])
-def placeOrder():
+@app.route("/order", methods=("GET", "POST"))
+def order():
     if request.method == "POST":
         flavor = request.form.get("flavor")
         size = request.form.get("size")
@@ -32,9 +32,20 @@ def placeOrder():
     #TODO: Send data to database
     #TODO: Actually set up database
 
-    return render_template(url_for("order.html"))
+    return render_template("order.html")
 
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+# We don't have a login.html in templates/ yet
+@app.route("/login")
+def login():
+    return render_template("login.html")
 
 if __name__ == '__main__':
     app.run()

@@ -11,20 +11,20 @@
         than copying and pasting this. Feel free to implement that with the JavaScript
         or any other way that is cleaner-->
 
-            <a href="index.html" class ="logo">
+            <a href="{{ url_for('homepage')}}" class ="logo">
                 <img src="{{ url_for('static', filename='images/luscious-sweet-gourmet-bakery__logo.png') }}" alt="LS-logo" class="logo-image">
             </a>
         <ul class="nav-bar">
-            <li><a href="order.html">Order Now</a></li>
-            <li><a href="index.html" class = "active">Home</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="{{ url_for('order') }}">Order Now</a></li>
+            <li><a href="{{ url_for('homepage') }}" class = "active">Home</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
         </ul>
         <!--end of nav bar-->
 
         <section>
             <div class="register">
                 <h1>Register</h1>
-                <form action="register.html" method="post" autocomplete="off">
+                <form action="{{ url_for('register') }}" method="post" autocomplete="off">
                     <label for="username">
                         <i class="fas fa-user"></i>
                     </label>
@@ -44,7 +44,7 @@
                     <input type="submit" value="Register">
                     
                     <div class="container signin">
-                        <p>Already have an account? <a href="login.html">Sign in</a>.</p>
+                        <p>Already have an account? <a href="{{ url_for('login') }}">Sign in</a>.</p>
                       </div>
                 </form>
             </div>
