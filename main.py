@@ -4,19 +4,30 @@
 from flask import Flask as fl
 from flask import url_for, request, render_template, redirect
 from markupsafe import escape
-import MySQLdb.cursors
+import mysql.connector
 
 #Initialize FLASK
 app = fl(__name__, static_url_path='/static')
 app.secret_key = "Team3Project"
 
-#Database connection set up
-app.config['MYSQL_HOST'] = "localhost"
-app.config['MYSQL_USER'] = "root"
-app.config['MYSQL_PASSWORD'] = "root"
-app.config['MYSQL_DB'] = "bakery"
+#Database connection functions
+def connectdb():
+    try:
+        mydb = mysql.connector.connect(
+            host = "localhost",
+            user = "root",
+            password = "root",
+            database = "bakery"
+        )
+        print("Connected!")
+        return mydb
+    except:
+        print("Connection failed, uh oh!")
 
-mysql = MySQL(app)
+
+def disconnectdb(mydb):
+    mydb.close()
+
 
 @app.route("/")
 def homepage():
@@ -31,11 +42,20 @@ def order():
             size = request.form.get("size")
             quantity = request.form.get("quantity")
             decor = request.form.get("decor")
+            mydb = connectdb()
+            cursor = mydb.cursor()
+            command = "INSERT INTO order (flavor, size, quantity, decor) VALUES (%s, %s, %d, %s)"
+            values = (flavor, size, quantity, decor)
+            cursor.execute(command, values)
+            mydb.commit()
+            #for testing purposes only
+            print(cursor.rowcount, " record inserted")
+            disconnectdb(mydb)
         else:
             msg = "There was an error handling your request, please try again!"
-        pass
-    #TODO: Send data to database
-    #TODO: Actually set up database
+            # Testing purposes only
+            print(request.form, " List of all data sent")
+        
 
     return render_template("order.html", msg=msg)
 
