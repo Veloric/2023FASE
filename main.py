@@ -4,18 +4,19 @@
 from flask import Flask as fl
 from flask import url_for, request, render_template, redirect
 from markupsafe import escape
-# import mysql.connector as msql
+import MySQLdb.cursors
 
-#Database connection set up
-#mydb = msql.connect(
- #   host = "localhost",
- #   user = "root",
- #   password = "root"
-#)
-
+#Initialize FLASK
 app = fl(__name__, static_url_path='/static')
 app.secret_key = "Team3Project"
 
+#Database connection set up
+app.config['MYSQL_HOST'] = "localhost"
+app.config['MYSQL_USER'] = "root"
+app.config['MYSQL_PASSWORD'] = "root"
+app.config['MYSQL_DB'] = "bakery"
+
+mysql = MySQL(app)
 
 @app.route("/")
 def homepage():
@@ -23,16 +24,20 @@ def homepage():
 
 @app.route("/order", methods=("GET", "POST"))
 def order():
+    msg = ""
     if request.method == "POST":
-        flavor = request.form.get("flavor")
-        size = request.form.get("size")
-        quantity = request.form.get("quantity")
-        decor = request.form.get("decor")
+        if "flavor" in request.form and "size" in request.form and "quantity" in request.form and "decor" in request.form:
+            flavor = request.form.get("flavor")
+            size = request.form.get("size")
+            quantity = request.form.get("quantity")
+            decor = request.form.get("decor")
+        else:
+            msg = "There was an error handling your request, please try again!"
         pass
     #TODO: Send data to database
     #TODO: Actually set up database
 
-    return render_template("order.html")
+    return render_template("order.html", msg=msg)
 
 @app.route("/contact")
 def contact():
