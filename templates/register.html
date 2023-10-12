@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Register</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     </head>
 	<body>
         {{ navbar() }}
@@ -30,11 +31,11 @@
                     <input type="email" name="email" placeholder="Email" id="email" required>
 
                     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-                    <input type="submit" value="Register">
+                    <button type="submit" value="registerAccount">Submit</button>
                     
                     <div class="container signin">
                         <p>Already have an account? <a href="{{ url_for('login') }}">Sign in</a>.</p>
-                      </div>
+                    </div>
                 </form>
             </div>
         </section>

@@ -33,31 +33,29 @@ def disconnectdb(mydb):
 def homepage():
     return render_template("index.html")
 
-@app.route("/order", methods=("GET", "POST"))
+@app.route("/order", methods=["GET", "POST"])
 def order():
     msg = ""
-    if request.method == "POST":
-        if "flavor" in request.form and "size" in request.form and "quantity" in request.form and "decor" in request.form:
-            flavor = request.form.get("flavor")
-            size = request.form.get("size")
-            quantity = request.form.get("quantity")
-            decor = request.form.get("decor")
-            mydb = connectdb()
-            cursor = mydb.cursor()
-            command = "INSERT INTO order (flavor, size, quantity, decor) VALUES (%s, %s, %d, %s)"
-            values = (flavor, size, quantity, decor)
-            cursor.execute(command, values)
-            mydb.commit()
-            # for testing purposes only
-            print(cursor.rowcount, " record inserted")
-            disconnectdb(mydb)
-            msg = "Order placed!"
-        else:
-            msg = "There was an error handling your request, please try again!"
-            # Testing purposes only
-            print(request.form, " List of all data sent")
+    if request.method == "POST" and "flavor" in request.form and "size" in request.form and "quantity" in request.form and "decor" in request.form:
+        flavor = request.form["flavor"]
+        size = request.form["size"]
+        quantity = request.form["quantity"]
+        decor = request.form["decor"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        command = "INSERT INTO Orders (flavor, size, quantity, decor) VALUES (%s, %s, %d, %s)"
+        values = (flavor, size, quantity, decor)
+        cursor.execute(command, values)
+        mydb.commit()
+        # for testing purposes only
+        print(cursor.rowcount, " record inserted")
+        disconnectdb(mydb)
+        msg = "Order placed!"
+    elif request.method == "POST":
+        msg = "There was an error handling your request, please try again!"
+        # Testing purposes only
+        print(request.form, " List of all data sent")
         
-
     return render_template("order.html", msg=msg)
 
 @app.route("/contact")

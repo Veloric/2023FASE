@@ -16,29 +16,29 @@
             <p>Fill out an order request now, and our pastry chefs will get back to you!</p>
 
             <label for="flavors">Cupcake Flavor:</label> 
-            <select name="flavor" id="flavors"> 
+            <select name="flavor" id="flavors" required> 
                <option value="Fudge">Fudge Brownie Explosion</option> 
                <option value="Carrot">24Karrot</option> 
                <option value="Vanilla Birthday">Vanilla Birthday</option> 
                <option value="Chocolate Birthday">Chocolate Birthday</option> 
-            </select required>
+            </select>
 
             <label for="size">Size:</label> 
-            <select name="size" id="size"> 
-                <option value="Gourmet (large)">Gourmet Size(large)</option> 
-                <option value="Birthday (medium)">Birthday (medium)</option> 
-                <option value="Mini">Mini</option>  
-            </select required>
+            <select name="size" id="size" required> 
+                <option value="Gourmet (Large)">Gourmet (Large)</option> 
+                <option value="Birthday (Medium)">Birthday (Medium)</option> 
+                <option value="Mini (Small)">Mini (Small)</option>  
+            </select>
 
-            <label for="quantity"> Quantity:</label>
+            <label for="quantity">Quantity:</label>
             <input type="number" id="quantity" name="quantity" min="1" max="45" required>
 
-            <label for="decor"> Decor Requests:</label>
+            <label for="decor">Decor Requests:</label>
             <textarea name="decor" id="decor" minlength="5" maxlength="200">
             </textarea>
             <p>{{msg}}</p>
 
-            <input type="submit" value="Submit Order">
+            <button type="submit" value="submitOrder">Submit</button>
         </form>
     </body>
 </html>
