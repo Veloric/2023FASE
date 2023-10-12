@@ -51,6 +51,7 @@ def order():
             #for testing purposes only
             print(cursor.rowcount, " record inserted")
             disconnectdb(mydb)
+            msg = "Order placed!"
         else:
             msg = "There was an error handling your request, please try again!"
             # Testing purposes only
