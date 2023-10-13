@@ -43,14 +43,14 @@ def order():
         decor = request.form["decor"]
         mydb = connectdb()
         cursor = mydb.cursor()
-        command = "INSERT INTO Orders (CupcakeFlavor, CupcakeSize, CupcakeQuantity, DecorRequests) VALUES (%s, %s, %d, %s)"
+        command = "INSERT INTO Orders (CupcakeFlavor, CupcakeSize, CupcakeQuantity, DecorRequests) VALUES (%s, %s, %s, %s)"
         values = (flavor, size, quantity, decor)
         cursor.execute(command, values)
         mydb.commit()
         # for testing purposes only
         print(cursor.rowcount, " record inserted")
         disconnectdb(mydb)
-        msg = "Order placed!"
+        msg = "Order placed! You may now exit this page. (Create an account to view order history)"
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
         # Testing purposes only
