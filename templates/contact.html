@@ -6,10 +6,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Luscious and Sweet Gourmet Bakery Contact Form</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
         <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
+        <script src="{{ url_for('static', filename='contactform.js') }}" defer></script>
     </head>
     <body>
         {{ navbar() }}
         {{ headerEnd() }}
+
+        <form action="{{ url_for('contact') }}" method="POST" autocomplete="off" id="contactForm">
+            <h1>Luscious & Sweet Gourmet Bakery Contact Form</h1>
+            <p>All fields marked with an (<sup><i class="ri-asterisk red-asterisk"></i></sup>) are required.</p>
+
+            <label for="date">Date <sup><i class="ri-asterisk red-asterisk"></i></sup></label>
+            <input type="date" id="date" required>
+            
+            <label for="time">Time <sup><i class="ri-asterisk red-asterisk"></i></sup></label>
+            <input type="time" id="time" required>
+
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone">
+            
+            <label for="email">Email</label>
+            <input type="email" id="email">
+
+            <label for="question">Question <sup><i class="ri-asterisk red-asterisk"></i></sup></label>
+            <textarea id="question" minlength="5" maxlength="200" required></textarea>
+            <p>{{msg}}</p>
+
+            <button type="submit" value="submitContact">Submit</button>
+            <button type="reset" id="resetBtn">Reset</button>
+        </form>
     </body>
 </html>

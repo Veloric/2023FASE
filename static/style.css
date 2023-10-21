@@ -82,3 +82,6 @@ header{
     cursor: pointer;
     z-index: 1001;
 }
+.red-asterisk {
+    color: red;
+}
