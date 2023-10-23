@@ -58,9 +58,31 @@ def order():
         
     return render_template("order.html", msg=msg)
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact.html")
+    msg = ""
+    if request.method == "POST" and "date" in request.form and "time" in request.form and "phone" in request.form and "email" in request.form and "question" in request.form:
+        date = request.form["date"]
+        time = request.form["time"]
+        phone = request.form["phone"]
+        email = request.form["email"]
+        question = request.form["question"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        command = "INSERT INTO Contact (ContactDate, ContactTime, ContactPhone, ContactEmail, ContactQuestion) VALUES (%s, %s, %s, %s, %s)"
+        values = (date, time, phone, email, question)
+        cursor.execute(command, values)
+        mydb.commit()
+        # Testing below
+        print(cursor.rowcount, " record inserted")
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST":
+        msg = "There was an error handling your request, please try again!"
+        # Testing below
+        print(request.form, " List of all the data sent")
+
+    return render_template("contact.html", msg=msg)
 
 @app.route("/register")
 def register():
