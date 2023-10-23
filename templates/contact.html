@@ -7,6 +7,7 @@
         <title>Luscious and Sweet Gourmet Bakery Contact Form</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
         <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
         <script src="{{ url_for('static', filename='contactform.js') }}" defer></script>
     </head>
@@ -14,28 +15,92 @@
         {{ navbar() }}
         {{ headerEnd() }}
 
-        <form action="{{ url_for('contact') }}" method="POST" autocomplete="off" id="contactForm">
-            <h1>Luscious & Sweet Gourmet Bakery Contact Form</h1>
-            <p>All fields marked with an (<sup><i class="ri-asterisk red-asterisk"></i></sup>) are required.</p>
+        <div class="contact-container">
+            <h1>Contact</h1>
 
-            <label for="date">Date<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
-            <input type="date" id="date" required>
-            
-            <label for="time">Time<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
-            <input type="time" id="time" required>
+            <div class="contact-top">
+                <div class="contact-top-row-one">
+                    <div>
+                        <div><span id="contact-icons" class="material-symbols-outlined">call</span></div>
+                        <div>Call</div>
+                    </div>
+                    <div>
+                        <div><span id="contact-icons" class="material-symbols-outlined">location_on</span></div>
+                        <div>Location</div>
+                    </div>
+                    <div>
+                        <div><span id="contact-icons" class="material-symbols-outlined">fax</span></div>
+                        <div>Fax</div>
+                    </div>
+                    <div>
+                        <div><span id="contact-icons" class="material-symbols-outlined">group</span></div>
+                        <div>Social Media</div>
+                    </div>
+                </div>
+                <div class="contact-top-row-two">
+                    <h2>Luscious and Sweet Gourmet Bakery</h2>
+                    <p>Monika Brown, Executive Pastry Sous Chef - Specializing in Specialty Cake Design & Decoration (Banquet & Wholesale) <a href="mailto:mbrown@icon-hospitality.com">mbrown@icon-hospitality.com</a> 609-748-2400 ext. 109</p>
+                </div>
+            </div>
 
-            <label for="phone">Phone<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
-            <input type="tel" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="201-555-0123" required> <!-- Pattern doesn't validate international phone numbers -->
-            
-            <label for="email">Email</label>
-            <input type="email" id="email">
+            <div class="contact-middle">
+                <form action="{{ url_for('contact') }}" method="POST" autocomplete="off" id="contactForm">
+                    <h2>Luscious & Sweet Gourmet Bakery Contact Form</h2>
+                    <p>All fields marked with an (<sup><i class="ri-asterisk red-asterisk"></i></sup>) are required.</p>
+                
+                    <div class="contact-form-row">
+                        <label for="date">Date<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
+                        <input type="date" id="date" required>
+                    </div>
+                
+                    <div class="contact-form-row">
+                        <label for="time">Time<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
+                        <input type="time" id="time" required>
+                    </div>
+                    <div class="contact-form-row">
+                        <label for="phone">Phone<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
+                        <input type="tel" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="201-555-0123" required> <!-- Pattern doesn't validate international phone numbers -->
+                    </div>
+                
+                    <div class="contact-form-row">
+                        <label for="email">Email</label>
+                        <input type="email" id="email">
+                    </div>
+                    <div class="contact-form-row">
+                        <label for="question">Question<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
+                        <textarea id="question" minlength="5" maxlength="200" required></textarea>
+                    </div>
+                
+                    <p>{{msg}}</p>
+                    
+                    <div class="contact-form-buttons">
+                        <button type="submit" value="submitContact">Submit</button>
+                        <button type="reset" id="resetBtn">Reset</button>
+                    </div>
+                </form>
+            </div>
 
-            <label for="question">Question<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
-            <textarea id="question" minlength="5" maxlength="200" required></textarea>
-            <p>{{msg}}</p>
+            <div class="contact-bottom">
+                <div>
+                    <h2>Our Parent Company</h2>
+                    <h4>Icon Hospitality</h4>
+                    <p>John Gilly, VP | COO <a href="mailto:jgilly@icon-hospitality.com">jgilly@icon-hospitality.com</a> 609-748-2400 ext. 105</p>
+                    <p>Taylor Bruno, Executive Assistant to President | CEO <a href="mailto:tbruno@icon-hospitality.com">tbruno@icon-hospitality.com</a> 609-748-2400 ext. 303</p>
+                    <p>Deena Moran, Director of Marketing & Special Events <a href="mailto:dmoran@icon-hospitality.com">dmoran@icon-hospitality.com</a> 609-748-2400 ext. 102</p>
+                    <p>Kristina Bannon, Director of Finance & Administration Office of the President <a href="mailto:kbannon@icon-hospitality.com">kbannon@icon-hospitality.com</a> 609-748-2400 ext. 103</p>
+                </div>
+                <div>
+                    <h2>For Weddings & Events</h2>
+                    <h4>The Carriage House</h4>
+                    <p>Kristin Neafsey, VP of Sales For Icon Hospitality <a href="mailto:kneafsey@icon-hospitality.com">kneafsey@icon-hospitality.com</a> 609-748-2400 ext. 101</p>
+                    <p>Christina Cortese, Director of Event Operations <a href="mailto:ccortese@icon-hospitality.com">ccortese@icon-hospitality.com</a> 609-748-2400 ext. 302</p>
+                    <p>Ryan McCabe, Executive Chef <a href="mailto:rmccabe@icon-hospitality.com">rmccabe@icon-hospitality.com</a> 609-748-2400 ext. 300</p>
+                    <h2>For Private Events</h2>
+                    <h4>Gourmet Italian Cuisine Restaurant</h4>
+                    <p>Heather Chibnik, Sales Associate <a href="mailto:hchibnik@icon-hospitality.com">hchibnik@icon-hospitality.com</a> 609-748-2400 ext. 106</p>
+                </div>
+            </div>
 
-            <button type="submit" value="submitContact">Submit</button>
-            <button type="reset" id="resetBtn">Reset</button>
-        </form>
+        </div>
     </body>
 </html>

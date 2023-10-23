@@ -82,6 +82,15 @@ header{
     cursor: pointer;
     z-index: 1001;
 }
+/* CSS for contact.html */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
 .red-asterisk {
     color: red;
+}
+#contact-icons {
+    font-size: 3rem;
 }
