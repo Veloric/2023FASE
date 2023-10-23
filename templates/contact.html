@@ -50,25 +50,25 @@
                 
                     <div class="contact-form-row">
                         <label for="date">Date<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
-                        <input type="date" id="date" required>
+                        <input type="date" id="date" name="date" required>
                     </div>
                 
                     <div class="contact-form-row">
                         <label for="time">Time<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
-                        <input type="time" id="time" required>
+                        <input type="time" id="time" name="time" required>
                     </div>
                     <div class="contact-form-row">
                         <label for="phone">Phone<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
-                        <input type="tel" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="201-555-0123" required> <!-- Pattern doesn't validate international phone numbers -->
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="201-555-0123" required> <!-- Pattern doesn't validate international phone numbers -->
                     </div>
                 
                     <div class="contact-form-row">
                         <label for="email">Email</label>
-                        <input type="email" id="email">
+                        <input type="email" id="email" name="email">
                     </div>
                     <div class="contact-form-row">
                         <label for="question">Question<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
-                        <textarea id="question" minlength="5" maxlength="200" required></textarea>
+                        <textarea id="question" name="question" minlength="5" maxlength="200" required></textarea>
                     </div>
                 
                     <p>{{msg}}</p>
