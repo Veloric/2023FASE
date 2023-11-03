@@ -1,6 +1,7 @@
 # Team 3's Python driver
 # This is the main driver for the project; hosts all methods, calls to database, as well as functionally runs the website.
 
+from sqlite3 import connect
 from flask import Flask as fl
 from flask import url_for, request, render_template, redirect
 from markupsafe import escape
@@ -83,6 +84,16 @@ def contact():
         print(request.form, " List of all the data sent")
 
     return render_template("contact.html", msg=msg)
+
+@app.route("/menu")
+def menu():
+    mydb = connectdb()
+    cursor = mydb.cursor()
+    cursor.execute('SELECT * FROM menu WHERE MenuItemType="Mini"')
+
+    storeMenu = cursor.fetchall()
+
+    return render_template("menu.html", storeMenu=storeMenu)
 
 @app.route("/register")
 def register():

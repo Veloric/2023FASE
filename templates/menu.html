@@ -1,0 +1,56 @@
+{% from 'navbar.html' import navbar, headerEnd %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Luscious and Sweet Gourmet Bakery Menu</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='menuStyle.css') }}">
+
+        <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
+        <script src="{{ url_for('static', filename='menu.js') }}" defer></script>
+
+    </head>
+    <body>
+        {{ navbar() }}
+        {{ headerEnd() }}
+
+        <!-- Code taken from w3scgools how TO - tabs: https://www.w3schools.com/howto/howto_js_tabs.asp-->
+        <h1>Menu</h1>
+        <div class="tab">
+            <button class="tablinks" onclick="openType(event, 'Mini'), printMenu(storeMenu, storeMenu[0][1])" id="defaultOpen">Minis</button>
+            <button class="tablinks" onclick="openType(event, 'TabFiller')">TabFiller</button>
+        </div>
+
+        <div id="Mini" class="tabcontent">
+            <h3>Minis</h3>
+            <table>
+                <tr>
+                    <td>{{ storeMenu }}</td>
+                    <td>{{ storeMenu[0][2] }}</td>
+                    <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>{{ storeMenu[0][3] }}</td>
+                </tr>
+                <tr>
+                    <td>{{ storeMenu[1][2] }}</td>
+                    <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>{{ storeMenu[1][3] }}</td>
+                </tr>
+                <tr>
+                    <td>{{ storeMenu[2][2] }}</td>
+                    <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>{{ storeMenu[2][3] }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="TabFiller" class="tabcontent">
+            <h3>Lorem</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam neque fuga voluptatibus exercitationem voluptate nam, natus commodi voluptatum, quasi nesciunt sed reprehenderit expedita autem consequuntur sapiente debitis facere placeat optio?</p>
+        </div>
+    </body>
+</html>
