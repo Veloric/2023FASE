@@ -1,0 +1,41 @@
+{% from 'navbar.html' import navbar, headerEnd %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginstyle.css') }}">
+</head>
+<body>
+  {{ navbar() }}
+  {{ headerEnd() }}
+  <section>
+    <h2>Login</h2><br>
+    
+      <form method="get" action="{{ url_for('login') }}" autocomplete="off">
+        <div class="imgcontainer">
+        </div>  
+        <div class="container">
+        <label for="username"><b>Username</b></label>
+        </b>
+          </label>
+          <input type="text" name="username" id="username" placeholder="Username" required>
+          <br><br>
+          <label for="password"><b>Password</b></label>
+          </b>
+          </label>
+          <input type="password" name="password" id="password" placeholder="Password" required>
+          <br><br>
+          <button type="submit">Login</button>
+          <br><br>
+          <label>
+          <input type="checkbox" checked="checked"name="remember"> Remember me
+          </label>
+          <br><br>
+          <span>Click Here To<a href="{{ url_for('register') }}"> Register</a></span>
+        <div>
+        </form>
+    
+  </div>
+  </body>
+  </html>
