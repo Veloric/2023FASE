@@ -1,9 +1,4 @@
-function printMenu(storeMenu, type)
-{
-  print("<td>test<\\td>")
-}
-
-function openType(evt, cityName) {
+function openType(evt, menu) {
     // Declare all variables
     var i, tabcontent, tablinks;
   
@@ -20,7 +15,7 @@ function openType(evt, cityName) {
     }
   
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(menu).style.display = "block";
     evt.currentTarget.className += " active";
 }
 

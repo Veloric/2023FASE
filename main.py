@@ -1,7 +1,6 @@
 # Team 3's Python driver
 # This is the main driver for the project; hosts all methods, calls to database, as well as functionally runs the website.
 
-from sqlite3 import connect
 from flask import Flask as fl
 from flask import url_for, request, render_template, redirect
 from markupsafe import escape
@@ -89,11 +88,31 @@ def contact():
 def menu():
     mydb = connectdb()
     cursor = mydb.cursor()
-    cursor.execute('SELECT * FROM menu WHERE MenuItemType="Mini"')
 
-    storeMenu = cursor.fetchall()
+    cursor.execute('SELECT * FROM minidesserts')
+    miniMenu = cursor.fetchall()
 
-    return render_template("menu.html", storeMenu=storeMenu)
+    cursor.execute('SELECT * FROM desserttray')
+    trays = cursor.fetchall()
+  
+    cursor.execute('SELECT * FROM pieandcheesecake')
+    piecheese = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM cupcake')
+    cupcake = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM dietary')
+    dietary = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM signatureflavorcake')
+    sf = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM cake')
+    cake = cursor.fetchall()
+
+    disconnectdb(mydb)
+    return render_template("menu.html", miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf, cake=cake)
+
 
 @app.route("/register")
 def register():
