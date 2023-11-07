@@ -94,3 +94,59 @@ header{
 #contact-icons {
     font-size: 3rem;
 }
+
+/*---------------------------------- CSS for order.html -------------------------------------*/
+.container {
+    display: flex;
+    justify-content: space-between; /* Ensure date-time on the right and order forms on the left */
+}
+
+.order-form-container {
+    flex: 1;
+    width: 700px; 
+    margin: 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.order-form-container input,
+.order-form-container select:not(.item-type-dropdown) {
+    width: 9%;
+    margin-right: 2%;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.date-time-container {
+    width: 200px; 
+    margin: 0;
+    padding: 40px;
+    float: right;
+}
+
+/* Clear the float for every 2nd input */
+.order-form-container input:nth-child(2n) {
+    margin-right: 0;
+}
+
+.delete-button {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    cursor: pointer;
+    color: rgb(252, 79, 151);
+}
+
+.order-form-container .item-type-dropdown {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+}
+
+.add-button {
+    display: block;
+    margin: 20px auto;
+    position: relative;
+}
