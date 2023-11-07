@@ -113,6 +113,23 @@ def menu():
     disconnectdb(mydb)
     return render_template("menu.html", miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf, cake=cake)
 
+@app.route("/adminMenu")
+def adminMenu():
+    return render_template("adminMenu.html")
+    # mydb = connectdb()
+    # cursor = mydb.cursor()
+    # query = """
+    # INSERT INTO person (id, first_name, last_name, city) VALUES (%s, %s, %s, %s);
+    # """
+    # msg = ""
+    # if request.method == "POST":
+    #     dropdown = request.form["dropdown"]
+
+    #     mydb = connectdb()
+    #     cursor = mydb.cursor()
+
+    # elif request.method == "POST":
+    #     msg = "There was an error handling your request, please try again!"
 
 @app.route("/register")
 def register():
