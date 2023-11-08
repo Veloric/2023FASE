@@ -36,6 +36,7 @@ def homepage():
 @app.route("/order", methods=["GET", "POST"])
 def order():
     msg = ""
+    # TODO: Rewrite order functionality to support new page functions and layout.
     if request.method == "POST" and "flavor" in request.form and "size" in request.form and "quantity" in request.form and "decor" in request.form:
         flavor = request.form["flavor"]
         size = request.form["size"]
@@ -86,6 +87,7 @@ def contact():
 
 @app.route("/menu")
 def menu():
+    #TODO: This should be in a try block in case an error occurs :3!
     mydb = connectdb()
     cursor = mydb.cursor()
 
@@ -133,11 +135,12 @@ def adminMenu():
 
 @app.route("/register")
 def register():
+    #TODO: Write register information
     return render_template("register.html")
 
-# We don't have a login.html in templates/ yet
 @app.route("/login")
 def login():
+    #TODO: Write login information
     return render_template("login.html")
 
 if __name__ == '__main__':
