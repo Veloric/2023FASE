@@ -181,6 +181,7 @@ def login():
             session["loggedin"] = True
             session["id"] = account["AccountID"]
             session["username"] = username
+            disconnectdb()
             redirect(url_for("profile.html"))
         else:
             msg = "Incorrect login!"
