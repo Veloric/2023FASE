@@ -28,12 +28,22 @@ function createOrderForm() {
                 <option value="Large">Large</option>
             </select>
 
-            <label for "quantity">Quantity:</label>
+            <label for="quantity">Quantity:</label>
             <input type="number" id="quantity" name="quantity" min="1" value="1">
 
+            <label for="unitPrice">Unit Price:</label>
+            <input type="text" id="unitPrice" name="unitPrice" readonly>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updateTotalPrice()">
+
+            <label for="totalPrice">Total Price:</label>
+            <input type="text" id="totalPrice" name="totalPrice" readonly>
+        
             <label for="decorRequests">Decor Requests:</label>
             <textarea id="decorRequests" name="decorRequests"></textarea>
-        </form>
+        
+            </form>
     `;
 
     orderForms.appendChild(orderForm);
