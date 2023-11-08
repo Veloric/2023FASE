@@ -117,21 +117,28 @@ def menu():
 
 @app.route("/adminMenu")
 def adminMenu():
-    return render_template("adminMenu.html")
-    # mydb = connectdb()
-    # cursor = mydb.cursor()
-    # query = """
-    # INSERT INTO person (id, first_name, last_name, city) VALUES (%s, %s, %s, %s);
-    # """
-    # msg = ""
-    # if request.method == "POST":
-    #     dropdown = request.form["dropdown"]
+    msg = ""
+    if request.method == "POST" and "menuID" in request.form and "categoryName" in request.form and "dessertName" in request.form and "dessertPrice" in request.form:
+        print(request.form)
+        menuID = request.form["menuID"]
+        categoryName = request.form["categoryName"]
+        dessertName = request.form["dessertName"]
+        dessertPrice = request.form["dessertPrice"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        command = "INSERT INTO MiniDesserts (MenuID, CategoryName, DessertName, DessertPrice) VALUES (%d, %s, %s, %d)"
+        values = (menuID, categoryName, dessertName, dessertPrice)
+        cursor.execute(command, values)
+        mydb.commit()
+        print(cursor.rowcount, " record inserted")
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST":
+        msg = "There was an error handling your request, please try again!"
+        # Testing below
+        print(request.form, " List of all the data sent")
 
-    #     mydb = connectdb()
-    #     cursor = mydb.cursor()
-
-    # elif request.method == "POST":
-    #     msg = "There was an error handling your request, please try again!"
+    return render_template("adminMenu.html", msg=msg)
 
 @app.route("/register")
 def register():
