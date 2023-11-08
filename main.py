@@ -2,9 +2,10 @@
 # This is the main driver for the project; hosts all methods, calls to database, as well as functionally runs the website.
 
 from flask import Flask as fl
-from flask import url_for, request, render_template, redirect
+from flask import url_for, request, render_template, redirect, session
 from markupsafe import escape
 import mysql.connector
+import re
 
 # Initialize FLASK
 app = fl(__name__, static_url_path='/static')
@@ -87,7 +88,6 @@ def contact():
 
 @app.route("/menu")
 def menu():
-    #TODO: This should be in a try block in case an error occurs :3!
     mydb = connectdb()
     cursor = mydb.cursor()
 
@@ -115,7 +115,7 @@ def menu():
     disconnectdb(mydb)
     return render_template("menu.html", miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf, cake=cake)
 
-@app.route("/adminMenu")
+@app.route("/adminMenu", methods=["GET", "POST"])
 def adminMenu():
     msg = ""
     if request.method == "POST" and "menuID" in request.form and "categoryName" in request.form and "dessertName" in request.form and "dessertPrice" in request.form:
@@ -140,15 +140,56 @@ def adminMenu():
 
     return render_template("adminMenu.html", msg=msg)
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
-    #TODO: Write register information
-    return render_template("register.html")
+    msg = ""
+    mydb = connectdb()
+    if request.method == "POST" and "username" in request.form and "password" and "email" in request.form:
+        username = request.form["username"]
+        password = request.form["password"]
+        email = request.form["email"]
+        mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Email = %s", (email))
+        account = mydb.cursor().fetchone()
+        if account:
+            msg = "Account already exists, login to your account!"
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = "Invalid email! Try again!"
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            msg = "Username can only contain letters and numbers!"
+        elif not username or not password or not email:
+            msg = "Incomplete forum, please try again."
+        else:
+            mydb.cursor().execute("INSERT INTO ACCOUNT (Username, Password, Email)")
+            mydb.commit()
+            msg = "Sucessfully registered! You may now login!"
+            disconnectdb(mydb)
+            redirect(url_for("login.html"))
+    elif request.method == "POST":
+        msg = "Please fill out the information before submitting!"
+    return render_template("register.html", msg = msg)
 
-@app.route("/login")
+@app.route("/login", methods = ["GET", "POST"])
 def login():
-    #TODO: Write login information
-    return render_template("login.html")
+    msg = ""
+    if request.method == "POST" and "username" in request.form and "password" in request.form:
+        username = request.form["username"]
+        password = request.form["password"]
+        mydb = connectdb()
+        mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Username = %s AND Password = %s", (username, password))
+        account = mydb.cursor().fetchone()
+        if account:
+            session["loggedin"] = True
+            session["id"] = account["AccountID"]
+            session["username"] = username
+            redirect(url_for("profile.html"))
+        else:
+            msg = "Incorrect login!"
+
+    return render_template("login.html", msg = msg)
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
 
 if __name__ == '__main__':
     app.run()
