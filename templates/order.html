@@ -23,18 +23,29 @@
 
                 <div class="date-time-container">
                     <form>
+                        
                         <h4>When do you need this?</h4>
-                        <label for="date">Date (mm/dd/yy):</label>
-                        <input type="text" id="date" name="date" placeholder="mm/dd/yy">
-        
-                        <label for="time">Time (--:--am/pm):</label>
-                        <input type="text" id="time" name="time" placeholder="--:--am/pm">
+                        <div class="input-row">
+                            <div class="label-input-pair">
+                                <label for="day">Date:</label>
+                                <input type="date" id="day" name="day">
+                            </div>
+            
+                            <div class="label-input-pair">
+                                <label for="pickup">Time: </label>
+                                <input type="time" id="pickup" name="pickup" placeholder="--:--">
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
 
             <!-- "Add Item to Order" button initially placed outside the forms -->
             <button class="add-button" onclick="createOrderForm()">Add Item to Order</button>
+
+            <div id="totalPrice">Total Price: $0.00</div> <!-- I just put 0 for now -->
+            <input type="submit" value="Submit Order">
+            
             <script src="{{ url_for('static', filename='order.js') }}"></script>
         
         </form>
