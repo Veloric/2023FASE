@@ -4,7 +4,7 @@
 from flask import Flask as fl
 from flask import url_for, request, render_template, redirect, session
 from markupsafe import escape
-# import mysql.connector
+import mysql.connector
 import re
 
 # Initialize FLASK
