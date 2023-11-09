@@ -4,7 +4,7 @@
 from flask import Flask as fl
 from flask import url_for, request, render_template, redirect, session
 from markupsafe import escape
-import mysql.connector
+# import mysql.connector
 import re
 
 # Initialize FLASK
@@ -118,7 +118,7 @@ def menu():
 # Admin Menu Functions below
 # ADDING TO MENU
 @app.route("/addMenu", methods=["GET", "POST"])
-def adminMenu():
+def addMenu():
     msg = ""
     if request.method == "POST" and "menuID" in request.form and "categoryName" in request.form and "dessertName" in request.form and "dessertPrice" in request.form:
         menuID = request.form["menuID"]
@@ -139,9 +139,9 @@ def adminMenu():
         # Testing below
         print(request.form, " List of all the data sent")
 
-    return render_template("adminMenu.html", msg=msg)
+    return render_template("addMenu.html", msg=msg)
 
-# EDITING FROMENU
+# EDITING FROM MENU
 @app.route("/editMenu", methods=["GET", "POST"])
 def editMenu():
     msg = ""
@@ -174,7 +174,7 @@ def editMenu():
 
     return render_template("editMenu.html", rowCount=rowCount, msg=msg)
 
-# DELETING MENU
+# DELETING FROM MENU
 @app.route("/deleteMenu", methods=["GET", "POST"])
 def deleteMenu():
     msg = ""
