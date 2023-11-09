@@ -19,6 +19,11 @@
         {{ navbar() }}
         {{ headerEnd() }}
 
+        <!-- TESTING REDIRECT LINKS -->
+        <a href="{{ url_for('addMenu') }}">addMenu</a><br>
+        <a href="{{ url_for('editMenu') }}">editMenu</a><br>
+        <a href="{{ url_for('deleteMenu') }}">deleteMenu</a><br>
+
         <select name="menu" id="menuSelection">
             <option value="1">Mini Desserts</option>
             <option value="2">Dessert Trays</option>

@@ -19,6 +19,11 @@
         {{ navbar() }}
         {{ headerEnd() }}
 
+        <!-- TESTING REDIRECT LINKS -->
+        <a href="{{ url_for('addMenu') }}">addMenu</a><br>
+        <a href="{{ url_for('editMenu') }}">editMenu</a><br>
+        <a href="{{ url_for('deleteMenu') }}">deleteMenu</a><br>
+
         <select name="menu" id="menuSelection">
             <option value="1">Mini Desserts</option>
             <option value="2">Dessert Trays</option>
@@ -29,19 +34,57 @@
             <option value="7">Cakes</option>
         </select>
 
-        <!-- Form 1 -->
+        <!-- MiniDesserts Form -->
         <div>
-            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="minidesserts">
-                
-                <p>{{ rowCount }}</p>
+            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="miniDessertsForm">
                 <label for="miniDessertsID">Which MiniDessertsID do you want to delete?</label>
                 <input type="number" id="miniDessertsID" name="miniDessertsID" min="1" required>
+
+                <input type="hidden" value="1" id="miniMenuID" name="menuID">
 
                 <button type="submit">Submit</button>
                 <p>{{ msg }}</p>
             </form>
         </div>
-        
+
+        <!-- DessertTray Form -->
+        <div>
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" id="dessertTrayForm">
+                <label for="dessertTrayID">Which DessertTrayID do you want to delete?</label>
+                <input type="number" id="dessertTrayID" name="dessertTrayID" min="1" required>
+
+                <input type="hidden" value="2" id="trayMenuID" name="menuID">
+
+                <button type="submit">Submit</button>
+                <p>{{ msg }}</p>
+            </form>
+        </div>
+
+        <!-- PieAndCheesecake Form -->
+        <div>
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" id="pieAndCheesecakeForm">
+                <label for="PCID">Which PCID do you want to delete?</label>
+                <input type="number" id="PCID" name="PCID" min="1" required>
+
+                <input type="hidden" value="3" id="PCMenuID" name="menuID">
+
+                <button type="submit">Submit</button>
+                <p>{{ msg }}</p>
+            </form>
+        </div>
+
+        <!-- Cupcake Form -->
+        <div>
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" id="cupcakeForm">
+                <label for="cupcakeID">Which CupcakeID do you want to delete?</label>
+                <input type="number" id="cupcakeID" name="cupcakeID" min="1" required>
+
+                <input type="hidden" value="4" id="cupcakeMenuID" name="menuID">
+
+                <button type="submit">Submit</button>
+                <p>{{ msg }}</p>
+            </form>
+        </div>
 
     </body>
 </html>

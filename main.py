@@ -88,50 +88,88 @@ def contact():
 
 @app.route("/menu")
 def menu():
-    mydb = connectdb()
-    cursor = mydb.cursor()
+    try:
+        mydb = connectdb()
+        cursor = mydb.cursor()
 
-    cursor.execute('SELECT * FROM minidesserts')
-    miniMenu = cursor.fetchall()
+        cursor.execute('SELECT * FROM minidesserts')
+        miniMenu = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM desserttray')
-    trays = cursor.fetchall()
-  
-    cursor.execute('SELECT * FROM pieandcheesecake')
-    piecheese = cursor.fetchall()
+        cursor.execute('SELECT * FROM desserttray')
+        trays = cursor.fetchall()
+    
+        cursor.execute('SELECT * FROM pieandcheesecake')
+        piecheese = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM cupcake')
-    cupcake = cursor.fetchall()
+        cursor.execute('SELECT * FROM cupcake')
+        cupcake = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM dietary')
-    dietary = cursor.fetchall()
+        cursor.execute('SELECT * FROM dietary')
+        dietary = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM signatureflavorcake')
-    sf = cursor.fetchall()
+        cursor.execute('SELECT * FROM signatureflavorcake')
+        sf = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM cake')
-    cake = cursor.fetchall()
+        cursor.execute('SELECT * FROM cake')
+        cake = cursor.fetchall()
 
-    disconnectdb(mydb)
-    return render_template("menu.html", miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf, cake=cake)
+        disconnectdb(mydb)
+        return render_template("menu.html", miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf, cake=cake)
+    except:
+        print("An error has occurred while displaying the menu!")
 
 # Admin Menu Functions below
 # ADDING TO MENU
 @app.route("/addMenu", methods=["GET", "POST"])
 def addMenu():
     msg = ""
-    if request.method == "POST" and "menuID" in request.form and "categoryName" in request.form and "dessertName" in request.form and "dessertPrice" in request.form:
+    if request.method == "POST" and request.form["menuID"] == 1:
         menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
         dessertName = request.form["dessertName"]
         dessertPrice = request.form["dessertPrice"]
         mydb = connectdb()
         cursor = mydb.cursor()
-        command = "INSERT INTO MiniDesserts (MenuID, CategoryName, DessertName, DessertPrice) VALUES (%s, %s, %s, %s)"
-        values = (menuID, categoryName, dessertName, dessertPrice)
-        cursor.execute(command, values)
+        cursor.execute("INSERT INTO MiniDesserts (MenuID, CategoryName, DessertName, DessertPrice) VALUES (%s, %s, %s, %s)", (menuID, categoryName, dessertName, dessertPrice))
         mydb.commit()
-        print(cursor.rowcount, " record inserted")
+        print(cursor.rowcount, " record inserted!") # TESTING
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == 2:
+        menuID = request.form["menuID"]
+        categoryName = request.form["categoryName"]
+        sizeName = request.form["sizeName"]
+        sizePrice = request.form["sizePrice"]
+        sizeDescription = request.form["sizeDescription"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("INSERT INTO DessertTray (MenuID, CategoryName, SizeName, SizePrice, SizeDescription) VALUES (%s, %s, %s, %s, %s)", (menuID, categoryName, sizeName, sizePrice, sizeDescription))
+        mydb.commit()
+        print(cursor.rowcount, " record inserted!") # TESTING
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == 3:
+        menuID = request.form["menuID"]
+        categoryName = request.form["categoryName"]
+        PCName = request.form["PCName"]
+        PCPrice = request.form["PCPrice"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("INSERT INTO PieAndCheesecake (MenuID, CategoryName, PCName, PCPrice) VALUES (%s, %s, %s, %s)", (menuID, categoryName, PCName, PCPrice))
+        mydb.commit()
+        print(cursor.rowcount, " record inserted!") # TESTING
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == 4:
+        menuID = request.form["menuID"]
+        sizeName = request.form["sizeName"]
+        sizeDescription = request.form["sizeDescription"]
+        cupcakePrice = request.form["cupcakePrice"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("INSERT INTO Cupcake (MenuID, SizeName, SizeDescription, CupcakePrice) VALUES (%s, %s, %s, %s)", (menuID, sizeName, sizeDescription, cupcakePrice))
+        mydb.commit()
+        print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
     elif request.method == "POST":
@@ -141,7 +179,7 @@ def addMenu():
 
     return render_template("addMenu.html", msg=msg)
 
-# EDITING FROM MENU
+# EDITING THE MENU
 @app.route("/editMenu", methods=["GET", "POST"])
 def editMenu():
     msg = ""
@@ -151,19 +189,42 @@ def editMenu():
     cursor.execute("SELECT COUNT(*) FROM MiniDesserts")
     rowCount = cursor.fetchall()[0][0]
 
-    if request.method == "POST" and "miniDessertsID" in request.form and "menuID" in request.form and "categoryName" in request.form and "dessertName" in request.form and "dessertPrice" in request.form:
+    if request.method == "POST" and request.form["menuID"] == 1:
         miniDessertsID = request.form["miniDessertsID"]
-        menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
         dessertName = request.form["dessertName"]
         dessertPrice = request.form["dessertPrice"]
-
-        command = "UPDATE MiniDesserts SET MenuID = %s, CategoryName = %s, DessertName = %s, DessertPrice = %s WHERE MiniDessertsID = %s"
-        values = (menuID, categoryName, dessertName, dessertPrice, miniDessertsID)
-        cursor.execute(command, values)
+        cursor.execute("UPDATE MiniDesserts SET CategoryName = %s, DessertName = %s, DessertPrice = %s WHERE MiniDessertsID = %s", (categoryName, dessertName, dessertPrice, miniDessertsID))
         mydb.commit()
-        print(cursor.rowcount, " record updated!")
-        
+        print(cursor.rowcount, " record updated!") # TESTING
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == 2:
+        dessertTrayID = request.form["dessertTrayID"]
+        categoryName = request.form["categoryName"]
+        sizeName = request.form["sizeName"]
+        sizePrice = request.form["sizePrice"]
+        sizeDescription = request.form["sizeDescription"]
+        cursor.execute("UPDATE DessertTray SET CategoryName = %s, SizeName = %s, SizePrice = %s, SizeDescription = %s WHERE DessertTrayID = %s", (categoryName, sizeName, sizePrice, sizeDescription, dessertTrayID))
+        mydb.commit()
+        print(cursor.rowcount, " record updated!") # TESTING
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == 3:
+        PCID = request.form["PCID"]
+        categoryName = request.form["categoryName"]
+        PCName = request.form["PCName"]
+        PCPrice = request.form["PCPrice"]
+        cursor.execute("UPDATE PieAndCheesecake SET CategoryName = %s, PCName = %s, PCPrice = %s WHERE PCID = %s", (categoryName, PCName, PCPrice, PCID))
+        mydb.commit()
+        print(cursor.rowcount, " record updated!") # TESTING
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == 4:
+        cupcakeID = request.form["cupcakeID"]
+        sizeName = request.form["sizeName"]
+        sizeDescription = request.form["sizeDescription"]
+        cupcakePrice = request.form["cupcakePrice"]
+        cursor.execute("UPDATE Cupcake SET SizeName = %s, SizeDescription = %s, CupcakePrice = %s WHERE CupcakeID = %s", (sizeName, sizeDescription, cupcakePrice, cupcakeID))
+        mydb.commit()
+        print(cursor.rowcount, " record updated!") # TESTING
         msg = "Form received! You may now exit this page."
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
@@ -182,7 +243,7 @@ def deleteMenu():
     mydb = connectdb()
     cursor = mydb.cursor()
 
-    if request.method == "POST" and "miniDessertsID" in request.form: 
+    if request.method == "POST" and request.form["menuID"] == 1: 
         print(request.form)
         miniDessertsID = request.form["miniDessertsID"]
 
@@ -197,6 +258,24 @@ def deleteMenu():
             msg = "Form received! You may now exit this page."
         else:
             msg = "Error, the ID is invalid!"
+    elif request.method == "POST" and request.form["menuID"] == 2:
+        dessertTrayID = request.form["dessertTrayID"]
+        cursor.execute("DELETE from DessertTray WHERE DessertTrayID = %s", [(dessertTrayID)])
+        mydb.commit()
+        print(cursor.rowcount, " record deleted!") # TESTING
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == 3:
+        PCID = request.form["PCID"]
+        cursor.execute("DELETE from PieAndCheesecake WHERE PCID = %s", [(PCID)])
+        mydb.commit()
+        print(cursor.rowcount, " record deleted!") # TESTING
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == 4:
+        cupcakeID = request.form["cupcakeID"]
+        cursor.execute("DELETE from Cupcake WHERE CupcakeID = %s", [(cupcakeID)])
+        mydb.commit()
+        print(cursor.rowcount, " record deleted!") # TESTING
+        msg = "Form received! You may now exit this page."
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
         # Testing below
