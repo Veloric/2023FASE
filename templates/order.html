@@ -18,9 +18,9 @@
 
             <div class="container">
                 <div id="orderForms">
-                    <!-- Order forms and buttons will be added here -->
+                    <!-- Order forms will be added here -->
                 </div>
-
+        
                 <div class="date-time-container">
                     <form>
                         
@@ -30,7 +30,7 @@
                                 <label for="day">Date:</label>
                                 <input type="date" id="day" name="day">
                             </div>
-            
+        
                             <div class="label-input-pair">
                                 <label for="pickup">Time: </label>
                                 <input type="time" id="pickup" name="pickup" placeholder="--:--">
@@ -39,13 +39,14 @@
                     </form>
                 </div>
             </div>
-
-            <!-- "Add Item to Order" button initially placed outside the forms -->
+        
+            <!-- "Add Item to Order" button placed outside the forms -->
             <button class="add-button" onclick="createOrderForm()">Add Item to Order</button>
 
-            <div id="totalPrice">Total Price: $0.00</div> <!-- I just put 0 for now -->
+            <!-- I just put 0 for now this should grab the total Price while items are being added-->
+            <div id="totalPrice">Total Price: $0.00</div> 
             <input type="submit" value="Submit Order">
-            
+                
             <script src="{{ url_for('static', filename='order.js') }}"></script>
         
         </form>
