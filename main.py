@@ -254,8 +254,14 @@ def login():
 
     return render_template("login.html", msg = msg)
 
+@app.route("/logout")
+def logout():
+    #TODO: Allow logging out and removal of session data
+    pass
+
 @app.route("/profile")
 def profile():
+    #TODO: Write profile page, and check admin status
     return render_template("profile.html")
 
 
