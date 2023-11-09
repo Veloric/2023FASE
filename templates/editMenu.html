@@ -31,7 +31,12 @@
 
         <!-- Form 1 -->
         <div>
-            <form action="{{ url_for('adminMenu') }}" method="POST" autocomplete="off" id="minidesserts">
+            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="minidesserts">
+                
+                <p>{{ rowCount }}</p>
+                <label for="miniDessertsID">Which MiniDessertsID do you want to edit?</label>
+                <input type="number" id="miniDessertsID" name="miniDessertsID" min="1" max="{{ rowCount }}" required>
+                
                 <input type="hidden" value="1" id="miniMenuID" name="menuID">
 
                 <label for="miniCategoryName">Category Name</label>

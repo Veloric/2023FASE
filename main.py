@@ -115,18 +115,19 @@ def menu():
     disconnectdb(mydb)
     return render_template("menu.html", miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf, cake=cake)
 
-@app.route("/adminMenu", methods=["GET", "POST"])
+# Admin Menu Functions below
+# ADDING TO MENU
+@app.route("/addMenu", methods=["GET", "POST"])
 def adminMenu():
     msg = ""
     if request.method == "POST" and "menuID" in request.form and "categoryName" in request.form and "dessertName" in request.form and "dessertPrice" in request.form:
-        print(request.form)
         menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
         dessertName = request.form["dessertName"]
         dessertPrice = request.form["dessertPrice"]
         mydb = connectdb()
         cursor = mydb.cursor()
-        command = "INSERT INTO MiniDesserts (MenuID, CategoryName, DessertName, DessertPrice) VALUES (%d, %s, %s, %d)"
+        command = "INSERT INTO MiniDesserts (MenuID, CategoryName, DessertName, DessertPrice) VALUES (%s, %s, %s, %s)"
         values = (menuID, categoryName, dessertName, dessertPrice)
         cursor.execute(command, values)
         mydb.commit()
@@ -139,6 +140,71 @@ def adminMenu():
         print(request.form, " List of all the data sent")
 
     return render_template("adminMenu.html", msg=msg)
+
+# EDITING FROMENU
+@app.route("/editMenu", methods=["GET", "POST"])
+def editMenu():
+    msg = ""
+
+    mydb = connectdb()
+    cursor = mydb.cursor()
+    cursor.execute("SELECT COUNT(*) FROM MiniDesserts")
+    rowCount = cursor.fetchall()[0][0]
+
+    if request.method == "POST" and "miniDessertsID" in request.form and "menuID" in request.form and "categoryName" in request.form and "dessertName" in request.form and "dessertPrice" in request.form:
+        miniDessertsID = request.form["miniDessertsID"]
+        menuID = request.form["menuID"]
+        categoryName = request.form["categoryName"]
+        dessertName = request.form["dessertName"]
+        dessertPrice = request.form["dessertPrice"]
+
+        command = "UPDATE MiniDesserts SET MenuID = %s, CategoryName = %s, DessertName = %s, DessertPrice = %s WHERE MiniDessertsID = %s"
+        values = (menuID, categoryName, dessertName, dessertPrice, miniDessertsID)
+        cursor.execute(command, values)
+        mydb.commit()
+        print(cursor.rowcount, " record updated!")
+        
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST":
+        msg = "There was an error handling your request, please try again!"
+        # Testing below
+        print(request.form, " List of all the data sent")
+
+    disconnectdb(mydb)
+
+    return render_template("editMenu.html", rowCount=rowCount, msg=msg)
+
+# DELETING MENU
+@app.route("/deleteMenu", methods=["GET", "POST"])
+def deleteMenu():
+    msg = ""
+
+    mydb = connectdb()
+    cursor = mydb.cursor()
+
+    if request.method == "POST" and "miniDessertsID" in request.form: 
+        print(request.form)
+        miniDessertsID = request.form["miniDessertsID"]
+
+        check = cursor.execute("SELECT * from MiniDesserts WHERE MiniDessertsID = %s", [(miniDessertsID)])
+        print(check, " check")
+        if check != "None":
+            command = "DELETE from MiniDesserts WHERE MiniDessertsID = %s"
+            values = [(miniDessertsID)]
+            cursor.execute(command, values)
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!")
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Error, the ID is invalid!"
+    elif request.method == "POST":
+        msg = "There was an error handling your request, please try again!"
+        # Testing below
+        print(request.form, " List of all the data sent")
+
+    disconnectdb(mydb)
+
+    return render_template("deleteMenu.html", msg=msg)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():

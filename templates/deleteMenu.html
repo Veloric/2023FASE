@@ -31,25 +31,11 @@
 
         <!-- Form 1 -->
         <div>
-            <form action="{{ url_for('adminMenu') }}" method="POST" autocomplete="off" id="minidesserts">
-                <input type="hidden" value="1" id="miniMenuID" name="menuID">
-
-                <label for="miniCategoryName">Category Name</label>
-
-                <select id="miniCategoryName" name="categoryName" required>
-                    <option value="Mini Tart">Mini Tart</option>
-                    <option value="Mini Pastries">Mini Pastries</option>
-                    <option value="Mousse Cups">Mousse Cups</option>
-                    <option value="Mini Cupcakes">Mini Cupcakes</option>
-                    <option value="Mini Desserts">Mini Desserts</option>
-                    <option value="Brownie Bites">Brownie Bites</option>
-                </select>
-
-                <label for="miniDessertName">Dessert Name</label>
-                <input type="text" id="miniDessertName" name="dessertName" required>
-
-                <label for="miniDessertPrice">Dessert Price</label>
-                <input type="number" placeholder="0.00" step=".01" id="miniDessertPrice" name="dessertPrice" required>
+            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="minidesserts">
+                
+                <p>{{ rowCount }}</p>
+                <label for="miniDessertsID">Which MiniDessertsID do you want to delete?</label>
+                <input type="number" id="miniDessertsID" name="miniDessertsID" min="1" required>
 
                 <button type="submit">Submit</button>
                 <p>{{ msg }}</p>
