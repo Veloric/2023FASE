@@ -176,7 +176,7 @@ def addMenu():
         SFPrice = request.form["SFPrice"]
         mydb = connectdb()
         cursor = mydb.cursor()
-        cursor.execute("INSERT INTO Dietary (MenuID, CategoryName, CakeSize, DietaryPrice) VALUES (%s, %s, %s, %s, %s)", (menuID, categoryName, cakeSize, servings, SFPrice))
+        cursor.execute("INSERT INTO SignatureFlavorCake (MenuID, CategoryName, CakeSize, DietaryPrice) VALUES (%s, %s, %s, %s, %s)", (menuID, categoryName, cakeSize, servings, SFPrice))
         mydb.commit()
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
@@ -251,6 +251,44 @@ def editMenu():
         mydb.commit()
         print(cursor.rowcount, " record updated!") # TESTING
         msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == "5":
+        dietaryID = request.form["dietaryID"]
+        categoryName = request.form["categoryName"]
+        cakeSize = request.form["cakeSize"]
+        dietaryPrice = request.form["dietaryPrice"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("UPDATE Dietary SET dietaryID = %s, CategoryName = %s, CakeSize = %s, DietaryPrice = %s", (dietaryID, categoryName, cakeSize, dietaryPrice))
+        mydb.commit()
+        print(cursor.rowcount, " record inserted!") # TESTING
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == "6":
+        SFID = request.form["SFID"]
+        categoryName = request.form["categoryName"]
+        cakeSize = request.form["cakeSize"]
+        servings = request.form['servings']
+        SFPrice = request.form["SFPrice"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("UPDATE signatureflavorcake SET SFID = %s, CategoryName = %s, CakeSize = %s, servings = %s, SFPrice = %s", (SFID, categoryName, cakeSize, servings,  SFPrice))
+        mydb.commit()
+        print(cursor.rowcount, " record inserted!") # TESTING
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == "7":
+        cakeID = request.form["cakeID"]
+        categoryName = request.form["categoryName"]
+        cakeSize = request.form["cakeSize"]
+        servings = request.form['servings']
+        cakePrice = request.form["cakePrice"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("UPDATE cake SET cakeID = %s, CategoryName = %s, CakeSize = %s, servings = %s, cakePrice = %s", (cakeID, categoryName, cakeSize, servings, cakePrice))
+        mydb.commit()
+        print(cursor.rowcount, " record inserted!") # TESTING
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
         # Testing below
@@ -298,6 +336,24 @@ def deleteMenu():
     elif request.method == "POST" and request.form["menuID"] == "4":
         cupcakeID = request.form["cupcakeID"]
         cursor.execute("DELETE from Cupcake WHERE CupcakeID = %s", [(cupcakeID)])
+        mydb.commit()
+        print(cursor.rowcount, " record deleted!") # TESTING
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == "5":
+        dietaryID = request.form["dietaryID"]
+        cursor.execute("DELETE from dietary WHERE dietaryID = %s", [(dietaryID)])
+        mydb.commit()
+        print(cursor.rowcount, " record deleted!") # TESTING
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == "6":
+        SFID = request.form["SFID"]
+        cursor.execute("DELETE from SignatureFlavorCake WHERE SFID = %s", [(SFID)])
+        mydb.commit()
+        print(cursor.rowcount, " record deleted!") # TESTING
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == "7":
+        cakeID = request.form["cakeID"]
+        cursor.execute("DELETE from Cake WHERE cakeID = %s", [(cakeID)])
         mydb.commit()
         print(cursor.rowcount, " record deleted!") # TESTING
         msg = "Form received! You may now exit this page."
