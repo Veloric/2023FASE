@@ -156,6 +156,47 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == "5":
+        menuID = request.form["menuID"]
+        categoryName = request.form["categoryName"]
+        cakeSize = request.form["cakeSize"]
+        dietaryPrice = request.form["dietaryPrice"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("INSERT INTO Dietary (MenuID, CategoryName, CakeSize, DietaryPrice) VALUES (%s, %s, %s, %s)", (menuID, categoryName, cakeSize, dietaryPrice))
+        mydb.commit()
+        print(cursor.rowcount, " record inserted!") # TESTING
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == "6":
+        menuID = request.form["menuID"]
+        categoryName = request.form["categoryName"]
+        cakeSize = request.form["cakeSize"]
+        servings = request.form['servings']
+        SFPrice = request.form["SFPrice"]
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("INSERT INTO Dietary (MenuID, CategoryName, CakeSize, DietaryPrice) VALUES (%s, %s, %s, %s, %s)", (menuID, categoryName, cakeSize, servings, SFPrice))
+        mydb.commit()
+        print(cursor.rowcount, " record inserted!") # TESTING
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
+    elif request.method == "POST" and request.form["menuID"] == "7":
+        menuID = request.form["menuID"]
+        categoryName = request.form["categoryName"]
+        cakeSize = request.form["cakeSize"]
+        servings = request.form['servings']
+        cakePrice = request.form['cakePrice']
+        cakeEnhancement = request.form['cakeEnhancement']
+        fillingEnhancement = request.form['fillingEnhancement']
+        frostingEnhancement = request.form['frostingEnhancement']
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("INSERT INTO Cake (MenuID, CategoryName, CakeSize, Servings, CakePrice, CakeEnhancement, FillingEnhancement, FrostingEnhancement) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (menuID, categoryName, cakeSize, servings, cakePrice, cakeEnhancement, fillingEnhancement, frostingEnhancement))
+        mydb.commit()
+        print(cursor.rowcount, " record inserted!") # TESTING
+        disconnectdb(mydb)
+        msg = "Form received! You may now exit this page."
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
         # Testing below

@@ -7,7 +7,7 @@
         <title>Order</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
-        <script src="{{ url_for('static', filename='order.js') }}"></script>
+        <!-- <script src="{{ url_for('static', filename='order.js') }}"> defer</script> -->
     </head>
     <body>    
         {{ navbar() }}
@@ -42,12 +42,13 @@
             </div>
         
             <!-- "Add Item to Order" button initially placed outside the forms -->
+            <script src="{{ url_for('static', filename='order.js') }}"></script>
             <button class="add-button" onclick="createOrderForm()">Add Item to Order</button>
         
             <div id="totalPrice">Total Price: $0.00</div> <!-- I just put 0 for now -->
             <button type="submit" value = "submitOrder">Submit Order</button>
 
-            <p>{ % msg %}</p>
+            {{ msg }}
         
         </form>
     </body>

@@ -5,8 +5,7 @@ function createOrderForm() {
     const orderForm = document.createElement("div");
     orderForm.className = "order-form-container";
 
-    orderForm.innerHTML =
-            orderForm.innerHTML = `
+    orderForm.innerHTML = `
                 <span class="delete-button" onclick="deleteOrderForm(this)">X</span>
                 <form>
                     <select class="item-type-dropdown" id="item" name="item" onchange="updateOptions(this)">
@@ -63,24 +62,24 @@ function createOrderForm() {
                 </form>
             `;
 
-            orderForms.appendChild(orderForm);
+    orderForms.appendChild(orderForm);
 
-            // Reset the form
-            orderForm.querySelector("form").reset();
-        }
+    // Reset the form
+    orderForm.querySelector("form").reset();
+}
 
-        function deleteOrderForm(button) {
-            const orderForm = button.parentElement;
-            orderForms.removeChild(orderForm);
-        }
+function deleteOrderForm(button) {
+    const orderForm = button.parentElement;
+    orderForms.removeChild(orderForm);
+}
 
-        function updateOptions(select) {
-            const flavorSelect = select.parentElement.querySelector("#flavor");
-            const sizeSelect = select.parentElement.querySelector("#size");
+function updateOptions(select) {
+    const flavorSelect = select.parentElement.querySelector("#flavor");
+    const sizeSelect = select.parentElement.querySelector("#size");
 
-            switch (select.value) {
-                case "Cake":
-                    flavorSelect.innerHTML = `
+    switch (select.value) {
+        case "Cake":
+            flavorSelect.innerHTML = `
                         <option value="Andes Mint">Andes Mint</option>
                         <option value="Cookies N' Cream">Cookies N' Cream</option>
                         <option value="Mocha/Macchiato Cake">Mocha/Macchiato Cake</option>
@@ -102,7 +101,7 @@ function createOrderForm() {
                         <option value="Italian Rum">Italian Rum</option>
                         <option value="Signature Strawberry Shortcake">Signature Strawberry Shortcake (with Chocolate)</option>
                     `;
-                    sizeSelect.innerHTML = `
+            sizeSelect.innerHTML = `
                         <option value="6">6"</option>
                         <option value="8">8"</option>
                         <option value="10">10"</option>
@@ -111,85 +110,85 @@ function createOrderForm() {
                         <option value="1/2 Sheet">1/2 Sheet"</option>
                         <option value="Full Sheet">Full Sheet"</option>
                     `;
-                    break;
+            break;
 
-                case "Brownie":
-                    flavorSelect.innerHTML = `
+        case "Brownie":
+            flavorSelect.innerHTML = `
                         <option value="Birthday">Birthday</option>
                         <option value="Oreo">Oreo</option>
                         <option value="Salted Caramel">Salted Caramel</option>
                         <option value="Peanut Butter">Peanut Butter</option>
                     `;
-                    sizeSelect.innerHTML = `
+            sizeSelect.innerHTML = `
                         <option value="Brownie Bites">Brownie Bites</option>
                         <option value="Regular">Regular</option>
                     `;
-                    break;
+            break;
 
-                //Realized that you might be able to do this by parsing through data in SQL. Let me know if you need me to keep doing this
-                //If not, feel free to adjust as needed and delete this - Laiba 
-                /*
-                case "Dessert Tray":
-                    flavorSelect.innerHTML = `
-                        
-                    `;
-                    sizeSelect.innerHTML = `
-                        
-                    `;
-
-                case "Pie":
-                    flavorSelect.innerHTML = `
-                        
-
-                    `;
-                    sizeSelect.innerHTML = `
-                        
-
-                    `;
-                case "Cheesecake":
-                    flavorSelect.innerHTML = `
-                        
-
-                    `;
-                    sizeSelect.innerHTML = `
-                        
-
-                    `;
+        //Realized that you might be able to do this by parsing through data in SQL. Let me know if you need me to keep doing this
+        //If not, feel free to adjust as needed and delete this - Laiba 
+        /*
+        case "Dessert Tray":
+            flavorSelect.innerHTML = `
                 
-                case "Dietary ":
-                    flavorSelect.innerHTML = `
+            `;
+            sizeSelect.innerHTML = `
+                
+            `;
 
-                    `;
-                    sizeSelect.innerHTML = `
-                        
-                    `;
-                */
-            }
-        }
+        case "Pie":
+            flavorSelect.innerHTML = `
+                
 
-        function updateItemTotal() {
-            const unitPrice = parseFloat(document.getElementById("unitPrice").value);
-            const quantity = parseFloat(document.getElementById("quantity").value);
-            const ItemTotal = unitPrice * quantity;
-            document.getElementById("ItemTotal").value = isNaN(ItemTotal) ? '' : ItemTotal.toFixed(2);
-        }
-    
-    /* Dont know if this is needed, but here it is */
-        const dateInput = document.getElementById("day");
-        const timeInput = document.getElementById("pickup");
+            `;
+            sizeSelect.innerHTML = `
+                
 
-        // Calculate the minimum and maximum date values
-        const now = new Date();
-        const minDate = new Date(now.getTime() + 72 * 60 * 60 * 1000); // 72 hours from now
-        minDate.setMinutes(0, 0, 0); // Clear minutes, seconds, and milliseconds
+            `;
+        case "Cheesecake":
+            flavorSelect.innerHTML = `
+                
 
-        // Set the minimum and maximum date values
-        dateInput.setAttribute("min", minDate.toISOString().slice(0, 10)); // Format as yyyy-mm-dd
-        dateInput.setAttribute("max", "2030-12-31"); // A far-future date for maximum
+            `;
+            sizeSelect.innerHTML = `
+                
 
-        // Set the step for the time input to allow selection in 15-minute intervals
-        timeInput.setAttribute("step", "900"); // 15 minutes in seconds
+            `;
+        
+        case "Dietary ":
+            flavorSelect.innerHTML = `
 
-        // Set the minimum and maximum time values (in HH:MM format)
-        timeInput.setAttribute("min", "11:00");
-        timeInput.setAttribute("max", "18:00");
+            `;
+            sizeSelect.innerHTML = `
+                
+            `;
+        */
+    }
+}
+
+function updateItemTotal() {
+    const unitPrice = parseFloat(document.getElementById("unitPrice").value);
+    const quantity = parseFloat(document.getElementById("quantity").value);
+    const ItemTotal = unitPrice * quantity;
+    document.getElementById("ItemTotal").value = isNaN(ItemTotal) ? '' : ItemTotal.toFixed(2);
+}
+
+/* Dont know if this is needed, but here it is */
+const dateInput = document.getElementById("day");
+const timeInput = document.getElementById("pickup");
+
+// Calculate the minimum and maximum date values
+const now = new Date();
+const minDate = new Date(now.getTime() + 72 * 60 * 60 * 1000); // 72 hours from now
+minDate.setMinutes(0, 0, 0); // Clear minutes, seconds, and milliseconds
+
+// Set the minimum and maximum date values
+dateInput.setAttribute("min", minDate.toISOString().slice(0, 10)); // Format as yyyy-mm-dd
+dateInput.setAttribute("max", "2030-12-31"); // A far-future date for maximum
+
+// Set the step for the time input to allow selection in 15-minute intervals
+timeInput.setAttribute("step", "900"); // 15 minutes in seconds
+
+// Set the minimum and maximum time values (in HH:MM format)
+timeInput.setAttribute("min", "11:00");
+timeInput.setAttribute("max", "18:00");
