@@ -5,7 +5,7 @@ function createOrderForm() {
     const orderForm = document.createElement("div");
     orderForm.className = "order-form-container";
 
-    orderForm.innerHTML = `
+    orderForm.innerHTML =
             orderForm.innerHTML = `
                 <span class="delete-button" onclick="deleteOrderForm(this)">X</span>
                 <form>
@@ -193,5 +193,3 @@ function createOrderForm() {
         // Set the minimum and maximum time values (in HH:MM format)
         timeInput.setAttribute("min", "11:00");
         timeInput.setAttribute("max", "18:00");
-    }
-}

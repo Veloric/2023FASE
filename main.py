@@ -38,26 +38,10 @@ def homepage():
 def order():
     msg = ""
     # TODO: Rewrite order functionality to support new page functions and layout.
-    if request.method == "POST" and "flavor" in request.form and "size" in request.form and "quantity" in request.form and "decor" in request.form:
-        flavor = request.form["flavor"]
-        size = request.form["size"]
-        quantity = request.form["quantity"]
-        decor = request.form["decor"]
-        mydb = connectdb()
-        cursor = mydb.cursor()
-        command = "INSERT INTO Orders (CupcakeFlavor, CupcakeSize, CupcakeQuantity, DecorRequests) VALUES (%s, %s, %s, %s)"
-        values = (flavor, size, quantity, decor)
-        cursor.execute(command, values)
-        mydb.commit()
-        # for testing purposes only
-        print(cursor.rowcount, " record inserted")
-        disconnectdb(mydb)
-        msg = "Order placed! You may now exit this page. (Create an account to view order history)"
-    elif request.method == "POST":
-        msg = "There was an error handling your request, please try again!"
-        # Testing purposes only
-        print(request.form, " List of all data sent")
-        
+    # This isn't working, at all basically.
+    if request.method == "POST":
+        print(request.form)
+        msg = "Order recieved"
     return render_template("order.html", msg=msg)
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -335,7 +319,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    #TODO: Allow logging out and removal of session data
+    #TODO: Allow logging out and removal of session data (non priority)
     pass
 
 @app.route("/profile")
