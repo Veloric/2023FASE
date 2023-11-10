@@ -107,7 +107,7 @@ def menu():
 @app.route("/addMenu", methods=["GET", "POST"])
 def addMenu():
     msg = ""
-    if request.method == "POST" and request.form["menuID"] == 1:
+    if request.method == "POST" and request.form["menuID"] == "1":
         menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
         dessertName = request.form["dessertName"]
@@ -119,7 +119,7 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
-    elif request.method == "POST" and request.form["menuID"] == 2:
+    elif request.method == "POST" and request.form["menuID"] == "2":
         menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
         sizeName = request.form["sizeName"]
@@ -132,7 +132,7 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
-    elif request.method == "POST" and request.form["menuID"] == 3:
+    elif request.method == "POST" and request.form["menuID"] == "3":
         menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
         PCName = request.form["PCName"]
@@ -144,7 +144,7 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
-    elif request.method == "POST" and request.form["menuID"] == 4:
+    elif request.method == "POST" and request.form["menuID"] == "4":
         menuID = request.form["menuID"]
         sizeName = request.form["sizeName"]
         sizeDescription = request.form["sizeDescription"]
@@ -173,7 +173,7 @@ def editMenu():
     cursor.execute("SELECT COUNT(*) FROM MiniDesserts")
     rowCount = cursor.fetchall()[0][0]
 
-    if request.method == "POST" and request.form["menuID"] == 1:
+    if request.method == "POST" and request.form["menuID"] == "1":
         miniDessertsID = request.form["miniDessertsID"]
         categoryName = request.form["categoryName"]
         dessertName = request.form["dessertName"]
@@ -182,7 +182,7 @@ def editMenu():
         mydb.commit()
         print(cursor.rowcount, " record updated!") # TESTING
         msg = "Form received! You may now exit this page."
-    elif request.method == "POST" and request.form["menuID"] == 2:
+    elif request.method == "POST" and request.form["menuID"] == "2":
         dessertTrayID = request.form["dessertTrayID"]
         categoryName = request.form["categoryName"]
         sizeName = request.form["sizeName"]
@@ -192,7 +192,7 @@ def editMenu():
         mydb.commit()
         print(cursor.rowcount, " record updated!") # TESTING
         msg = "Form received! You may now exit this page."
-    elif request.method == "POST" and request.form["menuID"] == 3:
+    elif request.method == "POST" and request.form["menuID"] == "3":
         PCID = request.form["PCID"]
         categoryName = request.form["categoryName"]
         PCName = request.form["PCName"]
@@ -201,7 +201,7 @@ def editMenu():
         mydb.commit()
         print(cursor.rowcount, " record updated!") # TESTING
         msg = "Form received! You may now exit this page."
-    elif request.method == "POST" and request.form["menuID"] == 4:
+    elif request.method == "POST" and request.form["menuID"] == "4":
         cupcakeID = request.form["cupcakeID"]
         sizeName = request.form["sizeName"]
         sizeDescription = request.form["sizeDescription"]
@@ -227,7 +227,7 @@ def deleteMenu():
     mydb = connectdb()
     cursor = mydb.cursor()
 
-    if request.method == "POST" and request.form["menuID"] == 1: 
+    if request.method == "POST" and request.form["menuID"] == "1": 
         print(request.form)
         miniDessertsID = request.form["miniDessertsID"]
 
@@ -242,19 +242,19 @@ def deleteMenu():
             msg = "Form received! You may now exit this page."
         else:
             msg = "Error, the ID is invalid!"
-    elif request.method == "POST" and request.form["menuID"] == 2:
+    elif request.method == "POST" and request.form["menuID"] == "2":
         dessertTrayID = request.form["dessertTrayID"]
         cursor.execute("DELETE from DessertTray WHERE DessertTrayID = %s", [(dessertTrayID)])
         mydb.commit()
         print(cursor.rowcount, " record deleted!") # TESTING
         msg = "Form received! You may now exit this page."
-    elif request.method == "POST" and request.form["menuID"] == 3:
+    elif request.method == "POST" and request.form["menuID"] == "3":
         PCID = request.form["PCID"]
         cursor.execute("DELETE from PieAndCheesecake WHERE PCID = %s", [(PCID)])
         mydb.commit()
         print(cursor.rowcount, " record deleted!") # TESTING
         msg = "Form received! You may now exit this page."
-    elif request.method == "POST" and request.form["menuID"] == 4:
+    elif request.method == "POST" and request.form["menuID"] == "4":
         cupcakeID = request.form["cupcakeID"]
         cursor.execute("DELETE from Cupcake WHERE CupcakeID = %s", [(cupcakeID)])
         mydb.commit()
