@@ -34,9 +34,9 @@
         <!-- MiniDesserts Form -->
         <div>
             <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="miniDessertsForm">
-                <!-- <p>{{ rowCount }}</p> Testing -->
+                
                 <label for="miniDessertsID">Which MiniDessertsID do you want to edit?</label>
-                <input type="number" id="miniDessertsID" name="miniDessertsID" min="1" max="{{ rowCount }}" required>
+                <input type="number" id="miniDessertsID" name="miniDessertsID" min="1" required>
                 
                 <input type="hidden" value="1" id="miniMenuID" name="menuID">
 
@@ -65,9 +65,9 @@
         <!-- DessertTray Form -->
         <div>
             <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="dessertTrayForm">
-                <!-- <p>{{ rowCount }}</p> Testing -->
+                
                 <label for="dessertTrayID">Which DessertTrayID do you want to edit?</label>
-                <input type="number" id="dessertTrayID" name="dessertTrayID" min="1" max="{{ rowCount }}" required>
+                <input type="number" id="dessertTrayID" name="dessertTrayID" min="1" required>
 
                 <input type="hidden" value="2" id="trayMenuID" name="menuID">
 
@@ -99,9 +99,9 @@
         <!-- PieAndCheesecake Form -->
         <div>
             <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="pieAndCheesecakeForm">
-                <!-- <p>{{ rowCount }}</p> Testing -->
+                
                 <label for="PCID">Which PCID do you want to edit?</label>
-                <input type="number" id="PCID" name="PCID" min="1" max="{{ rowCount }}" required>
+                <input type="number" id="PCID" name="PCID" min="1" required>
 
                 <input type="hidden" value="3" id="PCMenuID" name="menuID">
 
@@ -125,9 +125,9 @@
         <!-- Cupcake Form -->
         <div>
             <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="cupcakeForm">
-                <!-- <p>{{ rowCount }}</p> Testing -->
+                
                 <label for="cupcakeID">Which CupcakeID do you want to edit?</label>
-                <input type="number" id="cupcakeID" name="cupcakeID" min="1" max="{{ rowCount }}" required>
+                <input type="number" id="cupcakeID" name="cupcakeID" min="1" required>
 
                 <input type="hidden" value="4" id="cupcakeMenuID" name="menuID">
 
@@ -153,9 +153,9 @@
         <!-- Dietary Form -->
         <div>
             <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="dietaryForm">
-                <!-- <p>{{ rowCount }}</p> Testing -->
+                
                 <label for="dietaryID">Which DietaryID do you want to edit?</label>
-                <input type="number" id="dietaryID" name="dietaryID" min="1" max="{{ rowCount }}" required>
+                <input type="number" id="dietaryID" name="dietaryID" min="1" required>
 
                 <input type="hidden" value="5" id="dietaryMenuID" name="menuID">
 
@@ -212,11 +212,11 @@
         <!-- Signature Flavor Cake Form -->
         <div>
             <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="signatureFlavorCakeForm">
-                <!-- <p>{{ rowCount }}</p> Testing -->
+                
                 <label for="SFID">Which SignatureFlavorCakeID do you want to edit?</label>
-                <input type="number" id="SFID" name="SFID" min="1" max="{{ rowCount }}" required>
+                <input type="number" id="SFID" name="SFID" min="1" required>
 
-                <input type="hidden" value="5" id="SFMenuID" name="menuID">
+                <input type="hidden" value="6" id="SFMenuID" name="menuID">
 
                 <label for="categoryName">Category Name:</label>
                 <!-- <input type="text" id="categoryName" name="categoryName" required> -->
@@ -262,9 +262,10 @@
          <!-- Cake Form -->
          <div>
             <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="cakeForm">
-                <!-- <p>{{ rowCount }}</p> Testing -->
+                <input type="hidden" value="7" id="cakeMenuID" name="menuID">
+                
                 <label for="cakeID">Which CakeID do you want to edit?</label>
-                <input type="number" id="cakeID" name="cakeID" min="1" max="{{ rowCount }}" required>
+                <input type="number" id="cakeID" name="cakeID" min="1" required>
 
                 <label for="cakeSize">Cake Size:</label>
                 <select id="cakeSize" name="cakeSize" required>
