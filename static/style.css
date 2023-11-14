@@ -166,6 +166,10 @@ header{
 
 /*---------------------------------- CSS for order.html -------------------------------------*/
 /* Main container */
+.header {
+    text-align: center;
+}
+
 .container {
     display: flex;
     justify-content: space-between; /* Ensure date-time on the right and order forms on the left */
