@@ -7,7 +7,7 @@ function createOrderForm() {
 
     orderForm.innerHTML = `
                 <span class="delete-button" onclick="deleteOrderForm(this)">X</span>
-                <form>
+                <div>
                     <select class="item-type-dropdown" id="item" name="item" onchange="updateOptions(this)">
                         <option value="Cupcake">Cupcake</option>
                         <option value="Cake">Cake</option>
@@ -59,7 +59,7 @@ function createOrderForm() {
                     <label for="ItemTotal">Item Total:</label>
                     <input type="text" id="ItemTotal" name="ItemTotal" readonly>
                 
-                </form>
+                </div>
             `;
 
     orderForms.appendChild(orderForm);

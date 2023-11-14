@@ -1,55 +1,55 @@
 {% from 'navbar.html' import navbar, headerEnd %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Order</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
-        <!-- <script src="{{ url_for('static', filename='order.js') }}"> defer</script> -->
-    </head>
-    <body>    
-        {{ navbar() }}
-        {{ headerEnd() }}
 
-        <form action = "{{ url_for('order') }}" method = "POST" autocomplete= "off">
-            <h1>Request an Order</h1>
-            <p>Fill out an order request now, and our pastry chefs will get back to you!</p>
-    
-            <div class="container">
-                <div id="orderForms">
-                    <!-- Order forms will be added here -->
-                </div>
-        
-                <div class="date-time-container">
-                    <form>
-                        
-                        <h4>When do you need this?</h4>
-                        <div class="input-row">
-                            <div class="label-input-pair">
-                                <label for="day">Date:</label>
-                                <input type="date" id="day" name="day">
-                            </div>
-        
-                            <div class="label-input-pair">
-                                <label for="pickup">Time: </label>
-                                <input type="time" id="pickup" name="pickup" placeholder="--:--">
-                            </div>
-                        </div>
-                    </form>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
+    <!-- <script src="{{ url_for('static', filename='order.js') }}"> defer</script> -->
+</head>
+
+<body>
+    {{ navbar() }}
+    {{ headerEnd() }}
+
+    <form action="{{ url_for('order') }}" method="POST" autocomplete="off" id="mainForm">
+        <h1>Request an Order</h1>
+        <p>Fill out an order request now, and our pastry chefs will get back to you!</p>
+
+        <div class="container">
+            <div id="orderForms">
+                <!-- Order forms will be added here -->
+            </div>
+
+            <div class="date-time-container">
+                <h4>When do you need this?</h4>
+                <div class="input-row">
+                    <div class="label-input-pair">
+                        <label for="day">Date:</label>
+                        <input type="date" id="day" name="day">
+                    </div>
+
+                    <div class="label-input-pair">
+                        <label for="pickup">Time: </label>
+                        <input type="time" id="pickup" name="pickup" placeholder="--:--">
+                    </div>
                 </div>
             </div>
-        
-            <!-- "Add Item to Order" button initially placed outside the forms -->
-            <script src="{{ url_for('static', filename='order.js') }}"></script>
-            <button class="add-button" onclick="createOrderForm()">Add Item to Order</button>
-        
-            <div id="totalPrice">Total Price: $0.00</div> <!-- I just put 0 for now -->
-            <button type="submit" value = "submitOrder">Submit Order</button>
+        </div>
 
-            {{ msg }}
-        
-        </form>
-    </body>
+        <!-- "Add Item to Order" button initially placed outside the forms -->
+        <script src="{{ url_for('static', filename='order.js') }}"></script>
+        <input type = "button" class="add-button" value = "Add Item to Order" onclick="createOrderForm()"></input>
+
+        <div id="totalPrice">Total Price: $0.00</div> <!-- I just put 0 for now -->
+        <input type="submit" class = "submit-button" value="Submit Order"></input>
+
+        <p class = "orderConfirmation">{{ msg }}</p>
+
+    </form>
+</body>
+
 </html>

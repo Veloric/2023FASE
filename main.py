@@ -6,6 +6,7 @@ from flask import url_for, request, render_template, redirect, session
 from markupsafe import escape
 import mysql.connector
 import re
+import random
 
 # Initialize FLASK
 app = fl(__name__, static_url_path='/static')
@@ -37,11 +38,20 @@ def homepage():
 @app.route("/order", methods=["GET", "POST"])
 def order():
     msg = ""
-    # TODO: Rewrite order functionality to support new page functions and layout.
-    # This isn't working, at all basically.
-    if request.method == "POST":
-        print(request.form)
-        msg = "Order recieved"
+    # TODO: Finish Order funcationality
+    if request.method == "POST" and "item" in request.form and "flavor" in request.form and "size" in request.form and "quantity" in request.form and "decorRequests" in request.form and "day" in request.form and "pickup" in request.form:
+        items = request.form.getList("item")
+        flavors = request.form.getList("flavor")
+        sizes = request.form.getlist("size")
+        quantities = request.form.getList("quantity")
+        requests = request.form.getList("decorRequest")
+        date = request.form["day"]
+        time = request.form["pickup"]
+
+        msg = "Order Confirmation Number: %f".format(100 + random.random * 2)
+    elif request.method == "POST":
+        msg = "Sorry, something went wrong! Try reloading and ordering again!"
+
     return render_template("order.html", msg=msg)
 
 @app.route("/contact", methods=["GET", "POST"])
