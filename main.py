@@ -7,6 +7,7 @@ from markupsafe import escape
 import mysql.connector
 import re
 import random
+import time as t
 
 # Initialize FLASK
 app = fl(__name__, static_url_path='/static')
@@ -40,14 +41,28 @@ def order():
     msg = ""
     # TODO: Finish Order funcationality
     if request.method == "POST" and "item" in request.form and "flavor" in request.form and "size" in request.form and "quantity" in request.form and "decorRequests" in request.form and "day" in request.form and "pickup" in request.form:
-        items = request.form.getList("item")
-        flavors = request.form.getList("flavor")
+        items = request.form.getlist("item")
+        flavors = request.form.getlist("flavor")
         sizes = request.form.getlist("size")
-        quantities = request.form.getList("quantity")
-        requests = request.form.getList("decorRequest")
+        quantities = request.form.getlist("quantity")
+        requests = request.form.getlist("decorRequest")
         date = request.form["day"]
         time = request.form["pickup"]
+        placed_time = t.time()
 
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        if(session["loggedin"] == True):
+            cursor.execute("SELECT * FROM Account WHERE Username = %s".format(session["username"]))
+            account = cursor.fetchone()
+            for i in range(len(items)):
+                cursor.execute("INSERT INTO Orders VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)".format(items[i], placed_time, date, time, account["Firstname"], account["Lastname"], account["Email"], account["Phone"]))
+                cursor.execute("INSERT INTO OrderDetails VALUES(%s, %s, %s, %s, %s)".format(date, sizes[i], flavors[i], quantities[i], requests[i]))
+        else:
+            msg = "You must be logged in to order! Please make an account and try again!"
+            redirect(url_for("login.html"))
+        mydb.commit()
+        disconnectdb()
         msg = "Order Confirmation Number: %f".format(100 + random.random * 2)
     elif request.method == "POST":
         msg = "Sorry, something went wrong! Try reloading and ordering again!"
@@ -385,7 +400,7 @@ def register():
         elif not username or not password or not email:
             msg = "Incomplete forum, please try again."
         else:
-            mydb.cursor().execute("INSERT INTO ACCOUNT (Username, Password, Email)")
+            mydb.cursor().execute("INSERT INTO ACCOUNT (Username, Password, Email) VALUES(%s, %s, %s)".format(username, password, email))
             mydb.commit()
             msg = "Sucessfully registered! You may now login!"
             disconnectdb(mydb)
@@ -397,6 +412,8 @@ def register():
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     msg = ""
+    if session["loggedin"] == True:
+        redirect(url_for("profile.html"))
     if request.method == "POST" and "username" in request.form and "password" in request.form:
         username = request.form["username"]
         password = request.form["password"]
