@@ -53,11 +53,11 @@ def order():
         mydb = connectdb()
         cursor = mydb.cursor()
         if(session["loggedin"] == True):
-            cursor.execute("SELECT * FROM Account WHERE Email = %s".format(session["username"]))
+            cursor.execute("SELECT * FROM Account WHERE Email = %s",[(session["email"])])
             account = cursor.fetchone()
             for i in range(len(items)):
-                cursor.execute("INSERT INTO Orders VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)".format(items[i], placed_time, date, time, account["Firstname"], account["Lastname"], account["Email"], account["Phone"]))
-                cursor.execute("INSERT INTO OrderDetails VALUES(%s, %s, %s, %s, %s)".format(date, sizes[i], flavors[i], quantities[i], requests[i]))
+                cursor.execute("INSERT INTO Orders VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)", (items[i], placed_time, date, time, account["Firstname"], account["Lastname"], account["Email"], account["Phone"]))
+                cursor.execute("INSERT INTO OrderDetails VALUES(%s, %s, %s, %s, %s)", (date, sizes[i], flavors[i], quantities[i], requests[i]))
         else:
             msg = "You must be logged in to order! Please make an account and try again!"
             redirect(url_for("login.html"))
@@ -385,14 +385,16 @@ def deleteMenu():
 def register():
     msg = ""
     mydb = connectdb()
-    if request.method == "POST" and "password" and "email" in request.form and "firstname" in request.form and "lastname" in request.form and "phone" in request.form:
+    cursor = mydb.cursor()
+
+    if request.method == "POST" and "password" in request.form and "email" in request.form and "firstname" in request.form and "lastname" in request.form and "phone" in request.form:
         password = request.form["password"]
-        email = request.form["Email"]
+        email = request.form["email"]
         firstname = request.form["firstname"]
         lastname = request.form["lastname"]
         phone = request.form["phone"]
-        mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Email = %s", (email))
-        account = mydb.cursor().fetchone()
+        cursor.execute("SELECT * FROM ACCOUNT WHERE Email = %s", [(email)])
+        account = cursor.fetchone()
         if account:
             msg = "Account already exists, login to your account!"
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
@@ -400,11 +402,11 @@ def register():
         elif not password or not email:
             msg = "Incomplete form, please try again."
         else:
-            mydb.cursor().execute("INSERT INTO ACCOUNT (Firstname, Lastname, Password, Email, Phone) VALUES(%s, %s, %s, %s, %s)".format(firstname, lastname, password, email, phone))
+            cursor.execute("INSERT INTO ACCOUNT (Firstname, Lastname, Password, Email, Phone) VALUES(%s, %s, %s, %s, %s)", (firstname, lastname, password, email, phone))
             mydb.commit()
             msg = "Sucessfully registered! You may now login!"
             disconnectdb(mydb)
-            return redirect(render_template("login.html"))
+            return redirect(url_for("login"))
     elif request.method == "POST":
         msg = "Please fill out the information before submitting!"
     return render_template("register.html", msg = msg)
@@ -412,24 +414,21 @@ def register():
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     msg = ""
+    mydb = connectdb()
+    cursor = mydb.cursor()
+    
     if request.method == "POST" and "email" in request.form and "password" in request.form:
         email = request.form["email"]
         password = request.form["password"]
-        mydb = connectdb()
-<<<<<<< HEAD
-        mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (email, password))
-        account = mydb.cursor().fetchone()
-=======
-        cursor = mydb.cursor(buffered = True)
-        cursor.execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (username, password))
+        cursor.execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (email, password))
         account = cursor.fetchone()
->>>>>>> 03235c640493205ccc548ea8a79fb2e727c24bba
         if account:
             session["loggedin"] = True
-            session["id"] = account["AccountID"]
+            session["id"] = account[0]
             session["email"] = email
-            disconnectdb()
-            return redirect(url_for("order.html"))
+            msg = "Sucessfully logged in! You may now order!"
+            disconnectdb(mydb)
+            return redirect(url_for("order"))
         else:
             msg = "Incorrect login!"
 

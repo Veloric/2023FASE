@@ -31,12 +31,12 @@
                     <input type="email" name="email" placeholder="Email" id="email" required>
                     
                     <label for="password">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-lock"></i>
                     </label>
                     <input type="password" name="password" placeholder="Password" id="password" required>
 
                     <label for="phone">
-
+                        <i class="fas fa-phone"></i>
                     </label>
                     <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="201-555-0123" required> <!-- Pattern doesn't validate international phone numbers -->
 
@@ -46,6 +46,7 @@
                     <div class="container signin">
                         <p>Already have an account? <a href="{{ url_for('login') }}">Sign in</a>.</p>
                     </div>
+                    <p>{{ msg }}</p>
                 </form>
             </div>
         </section>
