@@ -416,8 +416,9 @@ def login():
         username = request.form["email"]
         password = request.form["password"]
         mydb = connectdb()
-        mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (username, password))
-        account = mydb.cursor().fetchone()
+        cursor = mydb.cursor(buffered = True)
+        cursor.execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (username, password))
+        account = cursor.fetchone()
         if account:
             session["loggedin"] = True
             session["id"] = account["AccountID"]
