@@ -398,7 +398,7 @@ def register():
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             msg = "Invalid email! Try again!"
         elif not password or not email:
-            msg = "Incomplete forum, please try again."
+            msg = "Incomplete form, please try again."
         else:
             mydb.cursor().execute("INSERT INTO ACCOUNT (Firstname, Lastname, Password, Email, Phone) VALUES(%s, %s, %s, %s, %s)".format(firstname, lastname, password, email, phone))
             mydb.commit()
@@ -413,15 +413,15 @@ def register():
 def login():
     msg = ""
     if request.method == "POST" and "email" in request.form and "password" in request.form:
-        username = request.form["email"]
+        email = request.form["email"]
         password = request.form["password"]
         mydb = connectdb()
-        mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (username, password))
+        mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (email, password))
         account = mydb.cursor().fetchone()
         if account:
             session["loggedin"] = True
             session["id"] = account["AccountID"]
-            session["username"] = username
+            session["email"] = email
             disconnectdb()
             return redirect(url_for("order.html"))
         else:

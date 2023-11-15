@@ -15,20 +15,30 @@
             <div class="register">
                 <h1>Register</h1>
                 <form action="{{ url_for('register') }}" method="post" autocomplete="off">
-                    <label for="username">
+                    <label for="firstname">
                         <i class="fas fa-user"></i>
                     </label>
-                    <input type="text" name="username" placeholder="Username" id="username" required>
-                    
-                    <label for="password">
-                        <i class="fas fa-lock"></i>
+                    <input type="text" name="firstname" placeholder="First Name" id="firstname" required>
+
+                    <label for="lastname">
+                        <i class="fas fa-user"></i>
                     </label>
-                    <input type="password" name="password" placeholder="Password" id="password" required>
-                    
+                    <input type="text" name="lastname" placeholder="Last Name" id="lastname" required>
+
                     <label for="email">
                         <i class="fas fa-envelope"></i>
                     </label>
                     <input type="email" name="email" placeholder="Email" id="email" required>
+                    
+                    <label for="password">
+                        <i class="fas fa-phone"></i>
+                    </label>
+                    <input type="password" name="password" placeholder="Password" id="password" required>
+
+                    <label for="phone">
+
+                    </label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="201-555-0123" required> <!-- Pattern doesn't validate international phone numbers -->
 
                     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
                     <button type="submit" value="registerAccount">Submit</button>
