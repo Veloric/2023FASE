@@ -385,9 +385,12 @@ def deleteMenu():
 def register():
     msg = ""
     mydb = connectdb()
-    if request.method == "POST" and "password" and "Email" in request.form:
+    if request.method == "POST" and "password" and "email" in request.form and "firstname" in request.form and "lastname" in request.form and "phone" in request.form:
         password = request.form["password"]
         email = request.form["Email"]
+        firstname = request.form["firstname"]
+        lastname = request.form["lastname"]
+        phone = request.form["phone"]
         mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Email = %s", (email))
         account = mydb.cursor().fetchone()
         if account:
@@ -397,7 +400,7 @@ def register():
         elif not password or not email:
             msg = "Incomplete forum, please try again."
         else:
-            mydb.cursor().execute("INSERT INTO ACCOUNT (Password, Email) VALUES(%s, %s)".format(password, email))
+            mydb.cursor().execute("INSERT INTO ACCOUNT (Firstname, Lastname, Password, Email, Phone) VALUES(%s, %s, %s, %s, %s)".format(firstname, lastname, password, email, phone))
             mydb.commit()
             msg = "Sucessfully registered! You may now login!"
             disconnectdb(mydb)
