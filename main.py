@@ -412,18 +412,18 @@ def register():
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     msg = ""
-    if request.method == "POST" and "username" in request.form and "password" in request.form:
-        username = request.form["username"]
+    if request.method == "POST" and "email" in request.form and "password" in request.form:
+        username = request.form["email"]
         password = request.form["password"]
         mydb = connectdb()
-        mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Username = %s AND Password = %s", (username, password))
+        mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (username, password))
         account = mydb.cursor().fetchone()
         if account:
             session["loggedin"] = True
             session["id"] = account["AccountID"]
             session["username"] = username
             disconnectdb()
-            redirect(url_for("order.html"))
+            return redirect(render_template("order.html"))
         else:
             msg = "Incorrect login!"
 
