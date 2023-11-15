@@ -53,7 +53,7 @@ def order():
         mydb = connectdb()
         cursor = mydb.cursor()
         if(session["loggedin"] == True):
-            cursor.execute("SELECT * FROM Account WHERE Username = %s".format(session["username"]))
+            cursor.execute("SELECT * FROM Account WHERE Email = %s".format(session["username"]))
             account = cursor.fetchone()
             for i in range(len(items)):
                 cursor.execute("INSERT INTO Orders VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)".format(items[i], placed_time, date, time, account["Firstname"], account["Lastname"], account["Email"], account["Phone"]))
