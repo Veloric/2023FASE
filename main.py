@@ -53,7 +53,7 @@ def order():
         mydb = connectdb()
         cursor = mydb.cursor()
         if(session["loggedin"] == True):
-            cursor.execute("SELECT * FROM Account WHERE Username = %s".format(session["username"]))
+            cursor.execute("SELECT * FROM Account WHERE Email = %s".format(session["username"]))
             account = cursor.fetchone()
             for i in range(len(items)):
                 cursor.execute("INSERT INTO Orders VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)".format(items[i], placed_time, date, time, account["Firstname"], account["Lastname"], account["Email"], account["Phone"]))
@@ -416,8 +416,14 @@ def login():
         email = request.form["email"]
         password = request.form["password"]
         mydb = connectdb()
+<<<<<<< HEAD
         mydb.cursor().execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (email, password))
         account = mydb.cursor().fetchone()
+=======
+        cursor = mydb.cursor(buffered = True)
+        cursor.execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (username, password))
+        account = cursor.fetchone()
+>>>>>>> 03235c640493205ccc548ea8a79fb2e727c24bba
         if account:
             session["loggedin"] = True
             session["id"] = account["AccountID"]
