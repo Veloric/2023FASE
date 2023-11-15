@@ -420,7 +420,7 @@ def login():
             session["id"] = account["AccountID"]
             session["username"] = username
             disconnectdb()
-            return redirect(render_template("order.html"))
+            return redirect(url_for("order.html"))
         else:
             msg = "Incorrect login!"
 
