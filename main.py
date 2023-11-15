@@ -412,8 +412,6 @@ def register():
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     msg = ""
-    if session["loggedin"] == True:
-        redirect(url_for("profile.html"))
     if request.method == "POST" and "username" in request.form and "password" in request.form:
         username = request.form["username"]
         password = request.form["password"]
@@ -425,7 +423,7 @@ def login():
             session["id"] = account["AccountID"]
             session["username"] = username
             disconnectdb()
-            redirect(url_for("profile.html"))
+            redirect(url_for("order.html"))
         else:
             msg = "Incorrect login!"
 
