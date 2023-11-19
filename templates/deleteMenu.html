@@ -41,6 +41,23 @@
 
                 <button type="submit">Submit</button>
                 <p>{{ msg }}</p>
+
+                <table class="table table-striped w-auto">
+                    <thead>
+                        <th>ID</th>
+                        <th>MenuID</th>
+                        <th>Category</th>
+                        <th>Size</th>
+                        <th>Price ($)</th>
+                    </thead>
+                    {%for item in miniMenu %}
+                        <tr>
+                            {%for index in range(item|length) %}
+                                <td>{{ item[index] }}</td>
+                            {%endfor%}
+                        </tr>
+                    {%endfor%}
+                </table>
             </form>
         </div>
 
@@ -54,6 +71,24 @@
 
                 <button type="submit">Submit</button>
                 <p>{{ msg }}</p>
+
+                <table class="table table-striped w-auto">
+                    <thead>
+                        <th>ID</th>
+                        <th>MenuID</th>
+                        <th>Category</th>
+                        <th>Size</th>
+                        <th>Price ($)</th>
+                        <th>Description</th>
+                    </thead>
+                    {%for item in trays %}
+                        <tr>
+                            {%for index in range(item|length) %}
+                                <td>{{ item[index] }}</td>
+                            {%endfor%}
+                        </tr>
+                    {%endfor%}
+                </table>
             </form>
         </div>
 
@@ -67,6 +102,23 @@
 
                 <button type="submit">Submit</button>
                 <p>{{ msg }}</p>
+
+                <table class="table table-striped w-auto">
+                    <thead>
+                        <th>ID</th>
+                        <th>MenuID</th>
+                        <th>Category</th>
+                        <th>Size</th>
+                        <th>Price ($)</th>
+                    </thead>
+                    {%for item in piecheese %}
+                        <tr>
+                            {%for index in range(item|length) %}
+                                <td>{{ item[index] }}</td>
+                            {%endfor%}
+                        </tr>
+                    {%endfor%}
+                </table>
             </form>
         </div>
 
@@ -80,6 +132,23 @@
 
                 <button type="submit">Submit</button>
                 <p>{{ msg }}</p>
+
+                <table class="table table-striped w-auto">
+                    <thead>
+                        <th>ID</th>
+                        <th>MenuID</th>
+                        <th>Category</th>
+                        <th>Size</th>
+                        <th>Price ($)</th>
+                    </thead>
+                    {%for item in cupcake %}
+                        <tr>
+                            {%for index in range(item|length) %}
+                                <td>{{ item[index] }}</td>
+                            {%endfor%}
+                        </tr>
+                    {%endfor%}
+                </table>
             </form>
         </div>
 
@@ -93,6 +162,23 @@
 
                 <button type="submit">Submit</button>
                 <p>{{ msg }}</p>
+
+                <table class="table table-striped w-auto">
+                    <thead>
+                        <th>ID</th>
+                        <th>MenuID</th>
+                        <th>Category</th>
+                        <th>Size</th>
+                        <th>Price ($)</th>
+                    </thead>
+                    {%for item in dietary %}
+                        <tr>
+                            {%for index in range(item|length) %}
+                                <td>{{ item[index] }}</td>
+                            {%endfor%}
+                        </tr>
+                    {%endfor%}
+                </table>
             </form>
         </div>
 
@@ -106,6 +192,24 @@
 
                 <button type="submit">Submit</button>
                 <p>{{ msg }}</p>
+
+                <table class="table table-striped w-auto">
+                    <thead>
+                        <th>ID</th>
+                        <th>MenuID</th>
+                        <th>Category</th>
+                        <th>Size</th>
+                        <th>Servings</th>
+                        <th>Price ($)</th>
+                    </thead>
+                    {%for item in sf %}
+                        <tr>
+                            {%for index in range(item|length) %}
+                                <td>{{ item[index] }}</td>
+                            {%endfor%}
+                        </tr>
+                    {%endfor%}
+                </table>
             </form>
         </div>
 
@@ -119,6 +223,26 @@
 
                 <button type="submit">Submit</button>
                 <p>{{ msg }}</p>
+
+                <table class="table table-striped w-auto">
+                    <thead>
+                        <th>ID</th>
+                        <th>MenuID</th>
+                        <th>Category</th>
+                        <th>Size</th>
+                        <th>Price ($)</th>
+                        <th>Cake Enhancement ($)</th>
+                        <th>Filling Enhancement ($)</th>
+                        <th>Frosting Enhancement ($)</th>
+                    </thead>
+                    {%for item in cake %}
+                        <tr>
+                            {%for index in range(item|length) %}
+                                <td>{{ item[index] }}</td>
+                            {%endfor%}
+                        </tr>
+                    {%endfor%}
+                </table>
             </form>
         </div>
 

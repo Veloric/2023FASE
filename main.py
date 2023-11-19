@@ -236,6 +236,27 @@ def editMenu():
     mydb = connectdb()
     cursor = mydb.cursor()
 
+    cursor.execute('SELECT * FROM minidesserts')
+    miniMenu = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM desserttray')
+    trays = cursor.fetchall()
+    
+    cursor.execute('SELECT * FROM pieandcheesecake')
+    piecheese = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM cupcake')
+    cupcake = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM dietary')
+    dietary = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM signatureflavorcake')
+    sf = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM cake')
+    cake = cursor.fetchall()
+
     if request.method == "POST" and request.form["menuID"] == "1":
         miniDessertsID = request.form["miniDessertsID"]
         categoryName = request.form["categoryName"]
@@ -355,7 +376,7 @@ def editMenu():
 
     disconnectdb(mydb)
 
-    return render_template("editMenu.html", msg=msg)
+    return render_template("editMenu.html", msg=msg, miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf,cake=cake)
 
 # DELETING FROM MENU
 @app.route("/deleteMenu", methods=["GET", "POST"])
@@ -364,6 +385,27 @@ def deleteMenu():
 
     mydb = connectdb()
     cursor = mydb.cursor()
+
+    cursor.execute('SELECT * FROM minidesserts')
+    miniMenu = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM desserttray')
+    trays = cursor.fetchall()
+    
+    cursor.execute('SELECT * FROM pieandcheesecake')
+    piecheese = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM cupcake')
+    cupcake = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM dietary')
+    dietary = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM signatureflavorcake')
+    sf = cursor.fetchall()
+
+    cursor.execute('SELECT * FROM cake')
+    cake = cursor.fetchall()
 
     if request.method == "POST" and request.form["menuID"] == "1": 
         minidessertsID = request.form["miniDessertsID"]
@@ -449,7 +491,7 @@ def deleteMenu():
 
     disconnectdb(mydb)
 
-    return render_template("deleteMenu.html", msg=msg)
+    return render_template("deleteMenu.html", msg=msg, miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf,cake=cake)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
