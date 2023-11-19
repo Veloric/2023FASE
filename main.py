@@ -60,7 +60,7 @@ def order():
                 cursor.execute("INSERT INTO OrderDetails VALUES(%s, %s, %s, %s, %s)", (date, sizes[i], flavors[i], quantities[i], requests[i]))
         else:
             msg = "You must be logged in to order! Please make an account and try again!"
-            redirect(url_for("login.html"))
+            redirect(url_for("login"))
         mydb.commit()
         disconnectdb()
         msg = "Order Confirmation Number: %f".format(100 + random.random * 2)
