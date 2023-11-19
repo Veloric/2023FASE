@@ -241,38 +241,58 @@ def editMenu():
         categoryName = request.form["categoryName"]
         dessertName = request.form["dessertName"]
         dessertPrice = request.form["dessertPrice"]
-        cursor.execute("UPDATE MiniDesserts SET CategoryName = %s, DessertName = %s, DessertPrice = %s WHERE MiniDessertsID = %s", (categoryName, dessertName, dessertPrice, miniDessertsID))
-        mydb.commit()
-        print(cursor.rowcount, " record updated!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM MiniDesserts WHERE MiniDessertsID = %s", [(miniDessertsID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("UPDATE MiniDesserts SET CategoryName = %s, DessertName = %s, DessertPrice = %s WHERE MiniDessertsID = %s", (categoryName, dessertName, dessertPrice, miniDessertsID))
+            mydb.commit()
+            print(cursor.rowcount, " record updated!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "2":
         dessertTrayID = request.form["dessertTrayID"]
         categoryName = request.form["categoryName"]
         sizeName = request.form["sizeName"]
         sizePrice = request.form["sizePrice"]
         sizeDescription = request.form["sizeDescription"]
-        cursor.execute("UPDATE DessertTray SET CategoryName = %s, SizeName = %s, SizePrice = %s, SizeDescription = %s WHERE DessertTrayID = %s", (categoryName, sizeName, sizePrice, sizeDescription, dessertTrayID))
-        mydb.commit()
-        print(cursor.rowcount, " record updated!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM DessertTray WHERE DessertTrayID = %s", [(dessertTrayID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("UPDATE DessertTray SET CategoryName = %s, SizeName = %s, SizePrice = %s, SizeDescription = %s WHERE DessertTrayID = %s", (categoryName, sizeName, sizePrice, sizeDescription, dessertTrayID))
+            mydb.commit()
+            print(cursor.rowcount, " record updated!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "3":
         PCID = request.form["PCID"]
         categoryName = request.form["categoryName"]
         PCName = request.form["PCName"]
         PCPrice = request.form["PCPrice"]
-        cursor.execute("UPDATE PieAndCheesecake SET CategoryName = %s, PCName = %s, PCPrice = %s WHERE PCID = %s", (categoryName, PCName, PCPrice, PCID))
-        mydb.commit()
-        print(cursor.rowcount, " record updated!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM PieAndCheesecake WHERE PCID = %s", [(PCID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("UPDATE PieAndCheesecake SET CategoryName = %s, PCName = %s, PCPrice = %s WHERE PCID = %s", (categoryName, PCName, PCPrice, PCID))
+            mydb.commit()
+            print(cursor.rowcount, " record updated!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "4":
         cupcakeID = request.form["cupcakeID"]
         sizeName = request.form["sizeName"]
         sizeDescription = request.form["sizeDescription"]
         cupcakePrice = request.form["cupcakePrice"]
-        cursor.execute("UPDATE Cupcake SET SizeName = %s, SizeDescription = %s, CupcakePrice = %s WHERE CupcakeID = %s", (sizeName, sizeDescription, cupcakePrice, cupcakeID))
-        mydb.commit()
-        print(cursor.rowcount, " record updated!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM Cupcake WHERE CupcakeID = %s", [(cupcakeID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("UPDATE Cupcake SET SizeName = %s, SizeDescription = %s, CupcakePrice = %s WHERE CupcakeID = %s", (sizeName, sizeDescription, cupcakePrice, cupcakeID))
+            mydb.commit()
+            print(cursor.rowcount, " record updated!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "5":
         dietaryID = request.form["dietaryID"]
         categoryName = request.form["categoryName"]
@@ -280,11 +300,16 @@ def editMenu():
         dietaryPrice = request.form["dietaryPrice"]
         mydb = connectdb()
         cursor = mydb.cursor()
-        cursor.execute("UPDATE Dietary SET CategoryName = %s, CakeSize = %s, DietaryPrice = %s WHERE dietaryID = %s", (categoryName, cakeSize, dietaryPrice, dietaryID))
-        mydb.commit()
-        print(cursor.rowcount, " record updated!") # TESTING
-        disconnectdb(mydb)
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM Dietary WHERE dietaryID = %s", [(dietaryID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("UPDATE Dietary SET CategoryName = %s, CakeSize = %s, DietaryPrice = %s WHERE dietaryID = %s", (categoryName, cakeSize, dietaryPrice, dietaryID))
+            mydb.commit()
+            print(cursor.rowcount, " record updated!") # TESTING
+            disconnectdb(mydb)
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "6":
         SFID = request.form['SFID']
         categoryName = request.form["categoryName"]
@@ -293,11 +318,16 @@ def editMenu():
         SFPrice = request.form["SFPrice"]
         mydb = connectdb()
         cursor = mydb.cursor()
-        cursor.execute("UPDATE signatureflavorcake SET CategoryName = %s, CakeSize = %s, servings = %s, SFPrice = %s WHERE SFID = %s", (categoryName, cakeSize, servings, SFPrice, SFID))
-        mydb.commit()
-        print(cursor.rowcount, " record updated!") # TESTING
-        disconnectdb(mydb)
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM signatureflavorcake WHERE SFID = %s", [(SFID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("UPDATE signatureflavorcake SET CategoryName = %s, CakeSize = %s, servings = %s, SFPrice = %s WHERE SFID = %s", (categoryName, cakeSize, servings, SFPrice, SFID))
+            mydb.commit()
+            print(cursor.rowcount, " record updated!") # TESTING
+            disconnectdb(mydb)
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "7":
         cakeID = request.form['cakeID']
         cakeSize = request.form["cakeSize"]
@@ -308,11 +338,16 @@ def editMenu():
         frostingEnhancement = request.form["frostingEnhancement"]
         mydb = connectdb()
         cursor = mydb.cursor()
-        cursor.execute("UPDATE cake SET CakeSize = %s, servings = %s, cakePrice = %s, cakeEnhancement = %s, fillingEnhancement = %s, frostingEnhancement = %s WHERE cakeID = %s", (cakeSize, servings, cakePrice, cakeEnhancement, fillingEnhancement, frostingEnhancement, cakeID))
-        mydb.commit()
-        print(cursor.rowcount, " record updated!") # TESTING
-        disconnectdb(mydb)
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM cake WHERE cakeID = %s", [(cakeID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("UPDATE cake SET CakeSize = %s, servings = %s, cakePrice = %s, cakeEnhancement = %s, fillingEnhancement = %s, frostingEnhancement = %s WHERE cakeID = %s", (cakeSize, servings, cakePrice, cakeEnhancement, fillingEnhancement, frostingEnhancement, cakeID))
+            mydb.commit()
+            print(cursor.rowcount, " record updated!") # TESTING
+            disconnectdb(mydb)
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
         # Testing below
@@ -332,46 +367,81 @@ def deleteMenu():
 
     if request.method == "POST" and request.form["menuID"] == "1": 
         minidessertsID = request.form["miniDessertsID"]
-        cursor.execute("DELETE from minidesserts WHERE miniDessertsID = %s", [(minidessertsID)])
-        mydb.commit()
-        print(cursor.rowcount, " record deleted!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM minidesserts WHERE miniDessertsID = %s", [(minidessertsID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("DELETE from minidesserts WHERE miniDessertsID = %s", [(minidessertsID)])
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "2":
         dessertTrayID = request.form["dessertTrayID"]
-        cursor.execute("DELETE from DessertTray WHERE DessertTrayID = %s", [(dessertTrayID)])
-        mydb.commit()
-        print(cursor.rowcount, " record deleted!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM DessertTray WHERE DessertTrayID = %s", [(dessertTrayID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("DELETE from DessertTray WHERE DessertTrayID = %s", [(dessertTrayID)])
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "3":
         PCID = request.form["PCID"]
-        cursor.execute("DELETE from PieAndCheesecake WHERE PCID = %s", [(PCID)])
-        mydb.commit()
-        print(cursor.rowcount, " record deleted!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM PieAndCheesecake WHERE PCID = %s", [(PCID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("DELETE from PieAndCheesecake WHERE PCID = %s", [(PCID)])
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "4":
         cupcakeID = request.form["cupcakeID"]
-        cursor.execute("DELETE from Cupcake WHERE CupcakeID = %s", [(cupcakeID)])
-        mydb.commit()
-        print(cursor.rowcount, " record deleted!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM Cupcake WHERE CupcakeID = %s", [(cupcakeID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("DELETE from Cupcake WHERE CupcakeID = %s", [(cupcakeID)])
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "5":
         dietaryID = request.form["dietaryID"]
-        cursor.execute("DELETE from dietary WHERE dietaryID = %s", [(dietaryID)])
-        mydb.commit()
-        print(cursor.rowcount, " record deleted!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM dietary WHERE dietaryID = %s", [(dietaryID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("DELETE from dietary WHERE dietaryID = %s", [(dietaryID)])
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "6":
         SFID = request.form["SFID"]
-        cursor.execute("DELETE from SignatureFlavorCake WHERE SFID = %s", [(SFID)])
-        mydb.commit()
-        print(cursor.rowcount, " record deleted!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM SignatureFlavorCake WHERE SFID = %s", [(SFID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("DELETE from SignatureFlavorCake WHERE SFID = %s", [(SFID)])
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST" and request.form["menuID"] == "7":
         cakeID = request.form["cakeID"]
-        cursor.execute("DELETE from Cake WHERE cakeID = %s", [(cakeID)])
-        mydb.commit()
-        print(cursor.rowcount, " record deleted!") # TESTING
-        msg = "Form received! You may now exit this page."
+        cursor.execute("SELECT * FROM Cake WHERE cakeID = %s", [(cakeID)])
+        item = cursor.fetchone()
+        if item:
+            cursor.execute("DELETE from Cake WHERE cakeID = %s", [(cakeID)])
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry, the ID inputted was not found!"
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
         # Testing below
