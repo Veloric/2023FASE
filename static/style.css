@@ -164,6 +164,20 @@ header{
     color: red;
 }
 
+/* CSS for Menu Admin pages */
+.menu-admin-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu-admin-left {
+    width: 25%;
+}
+
+.menu-admin-right {
+    width: auto;
+}
+
 /*---------------------------------- CSS for order.html -------------------------------------*/
 /* Main container */
 .header {

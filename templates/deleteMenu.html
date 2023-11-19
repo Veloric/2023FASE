@@ -21,7 +21,7 @@
         <a href="{{ url_for('editMenu') }}">editMenu</a><br>
         <a href="{{ url_for('deleteMenu') }}">deleteMenu</a><br>
 
-        <select name="menu" class="form-select" id="menuSelection">
+        <select name="menu" class="form-select w-auto" id="menuSelection">
             <option value="1">Mini Desserts</option>
             <option value="2">Dessert Trays</option>
             <option value="3">Pie & Cheesecake</option>
@@ -34,215 +34,250 @@
         <!-- MiniDesserts Form -->
         <div>
             <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="miniDessertsForm">
-                <label for="miniDessertsID" class="menu-label">Which MiniDessertsID do you want to delete?</label>
-                <input type="number" class="form-control" id="miniDessertsID" name="miniDessertsID" min="1" required>
-
-                <input type="hidden" value="1" class="form-control" id="miniMenuID" name="menuID">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <p>{{ msg }}</p>
-
-                <table class="table table-striped w-auto">
-                    <thead>
-                        <th>MiniDessertsID</th>
-                        <th>MenuID</th>
-                        <th>Category</th>
-                        <th>Size</th>
-                        <th>Price ($)</th>
-                    </thead>
-                    {%for item in miniMenu %}
-                        <tr>
-                            {%for index in range(item|length) %}
-                                <td>{{ item[index] }}</td>
+                <div class="menu-admin-content">
+                    <div class="menu-admin-left">
+                        <div class="mb-3">
+                            <label for="miniDessertsID" class="menu-label">Which MiniDessertsID do you want to delete?</label>
+                            <input type="number" class="form-control" id="miniDessertsID" name="miniDessertsID" min="1" required>
+                        </div>
+                        <input type="hidden" value="1" class="form-control" id="miniMenuID" name="menuID">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <p>{{ msg }}</p>
+                    </div>
+                    <div class="menu-admin-right">
+                        <table class="table table-striped w-auto">
+                            <thead>
+                                <th>MiniDessertsID</th>
+                                <th>MenuID</th>
+                                <th>Category</th>
+                                <th>Size</th>
+                                <th>Price ($)</th>
+                            </thead>
+                            {%for item in miniMenu %}
+                                <tr>
+                                    {%for index in range(item|length) %}
+                                        <td>{{ item[index] }}</td>
+                                    {%endfor%}
+                                </tr>
                             {%endfor%}
-                        </tr>
-                    {%endfor%}
-                </table>
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
 
         <!-- DessertTray Form -->
         <div>
             <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="dessertTrayForm">
-                <label for="dessertTrayID" class="form-label">Which DessertTrayID do you want to delete?</label>
-                <input type="number" class="form-control" id="dessertTrayID" name="dessertTrayID" min="1" required>
-
-                <input type="hidden" value="2" class="form-control" id="trayMenuID" name="menuID">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <p>{{ msg }}</p>
-
-                <table class="table table-striped w-auto">
-                    <thead>
-                        <th>DessertTrayID</th>
-                        <th>MenuID</th>
-                        <th>Category</th>
-                        <th>Size</th>
-                        <th>Price ($)</th>
-                        <th>Description</th>
-                    </thead>
-                    {%for item in trays %}
-                        <tr>
-                            {%for index in range(item|length) %}
-                                <td>{{ item[index] }}</td>
+                <div class="menu-admin-content">
+                    <div class="menu-admin-left">
+                        <div class="mb-3">
+                            <label for="dessertTrayID" class="form-label">Which DessertTrayID do you want to delete?</label>
+                            <input type="number" class="form-control" id="dessertTrayID" name="dessertTrayID" min="1" required>
+                        </div>
+                        <input type="hidden" value="2" class="form-control" id="trayMenuID" name="menuID">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <p>{{ msg }}</p>
+                    </div>
+                    <div class="menu-admin-right">
+                        <table class="table table-striped w-auto">
+                            <thead>
+                                <th>DessertTrayID</th>
+                                <th>MenuID</th>
+                                <th>Category</th>
+                                <th>Size</th>
+                                <th>Price ($)</th>
+                                <th>Description</th>
+                            </thead>
+                            {%for item in trays %}
+                                <tr>
+                                    {%for index in range(item|length) %}
+                                        <td>{{ item[index] }}</td>
+                                    {%endfor%}
+                                </tr>
                             {%endfor%}
-                        </tr>
-                    {%endfor%}
-                </table>
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
 
         <!-- PieAndCheesecake Form -->
         <div>
             <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="pieAndCheesecakeForm">
-                <label for="PCID" class="form-label">Which PCID do you want to delete?</label>
-                <input type="number" class="form-control" id="PCID" name="PCID" min="1" required>
-
-                <input type="hidden" value="3" class="form-control" id="PCMenuID" name="menuID">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <p>{{ msg }}</p>
-
-                <table class="table table-striped w-auto">
-                    <thead>
-                        <th>PCID</th>
-                        <th>MenuID</th>
-                        <th>Category</th>
-                        <th>Size</th>
-                        <th>Price ($)</th>
-                    </thead>
-                    {%for item in piecheese %}
-                        <tr>
-                            {%for index in range(item|length) %}
-                                <td>{{ item[index] }}</td>
+                <div class="menu-admin-content">
+                    <div class="menu-admin-left">
+                        <div class="mb-3">
+                            <label for="PCID" class="form-label">Which PCID do you want to delete?</label>
+                            <input type="number" class="form-control" id="PCID" name="PCID" min="1" required>
+                        </div>
+                        <input type="hidden" value="3" class="form-control" id="PCMenuID" name="menuID">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <p>{{ msg }}</p>
+                    </div>
+                    <div class="menu-admin-right">
+                        <table class="table table-striped w-auto">
+                            <thead>
+                                <th>PCID</th>
+                                <th>MenuID</th>
+                                <th>Category</th>
+                                <th>Size</th>
+                                <th>Price ($)</th>
+                            </thead>
+                            {%for item in piecheese %}
+                                <tr>
+                                    {%for index in range(item|length) %}
+                                        <td>{{ item[index] }}</td>
+                                    {%endfor%}
+                                </tr>
                             {%endfor%}
-                        </tr>
-                    {%endfor%}
-                </table>
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
 
         <!-- Cupcake Form -->
         <div>
             <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="cupcakeForm">
-                <label for="cupcakeID" class="form-label">Which CupcakeID do you want to delete?</label>
-                <input type="number" class="form-control" id="cupcakeID" name="cupcakeID" min="1" required>
-
-                <input type="hidden" value="4" class="form-control" id="cupcakeMenuID" name="menuID">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <p>{{ msg }}</p>
-
-                <table class="table table-striped w-auto">
-                    <thead>
-                        <th>CupcakeID</th>
-                        <th>MenuID</th>
-                        <th>Category</th>
-                        <th>Size</th>
-                        <th>Price ($)</th>
-                    </thead>
-                    {%for item in cupcake %}
-                        <tr>
-                            {%for index in range(item|length) %}
-                                <td>{{ item[index] }}</td>
+                <div class="menu-admin-content">
+                    <div class="menu-admin-left">
+                        <div class="mb-3">
+                            <label for="cupcakeID" class="form-label">Which CupcakeID do you want to delete?</label>
+                            <input type="number" class="form-control" id="cupcakeID" name="cupcakeID" min="1" required>
+                        </div>
+                        <input type="hidden" value="4" class="form-control" id="cupcakeMenuID" name="menuID">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <p>{{ msg }}</p>
+                    </div>
+                    <div class="menu-admin-right">
+                        <table class="table table-striped w-auto">
+                            <thead>
+                                <th>CupcakeID</th>
+                                <th>MenuID</th>
+                                <th>Category</th>
+                                <th>Size</th>
+                                <th>Price ($)</th>
+                            </thead>
+                            {%for item in cupcake %}
+                                <tr>
+                                    {%for index in range(item|length) %}
+                                        <td>{{ item[index] }}</td>
+                                    {%endfor%}
+                                </tr>
                             {%endfor%}
-                        </tr>
-                    {%endfor%}
-                </table>
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
 
         <!-- Dietary Form -->
         <div>
             <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="dietaryForm">
-                <label for="dietaryID" class="form-label">Which DietaryID do you want to delete?</label>
-                <input type="number" class="form-control" id="dietaryID" name="dietaryID" min="1" required>
-
-                <input type="hidden" value="5" class="form-control" id="dietaryMenuID" name="menuID">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <p>{{ msg }}</p>
-
-                <table class="table table-striped w-auto">
-                    <thead>
-                        <th>DietaryID</th>
-                        <th>MenuID</th>
-                        <th>Category</th>
-                        <th>Size</th>
-                        <th>Price ($)</th>
-                    </thead>
-                    {%for item in dietary %}
-                        <tr>
-                            {%for index in range(item|length) %}
-                                <td>{{ item[index] }}</td>
+                <div class="menu-admin-content">
+                    <div class="menu-admin-left">
+                        <div class="mb-3">
+                            <label for="dietaryID" class="form-label">Which DietaryID do you want to delete?</label>
+                            <input type="number" class="form-control" id="dietaryID" name="dietaryID" min="1" required>
+                        </div>
+                        <input type="hidden" value="5" class="form-control" id="dietaryMenuID" name="menuID">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <p>{{ msg }}</p>
+                    </div>
+                    <div class="menu-admin-right">
+                        <table class="table table-striped w-auto">
+                            <thead>
+                                <th>DietaryID</th>
+                                <th>MenuID</th>
+                                <th>Category</th>
+                                <th>Size</th>
+                                <th>Price ($)</th>
+                            </thead>
+                            {%for item in dietary %}
+                                <tr>
+                                    {%for index in range(item|length) %}
+                                        <td>{{ item[index] }}</td>
+                                    {%endfor%}
+                                </tr>
                             {%endfor%}
-                        </tr>
-                    {%endfor%}
-                </table>
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
 
          <!-- Signature Flavor Cake Form -->
          <div>
             <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="signatureFlavorCakeForm">
-                <label for="SFID" class="form-label">Which SignatureFlavorCakeID do you want to delete?</label>
-                <input type="number" class="form-control" id="SFID" name="SFID" min="1" required>
-
-                <input type="hidden" value="6" class="form-control" id="SFMenuID" name="menuID">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <p>{{ msg }}</p>
-
-                <table class="table table-striped w-auto">
-                    <thead>
-                        <th>SignatureFlavorCakeID</th>
-                        <th>MenuID</th>
-                        <th>Category</th>
-                        <th>Size</th>
-                        <th>Servings</th>
-                        <th>Price ($)</th>
-                    </thead>
-                    {%for item in sf %}
-                        <tr>
-                            {%for index in range(item|length) %}
-                                <td>{{ item[index] }}</td>
+                <div class="menu-admin-content">
+                    <div class="menu-admin-left">
+                        <div class="mb-3">
+                            <label for="SFID" class="form-label">Which SignatureFlavorCakeID do you want to delete?</label>
+                            <input type="number" class="form-control" id="SFID" name="SFID" min="1" required>
+                        </div>
+                        <input type="hidden" value="6" class="form-control" id="SFMenuID" name="menuID">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <p>{{ msg }}</p>
+                    </div>
+                    <div class="menu-admin-right">
+                        <table class="table table-striped w-auto">
+                            <thead>
+                                <th>SignatureFlavorCakeID</th>
+                                <th>MenuID</th>
+                                <th>Category</th>
+                                <th>Size</th>
+                                <th>Servings</th>
+                                <th>Price ($)</th>
+                            </thead>
+                            {%for item in sf %}
+                                <tr>
+                                    {%for index in range(item|length) %}
+                                        <td>{{ item[index] }}</td>
+                                    {%endfor%}
+                                </tr>
                             {%endfor%}
-                        </tr>
-                    {%endfor%}
-                </table>
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
 
         <!-- Cake Form -->
         <div>
             <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="cakeForm">
-                <label for="cakeID" class="form-label">Which CakeID do you want to delete?</label>
-                <input type="number" class="form-control" id="cakeID" name="cakeID" min="1" required>
-
-                <input type="hidden" value="7" class="form-control" id="cakeMenuID" name="menuID">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <p>{{ msg }}</p>
-
-                <table class="table table-striped w-auto">
-                    <thead>
-                        <th>CakeID</th>
-                        <th>MenuID</th>
-                        <th>Category</th>
-                        <th>Size</th>
-                        <th>Price ($)</th>
-                        <th>Cake Enhancement ($)</th>
-                        <th>Filling Enhancement ($)</th>
-                        <th>Frosting Enhancement ($)</th>
-                    </thead>
-                    {%for item in cake %}
-                        <tr>
-                            {%for index in range(item|length) %}
-                                <td>{{ item[index] }}</td>
+                <div class="menu-admin-content">
+                    <div class="menu-admin-left">
+                        <div class="mb-3">
+                            <label for="cakeID" class="form-label">Which CakeID do you want to delete?</label>
+                            <input type="number" class="form-control" id="cakeID" name="cakeID" min="1" required>
+                        </div>
+                        <input type="hidden" value="7" class="form-control" id="cakeMenuID" name="menuID">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <p>{{ msg }}</p>
+                    </div>
+                    <div class="menu-admin-right">
+                        <table class="table table-striped w-auto">
+                            <thead>
+                                <th>CakeID</th>
+                                <th>MenuID</th>
+                                <th>Category</th>
+                                <th>Size</th>
+                                <th>Price ($)</th>
+                                <th>Cake Enhancement ($)</th>
+                                <th>Filling Enhancement ($)</th>
+                                <th>Frosting Enhancement ($)</th>
+                            </thead>
+                            {%for item in cake %}
+                                <tr>
+                                    {%for index in range(item|length) %}
+                                        <td>{{ item[index] }}</td>
+                                    {%endfor%}
+                                </tr>
                             {%endfor%}
-                        </tr>
-                    {%endfor%}
-                </table>
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
 

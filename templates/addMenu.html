@@ -21,7 +21,7 @@
         <a href="{{ url_for('editMenu') }}">editMenu</a><br>
         <a href="{{ url_for('deleteMenu') }}">deleteMenu</a><br>
 
-        <select name="menu" class="form-select" id="menuSelection">
+        <select name="menu" class="form-select w-auto" id="menuSelection">
             <option value="1">Mini Desserts</option>
             <option value="2">Dessert Trays</option>
             <option value="3">Pie & Cheesecake</option>
@@ -33,24 +33,30 @@
 
         <!-- MiniDesserts Form -->
         <div>
-            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form" id="miniDessertsForm">
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form w-25" id="miniDessertsForm">
                 <input type="hidden" value="1" class="form-control" id="miniMenuID" name="menuID">
 
-                <label for="categoryName" class="form-label">Category Name:</label>
-                <select id="categoryName" class="form-control" name="categoryName" required>
-                    <option value="Mini Tart">Mini Tart</option>
-                    <option value="Mini Pastries">Mini Pastries</option>
-                    <option value="Mousse Cups">Mousse Cups</option>
-                    <option value="Mini Cupcakes">Mini Cupcakes</option>
-                    <option value="Mini Desserts">Mini Desserts</option>
-                    <option value="Brownie Bites">Brownie Bites</option>
-                </select>
+                <div class="mb-3">
+                    <label for="categoryName" class="form-label">Category Name:</label>
+                    <select id="categoryName" class="form-control" name="categoryName" required>
+                        <option value="Mini Tart">Mini Tart</option>
+                        <option value="Mini Pastries">Mini Pastries</option>
+                        <option value="Mousse Cups">Mousse Cups</option>
+                        <option value="Mini Cupcakes">Mini Cupcakes</option>
+                        <option value="Mini Desserts">Mini Desserts</option>
+                        <option value="Brownie Bites">Brownie Bites</option>
+                    </select>
+                </div>
 
-                <label for="dessertName" class="form-label">Dessert Name:</label>
-                <input type="text" class="form-control" id="dessertName" name="dessertName" required>
+                <div class="mb-3">
+                    <label for="dessertName" class="form-label">Dessert Name:</label>
+                    <input type="text" class="form-control" id="dessertName" name="dessertName" required>
+                </div>
 
-                <label for="dessertPrice" class="form-label">Dessert Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="dessertPrice" name="dessertPrice" required>
+                <div class="mb-3">
+                    <label for="dessertPrice" class="form-label">Dessert Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="dessertPrice" name="dessertPrice" required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
@@ -59,28 +65,36 @@
 
         <!-- DessertTray Form -->
         <div>
-            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form" id="dessertTrayForm">
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form w-25" id="dessertTrayForm">
                 <input type="hidden" value="2" class="form-control" id="trayMenuID" name="menuID">
 
-                <label for="categoryName" class="form-label">Category Name:</label>
-                <select class="form-select" id="categoryName" name="categoryName" required>
-                    <option value="Brownie Trays">Brownie Trays</option>
-                    <option value="Cookie Trays">Cookie Trays</option>
-                    <option value="Pastry Trays">Pastry Trays</option>
-                </select>
+                <div class="mb-3">
+                    <label for="categoryName" class="form-label">Category Name:</label>
+                    <select class="form-select" id="categoryName" name="categoryName" required>
+                        <option value="Brownie Trays">Brownie Trays</option>
+                        <option value="Cookie Trays">Cookie Trays</option>
+                        <option value="Pastry Trays">Pastry Trays</option>
+                    </select>
+                </div>
 
                 <!-- Made it a select list, in case they add Medium in the future but we could make it radio buttons -->
-                <label for="sizeName" class="form-label">Size Name:</label>
-                <select class="form-select" id="sizeName" name="sizeName" required>
-                    <option value="Large">Large</option>
-                    <option value="Small">Small</option>
-                </select>
+                <div class="mb-3">
+                    <label for="sizeName" class="form-label">Size Name:</label>
+                    <select class="form-select" id="sizeName" name="sizeName" required>
+                        <option value="Large">Large</option>
+                        <option value="Small">Small</option>
+                    </select>
+                </div>
 
-                <label for="sizePrice" class="form-label">Size Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="sizePrice" name="sizePrice" required>
+                <div class="mb-3">
+                    <label for="sizePrice" class="form-label">Size Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="sizePrice" name="sizePrice" required>
+                </div>
 
-                <label for="sizeDescription" class="form-label">Size Description:</label>
-                <input type="text" id="sizeDescription"  class="form-control" name="sizeDescription" required>
+                <div class="mb-3">
+                    <label for="sizeDescription" class="form-label">Size Description:</label>
+                    <input type="text" id="sizeDescription"  class="form-control" name="sizeDescription" required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
@@ -89,20 +103,26 @@
 
         <!-- PieAndCheesecake Form -->
         <div>
-            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form" id="pieAndCheesecakeForm">
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form w-25" id="pieAndCheesecakeForm">
                 <input type="hidden" value="3" class="form-control" id="PCMenuID" name="menuID">
 
-                <label for="categoryName" class="form-label">Category Name:</label>
-                <select class="form-select" id="categoryName" name="categoryName" required>
-                    <option value='9" Pie'>9" Pie</option>
-                    <option value='8" Cheesecake'>8" Cheesecake</option>
-                </select>
+                <div class="mb-3">
+                    <label for="categoryName" class="form-label">Category Name:</label>
+                    <select class="form-select" id="categoryName" name="categoryName" required>
+                        <option value='9" Pie'>9" Pie</option>
+                        <option value='8" Cheesecake'>8" Cheesecake</option>
+                    </select>
+                </div>
 
-                <label for="PCName" class="form-label">Pie or Cheesecake Name:</label>
-                <input type="text" class="form-control" id="PCName" name="PCName" required>
+                <div class="mb-3">
+                    <label for="PCName" class="form-label">Pie or Cheesecake Name:</label>
+                    <input type="text" class="form-control" id="PCName" name="PCName" required>
+                </div>
 
-                <label for="PCPrice" class="form-label">Pie or Cheesecake Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="PCPrice" name="PCPrice" required>
+                <div class="mb-3">
+                    <label for="PCPrice" class="form-label">Pie or Cheesecake Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="PCPrice" name="PCPrice" required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
@@ -111,22 +131,28 @@
 
         <!-- Cupcake Form -->
         <div>
-            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form" id="cupcakeForm">
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form w-25" id="cupcakeForm">
                 <input type="hidden" value="4" class="form-control" id="cupcakeMenuID" name="menuID">
 
-                <label for="sizeName" class="form-label">Size Name:</label>
-                <select class="form-select" id="sizeName" name="sizeName" required>
-                    <option value="Mini">Mini</option>
-                    <option value="Birthday">Birthday</option>
-                    <option value="Gourmet">Gourmet</option>
-                </select>
+                <div class="mb-3">
+                    <label for="sizeName" class="form-label">Size Name:</label>
+                    <select class="form-select" id="sizeName" name="sizeName" required>
+                        <option value="Mini">Mini</option>
+                        <option value="Birthday">Birthday</option>
+                        <option value="Gourmet">Gourmet</option>
+                    </select>
+                </div>
 
                 <!-- Named Size Description as Cupcake Description in the form to be more clear for the admin user -->
-                <label for="sizeDescription" class="form-label">Cupcake Description:</label>
-                <input type="text" class="form-control" id="sizeDescription" name="sizeDescription" required>
+                <div class="mb-3">
+                    <label for="sizeDescription" class="form-label">Cupcake Description:</label>
+                    <input type="text" class="form-control" id="sizeDescription" name="sizeDescription" required>
+                </div>
 
-                <label for="cupcakePrice" class="form-label">Cupcake Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="cupcakePrice" name="cupcakePrice" required>
+                <div class="mb-3">
+                    <label for="cupcakePrice" class="form-label">Cupcake Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="cupcakePrice" name="cupcakePrice" required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
@@ -135,36 +161,42 @@
 
         <!-- Dietary Form -->
         <div>
-            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form" id="dietaryForm">
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form w-25" id="dietaryForm">
                 <input type="hidden" value="5" class="form-control" id="dietaryMenuID" name="menuID">
 
-                <label for="categoryName" class="form-label">Category Name:</label>
-                <select class="form-select" id="categoryName" name="categoryName" required>
-                    <option value="Sugar Free">Sugar Free</option>
-                    <option value="Gluten Free">Gluten Free</option>
-                    <option value="Vegan">Vegan</option>
-                    <option value="Flourless Chocolate">Flourless Chocolate</option>
-                </select>
+                <div class="mb-3">
+                    <label for="categoryName" class="form-label">Category Name:</label>
+                    <select class="form-select" id="categoryName" name="categoryName" required>
+                        <option value="Sugar Free">Sugar Free</option>
+                        <option value="Gluten Free">Gluten Free</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Flourless Chocolate">Flourless Chocolate</option>
+                    </select>
+                </div>
 
-                <label for="cakeSize" class="form-label">Cake Size:</label>
-                <select class="form-select" id="cakeSize" name="cakeSize" required>
-                    <option value='6" Round'>6" Round</option>
-                    <option value='8" Round'>8" Round</option>
-                    <option value='10" Round'>10" Round</option>
-                    <option value='12" Round'>12" Round</option>
-                    <option value='1/4 Sheet'>1/4 Sheet</option>
-                    <option value='1/2 Sheet'>1/2 Sheet</option>
-                    <option value='Full Sheet'>Full Sheet</option>
-                    <option value='Cupcake - Mini'>Cupcake - Mini</option>
-                    <option value='Cupcake - Birthday'>Cupcake - Birthday</option>
-                    <option value='Cupcake - Gourmet'>Cupcake - Gourmet</option>
-                    <option value='3" Cheesecake'>3" Cheesecake</option>
-                    <option value='6" Cheesecake'>6" Cheesecake</option>
-                    <option value='8" Cheesecake'>8" Cheesecake</option>
-                </select>
+                <div class="mb-3">
+                    <label for="cakeSize" class="form-label">Cake Size:</label>
+                    <select class="form-select" id="cakeSize" name="cakeSize" required>
+                        <option value='6" Round'>6" Round</option>
+                        <option value='8" Round'>8" Round</option>
+                        <option value='10" Round'>10" Round</option>
+                        <option value='12" Round'>12" Round</option>
+                        <option value='1/4 Sheet'>1/4 Sheet</option>
+                        <option value='1/2 Sheet'>1/2 Sheet</option>
+                        <option value='Full Sheet'>Full Sheet</option>
+                        <option value='Cupcake - Mini'>Cupcake - Mini</option>
+                        <option value='Cupcake - Birthday'>Cupcake - Birthday</option>
+                        <option value='Cupcake - Gourmet'>Cupcake - Gourmet</option>
+                        <option value='3" Cheesecake'>3" Cheesecake</option>
+                        <option value='6" Cheesecake'>6" Cheesecake</option>
+                        <option value='8" Cheesecake'>8" Cheesecake</option>
+                    </select>
+                </div>
 
-                <label for="dietaryPrice" class="form-label">Dietary Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="dietaryPrice" name="dietaryPrice" required>
+                <div class="mb-3">
+                    <label for="dietaryPrice" class="form-label">Dietary Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="dietaryPrice" name="dietaryPrice" required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
@@ -173,45 +205,52 @@
 
         <!-- SignatureFlavorCake Form -->
         <div>
-            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form" id="signatureFlavorCakeForm">
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form w-25" id="signatureFlavorCakeForm">
                 <input type="hidden" value="6" class="form-control" id="SFMenuID" name="menuID">
 
-                <!-- Not sure how we should do category name: select list or input type="text" -->
-                <label for="categoryName" class="form-label">Category Name:</label>
-                <!-- <input type="text" id="categoryName" name="categoryName" required> -->
-
-                <select class="form-select" id="categoryName" name="categoryName" required>
-                    <option value="Price 1">Price 1</option>
-                    <option value="Price 2">Price 2</option>
-                    <option value="Price 3">Price 3</option>
-                    <option value="Price 4">Price 4</option>
-                </select>
+                <div class="mb-3">
+                    <!-- Not sure how we should do category name: select list or input type="text" -->
+                    <label for="categoryName" class="form-label">Category Name:</label>
+                    <!-- <input type="text" id="categoryName" name="categoryName" required> -->
+                    <select class="form-select" id="categoryName" name="categoryName" required>
+                        <option value="Price 1">Price 1</option>
+                        <option value="Price 2">Price 2</option>
+                        <option value="Price 3">Price 3</option>
+                        <option value="Price 4">Price 4</option>
+                    </select>
+                </div>
 
                 <!-- Not sure how we should do cake size and servings but this is the current solution which would probably affect SFPrice -->
-                <label for="cakeSize" class="form-label">Cake Size:</label>
-                <select class="form-select" id="cakeSize" name="cakeSize" required>
-                    <option value='6" Round'>6" Round</option>
-                    <option value='8" Round'>8" Round</option>
-                    <option value='10" Round'>10" Round</option>
-                    <option value='12" Round'>12" Round</option>
-                    <option value='1/4 Sheet'>1/4 Sheet</option>
-                    <option value='1/2 Sheet'>1/2 Sheet</option>
-                    <option value='Full Sheet'>Full Sheet</option>
-                </select>
+                <div class="mb-3">
+                    <label for="cakeSize" class="form-label">Cake Size:</label>
+                    <select class="form-select" id="cakeSize" name="cakeSize" required>
+                        <option value='6" Round'>6" Round</option>
+                        <option value='8" Round'>8" Round</option>
+                        <option value='10" Round'>10" Round</option>
+                        <option value='12" Round'>12" Round</option>
+                        <option value='1/4 Sheet'>1/4 Sheet</option>
+                        <option value='1/2 Sheet'>1/2 Sheet</option>
+                        <option value='Full Sheet'>Full Sheet</option>
+                    </select>
+                </div>
 
-                <label for="servings" class="form-label">Servings:</label>
-                <select class="form-select" id="servings" name="servings" required>
-                    <option value="4-6">4-6</option>
-                    <option value="10-12">10-12</option>
-                    <option value="12-18">12-18</option>
-                    <option value="18-24">18-24</option>
-                    <option value="20-25">20-25</option>
-                    <option value="30-45">30-45</option>
-                    <option value="50-75">50-75</option>
-                </select>
+                <div class="mb-3">
+                    <label for="servings" class="form-label">Servings:</label>
+                    <select class="form-select" id="servings" name="servings" required>
+                        <option value="4-6">4-6</option>
+                        <option value="10-12">10-12</option>
+                        <option value="12-18">12-18</option>
+                        <option value="18-24">18-24</option>
+                        <option value="20-25">20-25</option>
+                        <option value="30-45">30-45</option>
+                        <option value="50-75">50-75</option>
+                    </select>
+                </div>
 
-                <label for="SFPrice" class="form-label">Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="SFPrice" name="SFPrice" required>
+                <div class="mb-3">
+                    <label for="SFPrice" class="form-label">Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="SFPrice" name="SFPrice" required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
@@ -220,43 +259,55 @@
 
         <!-- Cake Form -->
         <div>
-            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form" id="cakeForm">
+            <form action="{{ url_for('addMenu') }}" method="POST" autocomplete="off" class="menu-form w-25" id="cakeForm">
                 <input type="hidden" value="7" class="form-control" id="cakeMenuID" name="menuID">
 
                 <!-- Not sure how we should do cake size and servings but this is the current solution which would probably affect the prices -->
-                <label for="cakeSize" class="form-label">Cake Size:</label>
-                <select class="form-select" id="cakeSize" name="cakeSize" required>
-                    <option value='6" Round'>6" Round</option>
-                    <option value='8" Round'>8" Round</option>
-                    <option value='10" Round'>10" Round</option>
-                    <option value='12" Round'>12" Round</option>
-                    <option value='1/4 Sheet'>1/4 Sheet</option>
-                    <option value='1/2 Sheet'>1/2 Sheet</option>
-                    <option value='Full Sheet'>Full Sheet</option>
-                </select>
+                <div class="mb-3">
+                    <label for="cakeSize" class="form-label">Cake Size:</label>
+                    <select class="form-select" id="cakeSize" name="cakeSize" required>
+                        <option value='6" Round'>6" Round</option>
+                        <option value='8" Round'>8" Round</option>
+                        <option value='10" Round'>10" Round</option>
+                        <option value='12" Round'>12" Round</option>
+                        <option value='1/4 Sheet'>1/4 Sheet</option>
+                        <option value='1/2 Sheet'>1/2 Sheet</option>
+                        <option value='Full Sheet'>Full Sheet</option>
+                    </select>
+                </div>
 
-                <label for="servings" class="form-label">Servings:</label>
-                <select class="form-select" id="servings" name="servings" required>
-                    <option value="4-6">4-6</option>
-                    <option value="10-12">10-12</option>
-                    <option value="12-18">12-18</option>
-                    <option value="18-24">18-24</option>
-                    <option value="20-25">20-25</option>
-                    <option value="30-45">30-45</option>
-                    <option value="50-75">50-75</option>
-                </select>
+                <div class="mb-3">
+                    <label for="servings" class="form-label">Servings:</label>
+                    <select class="form-select" id="servings" name="servings" required>
+                        <option value="4-6">4-6</option>
+                        <option value="10-12">10-12</option>
+                        <option value="12-18">12-18</option>
+                        <option value="18-24">18-24</option>
+                        <option value="20-25">20-25</option>
+                        <option value="30-45">30-45</option>
+                        <option value="50-75">50-75</option>
+                    </select>
+                </div>
 
-                <label for="cakePrice" class="form-label">Cake Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="cakePrice" name="cakePrice" required>
+                <div class="mb-3">
+                    <label for="cakePrice" class="form-label">Cake Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="cakePrice" name="cakePrice" required>
+                </div>
 
-                <label for="cakeEnhancement" class="form-label">Cake Enhancement Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="cakeEnhancement" name="cakeEnhancement" required>
+                <div class="mb-3">
+                    <label for="cakeEnhancement" class="form-label">Cake Enhancement Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="cakeEnhancement" name="cakeEnhancement" required>
+                </div>
 
-                <label for="fillingEnhancement" class="form-label">Filling Enhancement Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="fillingEnhancement" name="fillingEnhancement" required>
+                <div class="mb-3">
+                    <label for="fillingEnhancement" class="form-label">Filling Enhancement Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="fillingEnhancement" name="fillingEnhancement" required>
+                </div>
 
-                <label for="frostingEnhancement" class="form-label">Frosting Enhancement Price:</label>
-                <input type="number" placeholder="0.00" step=".01" class="form-control" id="frostingEnhancement" name="frostingEnhancement" required>
+                <div class="mb-3">
+                    <label for="frostingEnhancement" class="form-label">Frosting Enhancement Price:</label>
+                    <input type="number" placeholder="0.00" step=".01" class="form-control" id="frostingEnhancement" name="frostingEnhancement" required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
