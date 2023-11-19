@@ -21,7 +21,7 @@
         <a href="{{ url_for('editMenu') }}">editMenu</a><br>
         <a href="{{ url_for('deleteMenu') }}">deleteMenu</a><br>
 
-        <select name="menu" id="menuSelection">
+        <select name="menu" class="form-select" id="menuSelection">
             <option value="1">Mini Desserts</option>
             <option value="2">Dessert Trays</option>
             <option value="3">Pie & Cheesecake</option>
@@ -33,18 +33,18 @@
 
         <!-- MiniDesserts Form -->
         <div>
-            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="miniDessertsForm">
-                <label for="miniDessertsID">Which MiniDessertsID do you want to delete?</label>
-                <input type="number" id="miniDessertsID" name="miniDessertsID" min="1" required>
+            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="miniDessertsForm">
+                <label for="miniDessertsID" class="menu-label">Which MiniDessertsID do you want to delete?</label>
+                <input type="number" class="form-control" id="miniDessertsID" name="miniDessertsID" min="1" required>
 
-                <input type="hidden" value="1" id="miniMenuID" name="menuID">
+                <input type="hidden" value="1" class="form-control" id="miniMenuID" name="menuID">
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>MiniDessertsID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -63,18 +63,18 @@
 
         <!-- DessertTray Form -->
         <div>
-            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="dessertTrayForm">
-                <label for="dessertTrayID">Which DessertTrayID do you want to delete?</label>
-                <input type="number" id="dessertTrayID" name="dessertTrayID" min="1" required>
+            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="dessertTrayForm">
+                <label for="dessertTrayID" class="form-label">Which DessertTrayID do you want to delete?</label>
+                <input type="number" class="form-control" id="dessertTrayID" name="dessertTrayID" min="1" required>
 
-                <input type="hidden" value="2" id="trayMenuID" name="menuID">
+                <input type="hidden" value="2" class="form-control" id="trayMenuID" name="menuID">
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>DessertTrayID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -94,18 +94,18 @@
 
         <!-- PieAndCheesecake Form -->
         <div>
-            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="pieAndCheesecakeForm">
-                <label for="PCID">Which PCID do you want to delete?</label>
-                <input type="number" id="PCID" name="PCID" min="1" required>
+            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="pieAndCheesecakeForm">
+                <label for="PCID" class="form-label">Which PCID do you want to delete?</label>
+                <input type="number" class="form-control" id="PCID" name="PCID" min="1" required>
 
-                <input type="hidden" value="3" id="PCMenuID" name="menuID">
+                <input type="hidden" value="3" class="form-control" id="PCMenuID" name="menuID">
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>PCID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -124,18 +124,18 @@
 
         <!-- Cupcake Form -->
         <div>
-            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="cupcakeForm">
-                <label for="cupcakeID">Which CupcakeID do you want to delete?</label>
-                <input type="number" id="cupcakeID" name="cupcakeID" min="1" required>
+            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="cupcakeForm">
+                <label for="cupcakeID" class="form-label">Which CupcakeID do you want to delete?</label>
+                <input type="number" class="form-control" id="cupcakeID" name="cupcakeID" min="1" required>
 
-                <input type="hidden" value="4" id="cupcakeMenuID" name="menuID">
+                <input type="hidden" value="4" class="form-control" id="cupcakeMenuID" name="menuID">
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>CupcakeID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -154,18 +154,18 @@
 
         <!-- Dietary Form -->
         <div>
-            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="dietaryForm">
-                <label for="dietaryID">Which DietaryID do you want to delete?</label>
-                <input type="number" id="dietaryID" name="dietaryID" min="1" required>
+            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="dietaryForm">
+                <label for="dietaryID" class="form-label">Which DietaryID do you want to delete?</label>
+                <input type="number" class="form-control" id="dietaryID" name="dietaryID" min="1" required>
 
-                <input type="hidden" value="5" id="dietaryMenuID" name="menuID">
+                <input type="hidden" value="5" class="form-control" id="dietaryMenuID" name="menuID">
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>DietaryID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -184,18 +184,18 @@
 
          <!-- Signature Flavor Cake Form -->
          <div>
-            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="signatureFlavorCakeForm">
-                <label for="SFID">Which SignatureFlavorCakeID do you want to delete?</label>
-                <input type="number" id="SFID" name="SFID" min="1" required>
+            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="signatureFlavorCakeForm">
+                <label for="SFID" class="form-label">Which SignatureFlavorCakeID do you want to delete?</label>
+                <input type="number" class="form-control" id="SFID" name="SFID" min="1" required>
 
-                <input type="hidden" value="6" id="SFMenuID" name="menuID">
+                <input type="hidden" value="6" class="form-control" id="SFMenuID" name="menuID">
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>SignatureFlavorCakeID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -215,18 +215,18 @@
 
         <!-- Cake Form -->
         <div>
-            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" id="cakeForm">
-                <label for="cakeID">Which CakeID do you want to delete?</label>
-                <input type="number" id="cakeID" name="cakeID" min="1" required>
+            <form action="{{ url_for('deleteMenu') }}" method="POST" autocomplete="off" class="menu-form" id="cakeForm">
+                <label for="cakeID" class="form-label">Which CakeID do you want to delete?</label>
+                <input type="number" class="form-control" id="cakeID" name="cakeID" min="1" required>
 
-                <input type="hidden" value="7" id="cakeMenuID" name="menuID">
+                <input type="hidden" value="7" class="form-control" id="cakeMenuID" name="menuID">
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>CakeID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>

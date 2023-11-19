@@ -21,7 +21,7 @@
         <a href="{{ url_for('editMenu') }}">editMenu</a><br>
         <a href="{{ url_for('deleteMenu') }}">deleteMenu</a><br>
 
-        <select name="menu" id="menuSelection">
+        <select name="menu" class="form-select" id="menuSelection">
             <option value="1">Mini Desserts</option>
             <option value="2">Dessert Trays</option>
             <option value="3">Pie & Cheesecake</option>
@@ -33,16 +33,16 @@
 
         <!-- MiniDesserts Form -->
         <div>
-            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="miniDessertsForm">
+            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" class="menu-form" id="miniDessertsForm">
                 
-                <label for="miniDessertsID">Which MiniDessertsID do you want to edit?</label>
-                <input type="number" id="miniDessertsID" name="miniDessertsID" min="1" required>
+                <label for="miniDessertsID" class="form-label">Which MiniDessertsID do you want to edit?</label>
+                <input type="number" class="form-control" id="miniDessertsID" name="miniDessertsID" min="1" required>
                 
-                <input type="hidden" value="1" id="miniMenuID" name="menuID">
+                <input type="hidden" value="1" class="form-control" id="miniMenuID" name="menuID">
 
-                <label for="miniCategoryName">Category Name</label>
+                <label for="miniCategoryName" class="form-label">Category Name</label>
 
-                <select id="miniCategoryName" name="categoryName" required>
+                <select class="form-select" id="miniCategoryName" name="categoryName" required>
                     <option value="Mini Tart">Mini Tart</option>
                     <option value="Mini Pastries">Mini Pastries</option>
                     <option value="Mousse Cups">Mousse Cups</option>
@@ -51,18 +51,18 @@
                     <option value="Brownie Bites">Brownie Bites</option>
                 </select>
 
-                <label for="miniDessertName">Dessert Name</label>
-                <input type="text" id="miniDessertName" name="dessertName" required>
+                <label for="miniDessertName" class="form-label">Dessert Name</label>
+                <input type="text" class="form-control" id="miniDessertName" name="dessertName" required>
 
-                <label for="miniDessertPrice">Dessert Price</label>
-                <input type="number" placeholder="0.00" step=".01" id="miniDessertPrice" name="dessertPrice" required>
+                <label for="miniDessertPrice" class="form-label">Dessert Price</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="miniDessertPrice" name="dessertPrice" required>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>MiniDessertsID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -81,39 +81,39 @@
         
         <!-- DessertTray Form -->
         <div>
-            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="dessertTrayForm">
+            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" class="menu-form" id="dessertTrayForm">
                 
-                <label for="dessertTrayID">Which DessertTrayID do you want to edit?</label>
-                <input type="number" id="dessertTrayID" name="dessertTrayID" min="1" required>
+                <label for="dessertTrayID" class="form-label">Which DessertTrayID do you want to edit?</label>
+                <input type="number" class="form-control" id="dessertTrayID" name="dessertTrayID" min="1" required>
 
-                <input type="hidden" value="2" id="trayMenuID" name="menuID">
+                <input type="hidden" value="2" class="form-control" id="trayMenuID" name="menuID">
 
-                <label for="categoryName">Category Name:</label>
-                <select id="categoryName" name="categoryName" required>
+                <label for="categoryName" class="form-label">Category Name:</label>
+                <select class="form-select" id="categoryName" name="categoryName" required>
                     <option value="Brownie Trays">Brownie Trays</option>
                     <option value="Cookie Trays">Cookie Trays</option>
                     <option value="Pastry Trays">Pastry Trays</option>
                 </select>
 
                 <!-- Made it a select list, in case they add Medium in the future but we could make it radio buttons -->
-                <label for="sizeName">Size Name:</label>
-                <select id="sizeName" name="sizeName" required>
+                <label for="sizeName" class="form-label">Size Name:</label>
+                <select class="form-select" id="sizeName" name="sizeName" required>
                     <option value="Large">Large</option>
                     <option value="Small">Small</option>
                 </select>
 
-                <label for="sizePrice">Size Price:</label>
-                <input type="number" placeholder="0.00" step=".01" id="sizePrice" name="sizePrice" required>
+                <label for="sizePrice" class="form-label">Size Price:</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="sizePrice" name="sizePrice" required>
 
-                <label for="sizeDescription">Size Description:</label>
-                <input type="text" id="sizeDescription" name="sizeDescription" required>
+                <label for="sizeDescription" class="form-label">Size Description:</label>
+                <input type="text" class="form-control" id="sizeDescription" name="sizeDescription" required>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>DessertTrayID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -133,31 +133,31 @@
 
         <!-- PieAndCheesecake Form -->
         <div>
-            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="pieAndCheesecakeForm">
+            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" class="menu-form" id="pieAndCheesecakeForm">
                 
-                <label for="PCID">Which PCID do you want to edit?</label>
-                <input type="number" id="PCID" name="PCID" min="1" required>
+                <label for="PCID" class="form-label">Which PCID do you want to edit?</label>
+                <input type="number" class="form-control" id="PCID" name="PCID" min="1" required>
 
-                <input type="hidden" value="3" id="PCMenuID" name="menuID">
+                <input type="hidden" value="3" class="form-control" id="PCMenuID" name="menuID">
 
-                <label for="categoryName">Category Name:</label>
-                <select id="categoryName" name="categoryName" required>
+                <label for="categoryName" class="form-label">Category Name:</label>
+                <select class="form-select" id="categoryName" name="categoryName" required>
                     <option value='9" Pie'>9" Pie</option>
                     <option value='8" Cheesecake'>8" Cheesecake</option>
                 </select>
 
-                <label for="PCName">Pie or Cheesecake Name:</label>
-                <input type="text" id="PCName" name="PCName" required>
+                <label for="PCName" class="form-label">Pie or Cheesecake Name:</label>
+                <input type="text" class="form-control" id="PCName" name="PCName" required>
 
-                <label for="PCPrice">Pie or Cheesecake Price:</label>
-                <input type="number" placeholder="0.00" step=".01" id="PCPrice" name="PCPrice" required>
+                <label for="PCPrice" class="form-label">Pie or Cheesecake Price:</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="PCPrice" name="PCPrice" required>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>PCID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -176,33 +176,33 @@
 
         <!-- Cupcake Form -->
         <div>
-            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="cupcakeForm">
+            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" class="menu-form" id="cupcakeForm">
                 
-                <label for="cupcakeID">Which CupcakeID do you want to edit?</label>
-                <input type="number" id="cupcakeID" name="cupcakeID" min="1" required>
+                <label for="cupcakeID" class="form-label">Which CupcakeID do you want to edit?</label>
+                <input type="number" class="form-control" id="cupcakeID" name="cupcakeID" min="1" required>
 
-                <input type="hidden" value="4" id="cupcakeMenuID" name="menuID">
+                <input type="hidden" value="4" class="form-control" id="cupcakeMenuID" name="menuID">
 
-                <label for="sizeName">Size Name:</label>
-                <select id="sizeName" name="sizeName" required>
+                <label for="sizeName" class="form-label">Size Name:</label>
+                <select class="form-select" id="sizeName" name="sizeName" required>
                     <option value="Mini">Mini</option>
                     <option value="Birthday">Birthday</option>
                     <option value="Gourmet">Gourmet</option>
                 </select>
 
                 <!-- Named Size Description as Cupcake Description in the form to be more clear for the admin user -->
-                <label for="sizeDescription">Cupcake Description:</label>
-                <input type="text" id="sizeDescription" name="sizeDescription" required>
+                <label for="sizeDescription" class="form-label">Cupcake Description:</label>
+                <input type="text" class="form-control" id="sizeDescription" name="sizeDescription" required>
 
-                <label for="cupcakePrice">Cupcake Price:</label>
-                <input type="number" placeholder="0.00" step=".01" id="cupcakePrice" name="cupcakePrice" required>
+                <label for="cupcakePrice" class="form-label">Cupcake Price:</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="cupcakePrice" name="cupcakePrice" required>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>CupcakeID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -221,23 +221,23 @@
 
         <!-- Dietary Form -->
         <div>
-            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="dietaryForm">
+            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" class="menu-form" id="dietaryForm">
                 
-                <label for="dietaryID">Which DietaryID do you want to edit?</label>
-                <input type="number" id="dietaryID" name="dietaryID" min="1" required>
+                <label for="dietaryID" class="form-label">Which DietaryID do you want to edit?</label>
+                <input type="number" class="form-control" id="dietaryID" name="dietaryID" min="1" required>
 
-                <input type="hidden" value="5" id="dietaryMenuID" name="menuID">
+                <input type="hidden" value="5" class="form-control" id="dietaryMenuID" name="menuID">
 
-                <label for="categoryName">Category Name:</label>
-                <select id="categoryName" name="categoryName" required>
+                <label for="categoryName" class="form-label">Category Name:</label>
+                <select class="form-select" id="categoryName" name="categoryName" required>
                     <option value="Sugar Free">Sugar Free</option>
                     <option value="Gluten Free">Gluten Free</option>
                     <option value="Vegan">Vegan</option>
                     <option value="Flourless Chocolate">Flourless Chocolate</option>
                 </select>
 
-                <label for="cakeSize">Cake Size:</label>
-                <select id="cakeSize" name="cakeSize" required>
+                <label for="cakeSize" class="form-label">Cake Size:</label>
+                <select class="form-select" id="cakeSize" name="cakeSize" required>
                     <option value='6" Round'>6" Round</option>
                     <option value='8" Round'>8" Round</option>
                     <option value='10" Round'>10" Round</option>
@@ -253,15 +253,15 @@
                     <option value='8" Cheesecake'>8" Cheesecake</option>
                 </select>
 
-                <label for="dietaryPrice">Dietary Price:</label>
-                <input type="number" placeholder="0.00" step=".01" id="dietaryPrice" name="dietaryPrice" required>
+                <label for="dietaryPrice" class="form-label">Dietary Price:</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="dietaryPrice" name="dietaryPrice" required>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>DietaryID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -280,17 +280,17 @@
 
         <!-- Signature Flavor Cake Form -->
         <div>
-            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="signatureFlavorCakeForm">
+            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" class="menu-form" id="signatureFlavorCakeForm">
                 
-                <label for="SFID">Which SignatureFlavorCakeID do you want to edit?</label>
-                <input type="number" id="SFID" name="SFID" min="1" required>
+                <label for="SFID" class="form-label">Which SignatureFlavorCakeID do you want to edit?</label>
+                <input type="number" class="form-control" id="SFID" name="SFID" min="1" required>
 
-                <input type="hidden" value="6" id="SFMenuID" name="menuID">
+                <input type="hidden" value="6" class="form-control" id="SFMenuID" name="menuID">
 
-                <label for="categoryName">Category Name:</label>
+                <label for="categoryName" class="form-label">Category Name:</label>
                 <!-- <input type="text" id="categoryName" name="categoryName" required> -->
 
-                <select id="categoryName" name="categoryName" required>
+                <select class="form-select" id="categoryName" name="categoryName" required>
                     <option value="Price 1">Price 1</option>
                     <option value="Price 2">Price 2</option>
                     <option value="Price 3">Price 3</option>
@@ -298,8 +298,8 @@
                 </select>
 
                 <!-- Not sure how we should do cake size and servings but this is the current solution which would probably affect SFPrice -->
-                <label for="cakeSize">Cake Size:</label>
-                <select id="cakeSize" name="cakeSize" required>
+                <label for="cakeSize" class="form-label">Cake Size:</label>
+                <select class="form-select" id="cakeSize" name="cakeSize" required>
                     <option value='6" Round'>6" Round</option>
                     <option value='8" Round'>8" Round</option>
                     <option value='10" Round'>10" Round</option>
@@ -309,8 +309,8 @@
                     <option value='Full Sheet'>Full Sheet</option>
                 </select>
 
-                <label for="servings">Servings:</label>
-                <select id="servings" name="servings" required>
+                <label for="servings" class="form-label">Servings:</label>
+                <select class="form-select" id="servings" name="servings" required>
                     <option value="4-6">4-6</option>
                     <option value="10-12">10-12</option>
                     <option value="12-18">12-18</option>
@@ -320,15 +320,15 @@
                     <option value="50-75">50-75</option>
                 </select>
 
-                <label for="SFPrice">Price:</label>
-                <input type="number" placeholder="0.00" step=".01" id="SFPrice" name="SFPrice" required>
+                <label for="SFPrice" class="form-label">Price:</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="SFPrice" name="SFPrice" required>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>SignatureFlavorCakeID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
@@ -348,14 +348,14 @@
 
          <!-- Cake Form -->
          <div>
-            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" id="cakeForm">
-                <input type="hidden" value="7" id="cakeMenuID" name="menuID">
+            <form action="{{ url_for('editMenu') }}" method="POST" autocomplete="off" class="menu-form" id="cakeForm">
+                <input type="hidden" value="7" class="form-control" id="cakeMenuID" name="menuID">
                 
-                <label for="cakeID">Which CakeID do you want to edit?</label>
-                <input type="number" id="cakeID" name="cakeID" min="1" required>
+                <label for="cakeID" class="form-label">Which CakeID do you want to edit?</label>
+                <input type="number" class="form-control" id="cakeID" name="cakeID" min="1" required>
 
-                <label for="cakeSize">Cake Size:</label>
-                <select id="cakeSize" name="cakeSize" required>
+                <label for="cakeSize" class="form-label">Cake Size:</label>
+                <select class="form-select" id="cakeSize" name="cakeSize" required>
                     <option value='6" Round'>6" Round</option>
                     <option value='8" Round'>8" Round</option>
                     <option value='10" Round'>10" Round</option>
@@ -365,8 +365,8 @@
                     <option value='Full Sheet'>Full Sheet</option>
                 </select>
 
-                <label for="servings">Servings:</label>
-                <select id="servings" name="servings" required>
+                <label for="servings" class="form-label">Servings:</label>
+                <select class="form-select" id="servings" name="servings" required>
                     <option value="4-6">4-6</option>
                     <option value="10-12">10-12</option>
                     <option value="12-18">12-18</option>
@@ -376,24 +376,24 @@
                     <option value="50-75">50-75</option>
                 </select>
 
-                <label for="cakePrice">Cake Price:</label>
-                <input type="number" placeholder="0.00" step=".01" id="cakePrice" name="cakePrice" required>
+                <label for="cakePrice" class="form-label">Cake Price:</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="cakePrice" name="cakePrice" required>
 
-                <label for="cakeEnhancement">Cake Enhancement Price:</label>
-                <input type="number" placeholder="0.00" step=".01" id="cakeEnhancement" name="cakeEnhancement" required>
+                <label for="cakeEnhancement" class="form-label">Cake Enhancement Price:</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="cakeEnhancement" name="cakeEnhancement" required>
 
-                <label for="fillingEnhancement">Filling Enhancement Price:</label>
-                <input type="number" placeholder="0.00" step=".01" id="fillingEnhancement" name="fillingEnhancement" required>
+                <label for="fillingEnhancement" class="form-label">Filling Enhancement Price:</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="fillingEnhancement" name="fillingEnhancement" required>
 
-                <label for="frostingEnhancement">Frosting Enhancement Price:</label>
-                <input type="number" placeholder="0.00" step=".01" id="frostingEnhancement" name="frostingEnhancement" required>
+                <label for="frostingEnhancement" class="form-label">Frosting Enhancement Price:</label>
+                <input type="number" placeholder="0.00" step=".01" class="form-control" id="frostingEnhancement" name="frostingEnhancement" required>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <p>{{ msg }}</p>
 
                 <table class="table table-striped w-auto">
                     <thead>
-                        <th>ID</th>
+                        <th>CakeID</th>
                         <th>MenuID</th>
                         <th>Category</th>
                         <th>Size</th>
