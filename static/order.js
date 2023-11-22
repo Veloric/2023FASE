@@ -80,89 +80,183 @@ function updateOptions(select) {
     switch (select.value) {
         case "Cake":
             flavorSelect.innerHTML = `
-                        <option value="Andes Mint">Andes Mint</option>
-                        <option value="Cookies N' Cream">Cookies N' Cream</option>
-                        <option value="Mocha/Macchiato Cake">Mocha/Macchiato Cake</option>
-                        <option value="Chocolate Chip Cake">Red Velvet</option>
-                        <option value="Fudge Cake">Fudge</option>
-                        <option value="Funfetti Fudge">Funfetti Fudge</option>
-                        <option value="Chocolate Peanut Butter">Peanut Butter Chocolate</option>
-                        <option value="Cherry Cheesecake">Cherry Cheesecake</option>
-                        <option value="Red Velvet">Red Velvet</option>
-                        <option value="Carrot Cake">Carrot</option>
-                        <option value="Black Forest">Black Forest</option>
-                        <option value="Chocolate Mousse Cake">Chocolate Mousse</option>
-                        <option value="Cannoli Cake">Cannoli</option>
-                        <option value="Raspberry Dream">Raspberry Dream</option>
-                        <option value="Traditional Strawberry Shotcake">Trad. Strawberry Shortcake</option>
-                        <option value="Tiramisu">Tiramisu</option>
-                        <option value="Chocolate Decadence">Chocolate Decadence</option>
-                        <option value="Nutella">Nutella</option>
-                        <option value="Italian Rum">Italian Rum</option>
-                        <option value="Signature Strawberry Shortcake">Signature Strawberry Shortcake (with Chocolate)</option>
-                    `;
+                <option value="Andes Mint">Andes Mint</option>
+                <option value="Cookies N' Cream">Cookies N' Cream</option>
+                <option value="Mocha/Macchiato Cake">Mocha/Macchiato Cake</option>
+                <option value="Chocolate Chip Cake">Red Velvet</option>
+                <option value="Fudge Cake">Fudge</option>
+                <option value="Funfetti Fudge">Funfetti Fudge</option>
+                <option value="Chocolate Peanut Butter">Peanut Butter Chocolate</option>
+                <option value="Cherry Cheesecake">Cherry Cheesecake</option>
+                <option value="Red Velvet">Red Velvet</option>
+                <option value="Carrot Cake">Carrot</option>
+                <option value="Black Forest">Black Forest</option>
+                <option value="Chocolate Mousse Cake">Chocolate Mousse</option>
+                <option value="Cannoli Cake">Cannoli</option>
+                <option value="Raspberry Dream">Raspberry Dream</option>
+                <option value="Traditional Strawberry Shotcake">Trad. Strawberry Shortcake</option>
+                <option value="Tiramisu">Tiramisu</option>
+                <option value="Chocolate Decadence">Chocolate Decadence</option>
+                <option value="Nutella">Nutella</option>
+                <option value="Italian Rum">Italian Rum</option>
+                <option value="Signature Strawberry Shortcake">Signature Strawberry Shortcake (with Chocolate)</option>
+            `;
             sizeSelect.innerHTML = `
-                        <option value="6">6"</option>
-                        <option value="8">8"</option>
-                        <option value="10">10"</option>
-                        <option value="12">12"</option>
-                        <option value="1/4 Sheet">1/4 Sheet"</option>
-                        <option value="1/2 Sheet">1/2 Sheet"</option>
-                        <option value="Full Sheet">Full Sheet"</option>
-                    `;
+                <option value="6">6"</option>
+                <option value="8">8"</option>
+                <option value="10">10"</option>
+                <option value="12">12"</option>
+                <option value="1/4 Sheet">1/4 Sheet"</option>
+                <option value="1/2 Sheet">1/2 Sheet"</option>
+                <option value="Full Sheet">Full Sheet"</option>
+            `;
             break;
 
         case "Brownie":
             flavorSelect.innerHTML = `
-                        <option value="Birthday">Birthday</option>
-                        <option value="Oreo">Oreo</option>
-                        <option value="Salted Caramel">Salted Caramel</option>
-                        <option value="Peanut Butter">Peanut Butter</option>
-                    `;
+                <option value="Birthday">Birthday</option>
+                <option value="Oreo">Oreo</option>
+                <option value="Salted Caramel">Salted Caramel</option>
+                <option value="Peanut Butter">Peanut Butter</option>
+            `;
             sizeSelect.innerHTML = `
-                        <option value="Brownie Bites">Brownie Bites</option>
-                        <option value="Regular">Regular</option>
-                    `;
+                <option value="Brownie Bites">Brownie Bites</option>
+                <option value="Regular">Regular</option>
+            `;
             break;
 
-        //Realized that you might be able to do this by parsing through data in SQL. Let me know if you need me to keep doing this
-        //If not, feel free to adjust as needed and delete this - Laiba 
-        /*
         case "Dessert Tray":
             flavorSelect.innerHTML = `
-                
+                <option value="Brownie Trays">Brownie Trays</option>
+                <option value="Cookie Trays">Cookie Trays</option>
+                <option value="Pastry Trays">Pastry Trays</option>
             `;
             sizeSelect.innerHTML = `
-                
+                <option value="Small">Small</option>
+                <option value="Large">Large</option>
             `;
+            break;
 
         case "Pie":
             flavorSelect.innerHTML = `
-                
-
+                <option value="Pumpkin">Pumpkin</option>
+                <option value="Traditional 2-Crust Apple">Traditional 2-Crust Apple</option>
+                <option value="Caramel Apple Crumb">Caramel Apple Crumb</option>
+                <option value="Banana Cream">Banana Cream</option>
+                <option value="Coconut Cream">Coconut Cream</option>
+                <option value="Chocolate Cream">Chocolate Cream</option>
+                <option value="Peanut Butter Cream">Peanut Butter Cream</option>
+                <option value="Key Lime">Key Lime</option>
+                <option value="Lemon Meringue">Lemon Meringue</option>
             `;
             sizeSelect.innerHTML = `
-                
-
+                <option value="9">9"</option>
             `;
+            break;
+
         case "Cheesecake":
             flavorSelect.innerHTML = `
-                
-
+                <option value="NY">NY</option>
+                <option value="Chocolate">Chocolate</option>
+                <option value="Oreo">Oreo</option>
+                <option value="Pumpkin">Pumpkin</option>
+                <option value="Fruit Topped BLUEBERRY">Fruit Topped w/Blueberry</option>
+                <option value="Fruit Topped CHERRY">Fruit Topped w/Cherry</option>
+                <option value="Lemon Ricotta">Lemon Ricotta</option>
+                <option value="Chocolate Covered">Chocolate Covered</option>
             `;
             sizeSelect.innerHTML = `
-                
-
+                <option value="8">8"</option>
             `;
+            break;
         
         case "Dietary ":
             flavorSelect.innerHTML = `
-
+                <option value="Sugar Free">Sugar Free</option>
+                <option value="Gluten Free">Gluten Free</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Flourless Chocolate">Flourless Chocolate</option>
             `;
             sizeSelect.innerHTML = `
-                
+                <option value="3">3" - Cake</option>
+                <option value="6">6" - Cake</option>
+                <option value="8">8" - Cake</option>
+                <option value="10">10" - Cake</option>
+                <option value="12">12" - Cake</option>
+                <option value="1/4 Sheet">1/4 Sheet - Cake"</option>
+                <option value="1/2 Sheet">1/2 Sheet - Cake"</option>
+                <option value="Full Sheet">Full Sheet - Cake"</option>
+                <option value="Cupcake - Mini">Cupcake - Mini</option>
+                <option value="Cupcake - Birthday">Cupcake - Birthday</option>
+                <option value="Cupcake - Gourmet">Cupcake - Gourmet</option>
+                <option value="3">3" - Cheesecake</option>
+                <option value="6">6" - Cheesecake</option>
+                <option value="8">8" - Cheesecake</option>
             `;
-        */
+            break;
+
+            case "Mini Tarts":
+                flavorSelect.innerHTML = `
+                    <option value="Lemon Meringue">Lemon Meringue</option>
+                    <option value="Lemon Blueberry">Lemon Blueberry</option>
+                    <option value="Mixed Fruit">Mixed Fruit</option>
+                    <option value="Salted Caramel">Salted Caramel</option>
+                    <option value="Smore's">Smore's</option>
+                    <option value="Pecan">Pecan</option>
+                    <option value="Peanut Butter and Jelly">Peanut Butter and Jelly</option>
+                `;
+                sizeSelect.innerHTML = `
+                    <option value="Mini">Mini</option>
+            `;
+            break;
+
+            case "Mini Pastries":
+                flavorSelect.innerHTML = `
+                    <option value="Cannoli">Cannoli</option>
+                    <option value="Cream Puffs">Cream Puffs</option>
+                    <option value="Eclair">Eclair</option>
+                `;
+                sizeSelect.innerHTML = `
+                    <option value="Mini">Mini</option>
+            `;
+            break;
+
+            case "Mini Cheesecake Cups":
+                flavorSelect.innerHTML = `
+                    <option value="NY Plain">NY Plain</option>
+                    <option value="NY with Fruit">NY with Fruit</option>
+                    <option value="NY with Ganache">NY with Ganache</option>
+                `;
+                sizeSelect.innerHTML = `
+                    <option value="Mini">Mini</option>
+            `;
+            break;
+
+            case "Mini Mousse Cups":
+                flavorSelect.innerHTML = `
+                    <option value="White Chocolate">White Chocolate</option>
+                    <option value="Chocolate">Chocolate</option>
+                    <option value="Cappuccino">Cappuccino</option>
+                    <option value="Strawberry">Strawberry</option>
+                    <option value="Tiramisu">Tiramisu</option>
+                `;
+                sizeSelect.innerHTML = `
+                    <option value="Mini">Mini</option>
+            `;
+            break;
+
+            case "Assorted Mini Desserts":
+                flavorSelect.innerHTML = `
+                    <option value="Cake Pops">Cake Pops</option>
+                    <option value="Chocolate Dipped Strawberries">Chocolate Dipped Strawberry</option>
+                    <option value="Chocolate Dipped Oreos">Chocolate Dipped Oreo</option>
+                `;
+                sizeSelect.innerHTML = `
+                    <option value="Mini">Mini</option>
+            `;
+            break;
+
+            /* Have to change this around a bit, but most of the options are there. */
     }
 }
 
