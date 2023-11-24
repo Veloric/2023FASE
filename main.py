@@ -184,10 +184,9 @@ def addMenu():
         categoryName = request.form["categoryName"]
         sizeName = request.form["sizeName"]
         sizePrice = request.form["sizePrice"]
-        sizeDescription = request.form["sizeDescription"]
         mydb = connectdb()
         cursor = mydb.cursor()
-        cursor.execute("INSERT INTO DessertTray (MenuID, CategoryName, SizeName, SizePrice, SizeDescription) VALUES (%s, %s, %s, %s, %s)", (menuID, categoryName, sizeName, sizePrice, sizeDescription))
+        cursor.execute("INSERT INTO DessertTray (MenuID, CategoryName, SizeName, SizePrice) VALUES (%s, %s, %s, %s)", (menuID, categoryName, sizeName, sizePrice))
         mydb.commit()
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
@@ -314,11 +313,10 @@ def editMenu():
         categoryName = request.form["categoryName"]
         sizeName = request.form["sizeName"]
         sizePrice = request.form["sizePrice"]
-        sizeDescription = request.form["sizeDescription"]
         cursor.execute("SELECT * FROM DessertTray WHERE DessertTrayID = %s", [(dessertTrayID)])
         item = cursor.fetchone()
         if item:
-            cursor.execute("UPDATE DessertTray SET CategoryName = %s, SizeName = %s, SizePrice = %s, SizeDescription = %s WHERE DessertTrayID = %s", (categoryName, sizeName, sizePrice, sizeDescription, dessertTrayID))
+            cursor.execute("UPDATE DessertTray SET CategoryName = %s, SizeName = %s, SizePrice = %s WHERE DessertTrayID = %s", (categoryName, sizeName, sizePrice, dessertTrayID))
             mydb.commit()
             print(cursor.rowcount, " record updated!") # TESTING
             msg = "Form received! You may now exit this page."
@@ -447,7 +445,6 @@ def deleteMenu():
         cake = cursor.fetchall()
     except:
         print("An error has occurred while displaying the table in deleteMenu!")
-
 
     if request.method == "POST" and request.form["menuID"] == "1": 
         minidessertsID = request.form["miniDessertsID"]
