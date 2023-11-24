@@ -108,10 +108,11 @@ def replyContact():
     except:
         print("An error has occurred while displaying the contact table!")
 
-    if request.method == "POST" and request.form["replyConfirm"] == 1:
+    if request.method == "POST" and request.form["replyConfirm"] == "1":
         print(request.form)
         contactID = request.form["contactID"]
         replyMsg = request.form["replyMsg"]
+        emailOption = request.form["emailOption"]
         cursor.execute("SELECT * FROM Contact WHERE ContactID = %s", [(contactID)])
         userContact = cursor.fetchone()
         print(userContact)

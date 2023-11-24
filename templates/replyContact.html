@@ -17,6 +17,8 @@
 
             <div>
                 <form action="{{ url_for('replyContact') }}" method="POST" autocomplete="off" class="contact-form" id="replyContactForm">
+                    <p>You can send a default text reply and send an optional email reply.</p>
+
                     <input type="hidden" value="1" class="form-control" id="replyConfirm" name="replyConfirm">
 
                     <div class="mb-3">
@@ -24,21 +26,14 @@
                         <input type="number" class="form-control" id="contactID" name="contactID" min="1" required>
                     </div>
 
-                    <!-- By default: Send a text reply and then delete the contactID after the message has been sent
-                        Maybe include an option for the user to send an email (have to check if there is an email in the table) 
-                    -->
-
-                    <!-- <div class="mb-3">
-                        <label for="replyMethod" class="form-label">Which method would you like to reply to them with?</label>
-                        <input type="radio" class="form-check-input" id="replyPhone" name="replyMethod">
-                        <label for="replyPhone" class="form-check-label">Phone</label>
-                        <input type="radio" class="form-check-input" id="replyEmail" name="replyMethod">
-                        <label for="replyEmail" class="form-check-label">Email</label>
-                    </div> -->
+                    <div class="mb-3">
+                        <label for="replyMsg" class="form-label">Enter your reply message to the contact question (ContactQuestion)</label>
+                        <textarea class="form-control" id="replyMsg" name="replyMsg" min="5" required></textarea>
+                    </div>
 
                     <div class="mb-3">
-                        <label for="replyMsg">Enter your message</label>
-                        <textarea id="replyMsg" class="form-control" min="5" required></textarea>
+                        <input type="checkbox" class="form-check-input" id="emailOption" name="emailOption">
+                        <label for="emailOption" class="form-check-label">Do you also want to email the contactee this message?</label>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
