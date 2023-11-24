@@ -95,6 +95,40 @@ def contact():
 
     return render_template("contact.html", msg=msg)
 
+@app.route("/replyContact", methods=["GET", "POST"])
+def replyContact():
+    msg = ""
+
+    try: 
+        mydb = connectdb()
+        cursor = mydb.cursor()
+
+        cursor.execute('SELECT * from Contact')
+        contact = cursor.fetchall()
+    except:
+        print("An error has occurred while displaying the contact table!")
+
+    if request.method == "POST" and request.form["replyConfirm"] == 1:
+        print(request.form)
+        contactID = request.form["contactID"]
+        replyMsg = request.form["replyMsg"]
+        cursor.execute("SELECT * FROM Contact WHERE ContactID = %s", [(contactID)])
+        userContact = cursor.fetchone()
+        print(userContact)
+        if userContact:
+            cursor.execute("DELETE from Contact WHERE ContactID = %s", [(contactID)])
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry the ID inputted was not found!"
+    elif request.method == "POST":
+        msg = "Please fill out the information before submitting!"
+
+    disconnectdb(mydb)
+
+    return render_template("replyContact.html", msg=msg, contact=contact)
+
 @app.route("/menu")
 def menu():
     try:
@@ -233,29 +267,32 @@ def addMenu():
 def editMenu():
     msg = ""
 
-    mydb = connectdb()
-    cursor = mydb.cursor()
+    try:
+        mydb = connectdb()
+        cursor = mydb.cursor()
 
-    cursor.execute('SELECT * FROM minidesserts')
-    miniMenu = cursor.fetchall()
+        cursor.execute('SELECT * FROM minidesserts')
+        miniMenu = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM desserttray')
-    trays = cursor.fetchall()
-    
-    cursor.execute('SELECT * FROM pieandcheesecake')
-    piecheese = cursor.fetchall()
+        cursor.execute('SELECT * FROM desserttray')
+        trays = cursor.fetchall()
+        
+        cursor.execute('SELECT * FROM pieandcheesecake')
+        piecheese = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM cupcake')
-    cupcake = cursor.fetchall()
+        cursor.execute('SELECT * FROM cupcake')
+        cupcake = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM dietary')
-    dietary = cursor.fetchall()
+        cursor.execute('SELECT * FROM dietary')
+        dietary = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM signatureflavorcake')
-    sf = cursor.fetchall()
+        cursor.execute('SELECT * FROM signatureflavorcake')
+        sf = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM cake')
-    cake = cursor.fetchall()
+        cursor.execute('SELECT * FROM cake')
+        cake = cursor.fetchall()
+    except:
+        print("An error has occurred while displaying the table in editMenu!")
 
     if request.method == "POST" and request.form["menuID"] == "1":
         miniDessertsID = request.form["miniDessertsID"]
@@ -383,29 +420,33 @@ def editMenu():
 def deleteMenu():
     msg = ""
 
-    mydb = connectdb()
-    cursor = mydb.cursor()
+    try:
+        mydb = connectdb()
+        cursor = mydb.cursor()
 
-    cursor.execute('SELECT * FROM minidesserts')
-    miniMenu = cursor.fetchall()
+        cursor.execute('SELECT * FROM minidesserts')
+        miniMenu = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM desserttray')
-    trays = cursor.fetchall()
-    
-    cursor.execute('SELECT * FROM pieandcheesecake')
-    piecheese = cursor.fetchall()
+        cursor.execute('SELECT * FROM desserttray')
+        trays = cursor.fetchall()
+        
+        cursor.execute('SELECT * FROM pieandcheesecake')
+        piecheese = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM cupcake')
-    cupcake = cursor.fetchall()
+        cursor.execute('SELECT * FROM cupcake')
+        cupcake = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM dietary')
-    dietary = cursor.fetchall()
+        cursor.execute('SELECT * FROM dietary')
+        dietary = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM signatureflavorcake')
-    sf = cursor.fetchall()
+        cursor.execute('SELECT * FROM signatureflavorcake')
+        sf = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM cake')
-    cake = cursor.fetchall()
+        cursor.execute('SELECT * FROM cake')
+        cake = cursor.fetchall()
+    except:
+        print("An error has occurred while displaying the table in deleteMenu!")
+
 
     if request.method == "POST" and request.form["menuID"] == "1": 
         minidessertsID = request.form["miniDessertsID"]
