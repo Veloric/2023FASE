@@ -97,6 +97,11 @@ def contact():
 
 @app.route("/replyContact", methods=["GET", "POST"])
 def replyContact():
+
+    if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
+        print("You are not allowed to access this page!")
+        return render_template("index.html")
+    
     msg = ""
 
     try: 
@@ -132,7 +137,12 @@ def replyContact():
 
 @app.route("/adminPage")
 def adminPage():
-    return render_template("adminPage.html")
+    if 'employee' in session and session["employee"] == 1:
+        return render_template("adminPage.html")
+    else:
+        print("You are not allowed to access this page!")
+        return render_template("index.html")
+        
 
 @app.route("/menu")
 def menu():
@@ -170,6 +180,11 @@ def menu():
 # ADDING TO MENU
 @app.route("/addMenu", methods=["GET", "POST"])
 def addMenu():
+
+    if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
+        print("You are not allowed to access this page!")
+        return render_template("index.html")
+
     msg = ""
     if request.method == "POST" and request.form["menuID"] == "1":
         menuID = request.form["menuID"]
@@ -269,6 +284,11 @@ def addMenu():
 # EDITING THE MENU
 @app.route("/editMenu", methods=["GET", "POST"])
 def editMenu():
+
+    if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
+        print("You are not allowed to access this page!")
+        return render_template("index.html")
+    
     msg = ""
 
     try:
@@ -421,6 +441,11 @@ def editMenu():
 # DELETING FROM MENU
 @app.route("/deleteMenu", methods=["GET", "POST"])
 def deleteMenu():
+
+    if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
+        print("You are not allowed to access this page!")
+        return render_template("index.html")
+    
     msg = ""
 
     try:
@@ -577,13 +602,22 @@ def login():
         password = request.form["password"]
         cursor.execute("SELECT * FROM ACCOUNT WHERE Email = %s AND Password = %s", (email, password))
         account = cursor.fetchone()
-        if account:
+        if account and account[6] == 0:
             session["loggedin"] = True
             session["id"] = account[0]
             session["email"] = email
+            session["employee"] = account[6]
             msg = "Sucessfully logged in! You may now order!"
             disconnectdb(mydb)
             return redirect(url_for("order"))
+        elif account and account[6] == 1:
+            session["loggedin"] = True
+            session["id"] = account[0]
+            session["email"] = email
+            session["employee"] = account[6]
+            msg = "Sucessfully logged in! Redirecting to Admin page!"
+            disconnectdb(mydb)
+            return redirect(url_for("adminPage"))
         else:
             msg = "Incorrect login!"
 
@@ -592,7 +626,17 @@ def login():
 @app.route("/logout")
 def logout():
     #TODO: Allow logging out and removal of session data (non priority)
-    pass
+
+    if 'loggedin' in session and session["loggedin"] == True:
+        session.pop('loggedin', None)
+        session.pop('id', None)
+        session.pop('email', None)
+        session.pop('employee', None)
+        print("You've been logged out!")
+    else:
+        print("You're not logged in!")
+
+    return redirect(url_for('login'))
 
 @app.route("/profile")
 def profile():
