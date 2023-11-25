@@ -16,10 +16,8 @@
         {{ navbar() }}
         {{ headerEnd() }}
 
-        <!-- TESTING REDIRECT LINKS -->
-        <a href="{{ url_for('addMenu') }}">addMenu</a><br>
-        <a href="{{ url_for('editMenu') }}">editMenu</a><br>
-        <a href="{{ url_for('deleteMenu') }}">deleteMenu</a><br>
+        <!-- RETURN TO ADMIN PAGE -->
+        <a href="{{ url_for('adminPage') }}" class="btn btn-style">Return to Admin Page</a><br><br>
 
         <select name="menu" class="form-select w-auto" id="menuSelection">
             <option value="1">Mini Desserts</option>
@@ -62,7 +60,7 @@
                             <label for="miniDessertPrice" class="form-label">Dessert Price</label>
                             <input type="number" placeholder="0.00" step=".01" class="form-control" id="miniDessertPrice" name="dessertPrice" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -110,7 +108,7 @@
                             <label for="sizePrice" class="form-label">Size Price:</label>
                             <input type="number" placeholder="0.00" step=".01" class="form-control" id="sizePrice" name="sizePrice" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -161,7 +159,7 @@
                             <label for="PCPrice" class="form-label">Pie or Cheesecake Price:</label>
                             <input type="number" placeholder="0.00" step=".01" class="form-control" id="PCPrice" name="PCPrice" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -214,7 +212,7 @@
                             <label for="cupcakePrice" class="form-label">Cupcake Price:</label>
                             <input type="number" placeholder="0.00" step=".01" class="form-control" id="cupcakePrice" name="cupcakePrice" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -281,7 +279,7 @@
                             <label for="dietaryPrice" class="form-label">Dietary Price:</label>
                             <input type="number" placeholder="0.00" step=".01" class="form-control" id="dietaryPrice" name="dietaryPrice" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -356,7 +354,7 @@
                             <label for="SFPrice" class="form-label">Price:</label>
                             <input type="number" placeholder="0.00" step=".01" class="form-control" id="SFPrice" name="SFPrice" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -433,7 +431,7 @@
                             <label for="frostingEnhancement" class="form-label">Frosting Enhancement Price:</label>
                             <input type="number" placeholder="0.00" step=".01" class="form-control" id="frostingEnhancement" name="frostingEnhancement" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">

@@ -130,6 +130,10 @@ def replyContact():
 
     return render_template("replyContact.html", msg=msg, contact=contact)
 
+@app.route("/adminPage")
+def adminPage():
+    return render_template("adminPage.html")
+
 @app.route("/menu")
 def menu():
     try:
