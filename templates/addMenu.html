@@ -16,10 +16,8 @@
         {{ navbar() }}
         {{ headerEnd() }}
 
-        <!-- TESTING REDIRECT LINKS -->
-        <a href="{{ url_for('addMenu') }}">addMenu</a><br>
-        <a href="{{ url_for('editMenu') }}">editMenu</a><br>
-        <a href="{{ url_for('deleteMenu') }}">deleteMenu</a><br>
+        <!-- RETURN TO ADMIN PAGE -->
+        <a href="{{ url_for('adminPage') }}" class="btn btn-style">Return to Admin Page</a><br><br>
 
         <select name="menu" class="form-select w-auto" id="menuSelection">
             <option value="1">Mini Desserts</option>
@@ -58,7 +56,7 @@
                     <input type="number" placeholder="0.00" step=".01" class="form-control" id="dessertPrice" name="dessertPrice" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-style">Submit</button>
                 <p>{{ msg }}</p>
             </form>
         </div>
@@ -70,20 +68,12 @@
 
                 <div class="mb-3">
                     <label for="categoryName" class="form-label">Category Name:</label>
-                    <select class="form-select" id="categoryName" name="categoryName" required>
-                        <option value="Brownie Trays">Brownie Trays</option>
-                        <option value="Cookie Trays">Cookie Trays</option>
-                        <option value="Pastry Trays">Pastry Trays</option>
-                    </select>
+                    <input type="text" class="form-control" id="categoryName" name="categoryName" required>
                 </div>
 
-                <!-- Made it a select list, in case they add Medium in the future but we could make it radio buttons -->
                 <div class="mb-3">
                     <label for="sizeName" class="form-label">Size Name:</label>
-                    <select class="form-select" id="sizeName" name="sizeName" required>
-                        <option value="Large">Large</option>
-                        <option value="Small">Small</option>
-                    </select>
+                    <input type="text" class="form-control" id="sizeName" name="sizeName" required>
                 </div>
 
                 <div class="mb-3">
@@ -91,12 +81,7 @@
                     <input type="number" placeholder="0.00" step=".01" class="form-control" id="sizePrice" name="sizePrice" required>
                 </div>
 
-                <div class="mb-3">
-                    <label for="sizeDescription" class="form-label">Size Description:</label>
-                    <input type="text" id="sizeDescription"  class="form-control" name="sizeDescription" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-style">Submit</button>
                 <p>{{ msg }}</p>
             </form>
         </div>
@@ -124,7 +109,7 @@
                     <input type="number" placeholder="0.00" step=".01" class="form-control" id="PCPrice" name="PCPrice" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-style">Submit</button>
                 <p>{{ msg }}</p>
             </form>
         </div>
@@ -154,7 +139,7 @@
                     <input type="number" placeholder="0.00" step=".01" class="form-control" id="cupcakePrice" name="cupcakePrice" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-style">Submit</button>
                 <p>{{ msg }}</p>
             </form>
         </div>
@@ -198,7 +183,7 @@
                     <input type="number" placeholder="0.00" step=".01" class="form-control" id="dietaryPrice" name="dietaryPrice" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-style">Submit</button>
                 <p>{{ msg }}</p>
             </form>
         </div>
@@ -252,7 +237,7 @@
                     <input type="number" placeholder="0.00" step=".01" class="form-control" id="SFPrice" name="SFPrice" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-style">Submit</button>
                 <p>{{ msg }}</p>
             </form>
         </div>
@@ -309,7 +294,7 @@
                     <input type="number" placeholder="0.00" step=".01" class="form-control" id="frostingEnhancement" name="frostingEnhancement" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-style">Submit</button>
                 <p>{{ msg }}</p>
             </form>
         </div>

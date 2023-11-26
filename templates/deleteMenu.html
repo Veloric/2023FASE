@@ -16,10 +16,8 @@
         {{ navbar() }}
         {{ headerEnd() }}
 
-        <!-- TESTING REDIRECT LINKS -->
-        <a href="{{ url_for('addMenu') }}">addMenu</a><br>
-        <a href="{{ url_for('editMenu') }}">editMenu</a><br>
-        <a href="{{ url_for('deleteMenu') }}">deleteMenu</a><br>
+        <!-- RETURN TO ADMIN PAGE -->
+        <a href="{{ url_for('adminPage') }}" class="btn btn-style">Return to Admin Page</a><br><br>
 
         <select name="menu" class="form-select w-auto" id="menuSelection">
             <option value="1">Mini Desserts</option>
@@ -41,7 +39,7 @@
                             <input type="number" class="form-control" id="miniDessertsID" name="miniDessertsID" min="1" required>
                         </div>
                         <input type="hidden" value="1" class="form-control" id="miniMenuID" name="menuID">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -76,7 +74,7 @@
                             <input type="number" class="form-control" id="dessertTrayID" name="dessertTrayID" min="1" required>
                         </div>
                         <input type="hidden" value="2" class="form-control" id="trayMenuID" name="menuID">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -87,7 +85,6 @@
                                 <th>Category</th>
                                 <th>Size</th>
                                 <th>Price ($)</th>
-                                <th>Description</th>
                             </thead>
                             {%for item in trays %}
                                 <tr>
@@ -112,7 +109,7 @@
                             <input type="number" class="form-control" id="PCID" name="PCID" min="1" required>
                         </div>
                         <input type="hidden" value="3" class="form-control" id="PCMenuID" name="menuID">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -147,7 +144,7 @@
                             <input type="number" class="form-control" id="cupcakeID" name="cupcakeID" min="1" required>
                         </div>
                         <input type="hidden" value="4" class="form-control" id="cupcakeMenuID" name="menuID">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -182,7 +179,7 @@
                             <input type="number" class="form-control" id="dietaryID" name="dietaryID" min="1" required>
                         </div>
                         <input type="hidden" value="5" class="form-control" id="dietaryMenuID" name="menuID">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -217,7 +214,7 @@
                             <input type="number" class="form-control" id="SFID" name="SFID" min="1" required>
                         </div>
                         <input type="hidden" value="6" class="form-control" id="SFMenuID" name="menuID">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
@@ -253,7 +250,7 @@
                             <input type="number" class="form-control" id="cakeID" name="cakeID" min="1" required>
                         </div>
                         <input type="hidden" value="7" class="form-control" id="cakeMenuID" name="menuID">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-style">Submit</button>
                         <p>{{ msg }}</p>
                     </div>
                     <div class="menu-admin-right">
