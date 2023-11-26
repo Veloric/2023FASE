@@ -52,7 +52,7 @@ def order():
 
         mydb = connectdb()
         cursor = mydb.cursor()
-        if(session["loggedin"] == True):
+        if session["loggedin"] == True:
             cursor.execute("SELECT * FROM Account WHERE Email = %s",[(session["email"])])
             account = cursor.fetchone()
             for i in range(len(items)):
