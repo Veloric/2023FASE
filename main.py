@@ -39,7 +39,7 @@ def homepage():
 @app.route("/order", methods=["GET", "POST"])
 def order():
     msg = ""
-    # TODO: Finish Order funcationality
+    # TODO: Test functionality
     if request.method == "POST" and "item" in request.form and "flavor" in request.form and "size" in request.form and "quantity" in request.form and "decorRequests" in request.form and "day" in request.form and "pickup" in request.form:
         items = request.form.getlist("item")
         flavors = request.form.getlist("flavor")
@@ -48,22 +48,24 @@ def order():
         requests = request.form.getlist("decorRequest")
         date = request.form["day"]
         time = request.form["pickup"]
-        placed_time = t.time()
+        placed_time = t.localtime()
+        timeString = t.strftime("%H:%M:%S", placed_time)
+        orderConfirmation = 1 + (random.random() * 125478) #Such a large number that we can't possibly have repeats
 
         mydb = connectdb()
         cursor = mydb.cursor()
-        if(session["loggedin"] == True):
+        if session["loggedin"] == True:
             cursor.execute("SELECT * FROM Account WHERE Email = %s",[(session["email"])])
             account = cursor.fetchone()
+            cursor.execute("INSERT INTO Orders VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)", (orderConfirmation, timeString, date, time, account[5], account[6], account[7], account[8]))
             for i in range(len(items)):
-                cursor.execute("INSERT INTO Orders VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)", (items[i], placed_time, date, time, account["Firstname"], account["Lastname"], account["Email"], account["Phone"]))
-                cursor.execute("INSERT INTO OrderDetails VALUES(%s, %s, %s, %s, %s)", (date, sizes[i], flavors[i], quantities[i], requests[i]))
+                cursor.execute("INSERT INTO OrderDetails VALUES(%s, %s, %s, %s, %s)", (orderConfirmation, items[i], sizes[i], flavors[i], quantities[i], requests[i]))
         else:
             msg = "You must be logged in to order! Please make an account and try again!"
             redirect(url_for("login"))
         mydb.commit()
         disconnectdb()
-        msg = "Order Confirmation Number: %f".format(100 + random.random * 2)
+        msg = "Order Confirmation Number: %f".format(orderConfirmation)
     elif request.method == "POST":
         msg = "Sorry, something went wrong! Try reloading and ordering again!"
 
@@ -649,8 +651,18 @@ def render_navbar():
 
 @app.route("/profile")
 def profile():
-    #TODO: Write profile page, and check admin status
-    return render_template("profile.html")
+    #TODO: Test functionality, and account for all previous orders
+    mydb = connectdb()
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM Account WHERE Email = %s", (session["email"]))
+    account = cursor.fetchone()
+
+    # Most recent Order
+    cursor.execute("SELECT * FROM Orders WHERE CustomerEmail = %s", (session["email"]))
+    order = cursor.fetchone()
+    cursor.execute("SELECT * FROM OrderDetails WHERE ConfirmationNumber = %s", (order[1]))
+    orderInfo = cursor.fetchall()
+    return render_template("profile.html", account = account, orderHistory = orderInfo)
 
 
 @app.route("/gallery")
