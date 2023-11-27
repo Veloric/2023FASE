@@ -1,4 +1,4 @@
-{% from 'navbar.html' import navbar %}
+{% from 'navbar.html' import navbar, headerEnd %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,7 +14,8 @@
     </head>
     <body>
         {{ navbar() }} 
-
+        {{ headerEnd() }}
+        
         <!-- Include the gallery template here -->
         {% include 'gallery.html' %}
 </body>
