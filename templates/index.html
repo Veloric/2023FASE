@@ -1,4 +1,4 @@
-{% from 'navbar.html' import navbar, signInRegister, headerEnd %}
+{% from 'navbar.html' import navbar %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,8 +14,6 @@
     </head>
     <body>
         {{ navbar() }} 
-        {{ signInRegister() }}
-        {{ headerEnd() }}
 
         <!-- Include the gallery template here -->
         {% include 'gallery.html' %}

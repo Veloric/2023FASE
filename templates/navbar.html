@@ -1,26 +1,26 @@
 {% macro navbar() %}
 <header>
-    <a href="{{ url_for('homepage') }}" class ="logo">
+    <a href="{{ url_for('homepage') }}" class="logo">
         <img src="{{ url_for('static', filename='images/luscious-sweet-gourmet-bakery__logo.png') }}" alt="LS-logo" class="logo-image">
     </a>
-<nav>
-    <ul class="nav-bar">
-        <li><a href="{{ url_for('order') }}">Order Now</a></li>
-        <li><a href="{{ url_for('homepage') }}">Home</a></li>
-        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-        <li><a href="{{ url_for('menu') }}">Menu</a></li>
-        <li><a href="{{ url_for('adminPage') }}">Admin Menu</a></li>
-    </ul>
-</nav>
-{% endmacro %}
-
-{% macro signInRegister() %}
-<div class="login">
-    <a href="{{ url_for('login') }}" class="user"><i class= "ri-user-fill"></i>Sign In</a>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
-{% endmacro %}
-
-{% macro headerEnd() %}
+    <nav>
+        <ul class="nav-bar">
+            <li><a href="{{ url_for('order') }}">Order Now</a></li>
+            <li><a href="{{ url_for('homepage') }}">Home</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('menu') }}">Menu</a></li>
+            <li><a href="{{ url_for('adminPage') }}">Admin Menu</a></li>
+        </ul>
+    </nav>
+    {% if logged_in %}
+        <div class="profile">
+            <a href="{{ url_for('profile') }}" class="user"><i class="ri-user-fill"></i>Profile</a>
+        </div>
+    {% else %}
+        <div class="login">
+            <a href="{{ url_for('login') }}" class="user"><i class="ri-user-fill"></i>Sign In</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        </div>
+    {% endif %}
 </header>
 {% endmacro %}

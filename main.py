@@ -638,6 +638,15 @@ def logout():
 
     return redirect(url_for('login'))
 
+#This stores whether or not the user is logged in, and in the navbar html it shows the conditionality
+#So, when the user is logged in they will see the "profile" button, not "sign in" and "register"
+@app.route('/navbar')
+def render_navbar():
+    if 'loggedin' in session and session["loggedin"] == True:
+        return render_template('navbar.html', logged_in=False)
+    else:
+        return render_template('navbar.html', logged_in=False)
+
 @app.route("/profile")
 def profile():
     #TODO: Write profile page, and check admin status
