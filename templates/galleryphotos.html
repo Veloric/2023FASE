@@ -1,0 +1,77 @@
+{% from 'navbar.html' import navbar, headerEnd %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='gallerystyle.css') }}">
+        <script>
+        function myFunction(img) {
+          var modal = document.getElementById("myModal");
+          var modalImg = document.getElementById("img01");
+          modal.style.display = "block";
+          modalImg.src = img.src;
+        
+          // Close the picture when clicked outside the image
+          modal.onclick = function() {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+    </head>
+    <body>
+
+      {{ navbar() }}
+      {{ headerEnd() }}
+
+      <div class="headergallery">
+        <h1>Gallery</h1>
+      </div>
+     
+<!-- Photo Grid -->
+<div class="row"> 
+    <div class="column">
+      <img src="/static/images/IMG_8427.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8387.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8394.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8396.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8406.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8399.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8403.jpg" style="width:100%" onclick="myFunction(this);">
+     </div>
+    <div class="column">
+      <img src="/static/images/IMG_8401.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8402.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8404.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8411.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8408.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8413.jpg" style="width:100%" onclick="myFunction(this);">
+    </div>  
+    <div class="column">
+      <img src="/static/images/IMG_8391.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8390.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8410.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8418.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8423.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8420.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/IMG_8406.jpg" style="width:100%" onclick="myFunction(this);">
+     </div>
+     <div class="column">
+      <img src="/static/images/luscious-and-sweet-death-by-chocolate.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/luscious-and-sweet-flower.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/luscious-and-sweet-fudge-brownie-explosion.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/luscious-sweet-glutvan.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/luscious-and-sweet-gluten-free-lemon.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/luscious-and-sweet-24-karat.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/luscious-and-sweet-red-velvet.jpg" style="width:100%" onclick="myFunction(this);">
+      <img src="/static/images/luscious-and-sweet-birthday.jpg" style="width:100%" onclick="myFunction(this);">
+     </div>
+  </div>
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+  </div>
+</div>
+  </body>
+  </html>

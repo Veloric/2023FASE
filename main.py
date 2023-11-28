@@ -687,5 +687,9 @@ def viewOrder():
 def gallery():
     return render_template("gallery.html")
 
+@app.route("/galleryphotos")
+def galleryphotos():
+    return render_template("galleryphotos.html")
+
 if __name__ == '__main__':
     app.run()
