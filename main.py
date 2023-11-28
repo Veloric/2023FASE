@@ -645,25 +645,43 @@ def logout():
 @app.route('/navbar')
 def render_navbar():
     if 'loggedin' in session and session["loggedin"] == True:
-        return render_template('navbar.html', logged_in=False)
+        return render_template('navbar.html', logged_in=True)
     else:
         return render_template('navbar.html', logged_in=False)
 
 @app.route("/profile")
 def profile():
+    #TODO: Test functionality
+    mydb = connectdb()
+    cursor = mydb.cursor()
+    try:
+        cursor.execute("SELECT * FROM Account WHERE Email = %s", (session["email"]))
+        account = cursor.fetchone()
+        return render_template("profile.html", account = account)
+    except:
+        print("An error has occurred while displaying your profile!")
+    finally:
+        disconnectdb(mydb)
+
+@app.route('/viewOrder')
+def viewOrder():
+    # Most recent Order
     #TODO: Test functionality, and account for all previous orders
     mydb = connectdb()
     cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM Account WHERE Email = %s", (session["email"]))
-    account = cursor.fetchone()
 
-    # Most recent Order
-    cursor.execute("SELECT * FROM Orders WHERE CustomerEmail = %s", (session["email"]))
-    order = cursor.fetchone()
-    cursor.execute("SELECT * FROM OrderDetails WHERE ConfirmationNumber = %s", (order[1]))
-    orderInfo = cursor.fetchall()
-    return render_template("profile.html", account = account, orderHistory = orderInfo)
-
+    try:
+        #Might have to do an if statement for when user is an admin, it selects all
+        #orders from every customer and sorts by date. That way admins can see all orders
+        cursor.execute("SELECT * FROM Orders WHERE CustomerEmail = %s", (session["email"]))
+        order = cursor.fetchone()
+        cursor.execute("SELECT * FROM OrderDetails WHERE ConfirmationNumber = %s", (order[1]))
+        orderInfo = cursor.fetchall()
+        return render_template("viewOrder.html", orderHistory = orderInfo)
+    except:
+        print("An error has occurred while displaying your orders!")
+    finally:
+        disconnectdb(mydb)
 
 @app.route("/gallery")
 def gallery():
