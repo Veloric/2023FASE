@@ -17,46 +17,47 @@
 
             <div>
                 <form action="{{ url_for('replyContact') }}" method="POST" autocomplete="off" class="contact-form" id="replyContactForm">
-                    <p>You can send a default text reply and send an optional email reply.</p>
-
-                    <input type="hidden" value="1" class="form-control" id="replyConfirm" name="replyConfirm">
-
-                    <div class="mb-3">
-                        <label for="contactID" class="form-label">Which ContactID do you want to reply to?</label>
-                        <input type="number" class="form-control" id="contactID" name="contactID" min="1" required>
+                    <div class="reply-contact-content">
+                        <div class="reply-contact-left">
+                            <p>You can send a default text reply and send an optional email reply.</p>
+                            <input type="hidden" value="1" class="form-control" id="replyConfirm" name="replyConfirm">
+                            <div class="mb-3">
+                                <label for="contactID" class="form-label">Which ContactID do you want to reply to?</label>
+                                <input type="number" class="form-control" id="contactID" name="contactID" min="1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="replyMsg" class="form-label">Enter your reply message to the contact question (ContactQuestion)</label>
+                                <textarea class="form-control" id="replyMsg" name="replyMsg" min="5" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <input type="checkbox" class="form-check-input" id="emailOption" name="emailOption">
+                                <label for="emailOption" class="form-check-label">Do you also want to email the contactee this message?</label>
+                            </div>
+                            <button type="submit" class="btn btn-style">Submit</button>
+                            <p>{{ msg }}</p>
+                        </div>
+                        
+                        <div class="reply-contact-right">
+                            <table class="table table-striped w-auto">
+                                <thead>
+                                    <th>ContactID</th>
+                                    <th>ContactDate</th>
+                                    <th>ContactTime</th>
+                                    <th>ContactPhone</th>
+                                    <th>ContactEmail</th>
+                                    <th>ContactQuestion</th>
+                                </thead>
+                                {%for item in contact %}
+                                    <tr>
+                                        {%for index in range(item|length) %}
+                                            <td>{{ item[index] }}</td>
+                                        {%endfor%}
+                                    </tr>
+                                {%endfor%}
+                            </table>
+                        </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="replyMsg" class="form-label">Enter your reply message to the contact question (ContactQuestion)</label>
-                        <textarea class="form-control" id="replyMsg" name="replyMsg" min="5" required></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <input type="checkbox" class="form-check-input" id="emailOption" name="emailOption">
-                        <label for="emailOption" class="form-check-label">Do you also want to email the contactee this message?</label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <p>{{ msg }}</p>
                 </form>
-
-                <table class="table table-striped w-auto">
-                    <thead>
-                        <th>ContactID</th>
-                        <th>ContactDate</th>
-                        <th>ContactTime</th>
-                        <th>ContactPhone</th>
-                        <th>ContactEmail</th>
-                        <th>ContactQuestion</th>
-                    </thead>
-                    {%for item in contact %}
-                        <tr>
-                            {%for index in range(item|length) %}
-                                <td>{{ item[index] }}</td>
-                            {%endfor%}
-                        </tr>
-                    {%endfor%}
-                </table>
             </div>
 
         </div>

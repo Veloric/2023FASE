@@ -100,7 +100,7 @@ header{
 
 .contact-top-row-one {
     display: flex;
-    gap: 6rem;
+    gap: 3rem;
     padding-bottom: 2rem;
 }
 
@@ -137,6 +137,7 @@ header{
 
 .contact-details-row {
     display: flex;
+    justify-content: center;
     gap: 3rem;
 }
 
@@ -146,12 +147,22 @@ header{
     gap: 1rem;
 }
 
-.contact-text-centered {
+.contact-text-centered, .contact-i > .contact-i-details-div {
     text-align: center;
+}
+
+.contact-i {
+    width: 25%;
+    text-wrap: wrap;
 }
 
 #contact-icons {
     font-size: 4.5rem;
+}
+
+.social-media-svgs {
+    filter: invert(48%) sepia(69%) saturate(828%) hue-rotate(295deg) brightness(102%) contrast(101%);
+    font-size: 2.5rem;
 }
 
 .mail-to-links {
@@ -166,8 +177,13 @@ header{
     color: red;
 }
 
+/* CSS for Reply Contact (uses some Menu Admin CSS) */
+.reply-contact-left {
+    width: 40%;
+}
+
 /*---------------------------------- CSS for Menu Admin pages --------------------------------*/
-.menu-admin-content {
+.menu-admin-content, .reply-contact-content {
     display: flex;
     justify-content: space-around;
     color: #3a3a3a;
@@ -178,7 +194,7 @@ header{
     width: 25%;
 }
 
-.menu-admin-right {
+.menu-admin-right, .reply-contact-right {
     width: auto;
     height: auto;
 }

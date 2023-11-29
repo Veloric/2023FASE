@@ -5,14 +5,20 @@
     let tab = window.location.href;
 
     if (tab.includes("order")) {
-        navbar.children[0].firstChild.classList.add("active");
+        addActive(navbar, 0);
+    } else if (tab.includes("galleryphotos")) {
+        addActive(navbar, 2);
     } else if (tab.includes("contact")) {
-        navbar.children[2].firstChild.classList.add("active");
+        addActive(navbar, 3);
     } else if (tab.includes("menu")) {
-        navbar.children[3].firstChild.classList.add("active");
+        addActive(navbar, 4);
     } else if (tab.includes("addMenu")) {
-        navbar.children[4].firstChild.classList.add("active");
+        addActive(navbar, 5);
     } else {
-        navbar.children[1].firstChild.classList.add("active");
+        addActive(navbar, 1);
     }
 })();
+
+function addActive(navbar, i) {
+    navbar.children[i].firstChild.classList.add("active");
+}

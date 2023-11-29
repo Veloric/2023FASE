@@ -65,7 +65,7 @@ form {width: 600px;
   
   }
   
-  input[type=text], input[type=password] {
+  input[type] {
     width: 100%;
     padding: 20px;
     margin: 8px 0;
@@ -109,5 +109,9 @@ form {width: 600px;
   h2 {
     text-align: center; 
     color: #0b0b0b;
+    padding: 20px;
+  }
+
+  .register {
     padding: 20px;
   }
