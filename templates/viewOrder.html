@@ -1,0 +1,58 @@
+{% from 'navbar.html' import navbar, headerEnd %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Previous Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    {{ navbar() }}
+    {{ headerEnd() }}
+
+    <div class="container-xl px-4 mt-4">
+    
+        <nav class="nav nav-borders">
+        <a class="nav-link" href="{{ url_for('static', filename='profile.html') }}" target="__blank">Profile</a>
+        <a class="nav-link active ms-0" href="{{ url_for('static', filename='vieworder.html') }}" target="__blank">Your Orders</a>
+        </nav>
+        
+        <hr class="mt-0 mb-4">
+        <div class="row">
+        <div class="col-xl-4">
+
+    <h1>Previous Orders</h1>
+
+    <label for="orderFilter">Filter Orders:</label>
+    <select id="orderFilter">
+        <option value="today">Today</option>
+        <option value="past_week">Past Week</option>
+        <option value="all">All Orders</option>
+    </select>
+
+    <div id="orders">
+        <!-- This is where the orders will be dynamically added -->
+        {% for order in orderHistory %}
+            <div class="order">
+                <p>Order for: {{ order.date }}</p>
+                <ul>
+                    {% for item in order.items %}
+                    <!--Adjust if item price functions arent done-->
+                        <li>{{ item.name }} - Quantity: {{ item.quantity }}, Unit Price: ${{ item.unitPrice.toFixed(2) }}, Total: ${{ (item.quantity * item.unitPrice).toFixed(2) }}</li>
+                    {% endfor %}
+                </ul>
+                <!--Need a function for TotalOrderPrice-->
+                <!--Need that function for both Order page and this page-->
+                <!--<p>Total Order Price: ${{ calculateTotalOrderPrice(order.items).toFixed(2) }}</p>-->
+                <p>Prices are subject to tax calculations. Contact the store to place a deposit.</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
