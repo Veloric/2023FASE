@@ -5,6 +5,7 @@
     <title>Sign In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginstyle.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 </head>
 <body>
   {{ navbar() }}
@@ -15,10 +16,10 @@
       <form method="post" action="{{ url_for('login') }}" autocomplete="off">
  
         <div class="container">
-        <label for="email"><b>Email</b></label></b></label>
+        <label for="email"><i class="fas fa-envelope"></i> <b>Email</b></label></b></label>
           <input type="text" name="email" id="email" placeholder="Email" required>
           <br><br>
-          <label for="password"><b>Password</b></label>
+          <label for="password"><i class="fas fa-lock"></i> <b>Password</b></label>
           </b>
           </label>
           <input type="password" name="password" id="password" placeholder="Password" required>

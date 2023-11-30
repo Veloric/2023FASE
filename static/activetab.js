@@ -12,7 +12,7 @@
         addActive(navbar, 3);
     } else if (tab.includes("menu")) {
         addActive(navbar, 4);
-    } else if (tab.includes("adminMenu")) {
+    } else if (tab.includes("adminPage")) {
         addActive(navbar, 5);
     } else {
         addActive(navbar, 1);

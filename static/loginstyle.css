@@ -115,3 +115,12 @@ form {width: 600px;
   .register {
     padding: 20px;
   }
+
+  label {
+    color: var(--text-color);
+    font-weight: bold;
+  }
+
+  .fas {
+    padding-right: 5px;
+  }

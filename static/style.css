@@ -39,6 +39,8 @@ header{
 }
 .nav-bar{
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .nav-bar a{
     color: var(--text-color);
