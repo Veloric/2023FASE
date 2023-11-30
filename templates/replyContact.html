@@ -15,6 +15,9 @@
         {{ navbar() }}
         {{ headerEnd() }}
 
+            <!-- RETURN TO ADMIN PAGE -->
+            <a href="{{ url_for('adminPage') }}" class="btn btn-style">Return to Admin Page</a><br><br>
+
             <div>
                 <form action="{{ url_for('replyContact') }}" method="POST" autocomplete="off" class="contact-form" id="replyContactForm">
                     <div class="reply-contact-content">
