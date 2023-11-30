@@ -51,11 +51,11 @@ def order():
         flavors = request.form.getlist("flavor")
         sizes = request.form.getlist("size")
         quantities = request.form.getlist("quantity")
-        requests = request.form.getlist("decorRequest")
+        requests = request.form.getlist("decorRequests")
         date = request.form["day"]
         time = request.form["pickup"]
         placed_time = t.localtime()
-        timeString = t.strftime("%H:%M:%S", placed_time)
+        timeString = t.strftime("%H:%M", placed_time)
         orderConfirmation = 1 + (random.random() * 125478) #Such a large number that we can't possibly have repeats
 
         mydb = connectdb()
@@ -63,15 +63,15 @@ def order():
         if session["loggedin"] == True:
             cursor.execute("SELECT * FROM Account WHERE Email = %s",[(session["email"])])
             account = cursor.fetchone()
-            cursor.execute("INSERT INTO Orders VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)", (orderConfirmation, timeString, date, time, account[5], account[6], account[7], account[8]))
+            cursor.execute("INSERT INTO orders (ConfirmationNumber, OrderPlacedTime, OrderDate, OrderPickupTime, CustomerFirstName, CustomerLastName, CustomerEmail, CustomerPhone) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (str(orderConfirmation), timeString, date, time, account[1], account[2], account[4], account[5]))
             for i in range(len(items)):
-                cursor.execute("INSERT INTO OrderDetails VALUES(%s, %s, %s, %s, %s)", (orderConfirmation, items[i], sizes[i], flavors[i], quantities[i], requests[i]))
+                cursor.execute("INSERT INTO OrderDetails (ConfirmationNumber, OrderCategory, Size, Flavor, Quantity, DecorRequests) VALUES(%s, %s, %s, %s, %s, %s)", (str(orderConfirmation), items[i], sizes[i], flavors[i], quantities[i], requests[i]))
         else:
             msg = "You must be logged in to order! Please make an account and try again!"
             redirect(url_for("login"))
         mydb.commit()
-        disconnectdb()
-        msg = "Order Confirmation Number: %f".format(orderConfirmation)
+        disconnectdb(mydb)
+        msg = "Order Confirmation Number: " + str(orderConfirmation)
     elif request.method == "POST":
         msg = "Sorry, something went wrong! Try reloading and ordering again!"
 
@@ -683,7 +683,7 @@ def login():
             session["employee"] = account[6]
             msg = "Sucessfully logged in! You may now order!"
             disconnectdb(mydb)
-            return redirect(url_for("order"))
+            return redirect(url_for("profile"))
         elif account and account[6] == 1:
             session["loggedin"] = True
             session["id"] = account[0]
