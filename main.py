@@ -102,7 +102,7 @@ def replyContact():
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         print("You are not allowed to access this page!")
-        return render_template("index.html")
+        return redirect(url_for("homepage"))
     
     msg = ""
 
@@ -119,14 +119,16 @@ def replyContact():
         print(request.form)
         contactID = request.form["contactID"]
         replyMsg = request.form["replyMsg"]
-        emailOption = request.form["emailOption"]
+        # emailOption = request.form["emailOption"]
         cursor.execute("SELECT * FROM Contact WHERE ContactID = %s", [(contactID)])
         userContact = cursor.fetchone()
         print(userContact)
         if userContact:
-            cursor.execute("DELETE from Contact WHERE ContactID = %s", [(contactID)])
-            mydb.commit()
-            print(cursor.rowcount, " record deleted!") # TESTING
+            # to = userContact[4]
+
+            # cursor.execute("DELETE from Contact WHERE ContactID = %s", [(contactID)])
+            # mydb.commit()
+            # print(cursor.rowcount, " record deleted!") # TESTING
             msg = "Form received! You may now exit this page."
         else:
             msg = "Sorry the ID inputted was not found!"
@@ -143,7 +145,7 @@ def adminPage():
         return render_template("adminPage.html")
     else:
         print("You are not allowed to access this page!")
-        return render_template("index.html")
+        return redirect(url_for("homepage"))
         
 
 @app.route("/menu")
@@ -185,7 +187,7 @@ def addMenu():
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         print("You are not allowed to access this page!")
-        return render_template("index.html")
+        return redirect(url_for("homepage"))
 
     msg = ""
     if request.method == "POST" and request.form["menuID"] == "1":
@@ -289,7 +291,7 @@ def editMenu():
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         print("You are not allowed to access this page!")
-        return render_template("index.html")
+        return redirect(url_for("homepage"))
     
     msg = ""
 
@@ -446,7 +448,7 @@ def deleteMenu():
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         print("You are not allowed to access this page!")
-        return render_template("index.html")
+        return redirect(url_for("homepage"))
     
     msg = ""
 

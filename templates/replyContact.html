@@ -19,7 +19,8 @@
                 <form action="{{ url_for('replyContact') }}" method="POST" autocomplete="off" class="contact-form" id="replyContactForm">
                     <div class="reply-contact-content">
                         <div class="reply-contact-left">
-                            <p>You can send a default text reply and send an optional email reply.</p>
+                            <!-- <p>You can send a default text reply and send an optional email reply.</p> -->
+                            <p>You can send a default email reply.</p>
                             <input type="hidden" value="1" class="form-control" id="replyConfirm" name="replyConfirm">
                             <div class="mb-3">
                                 <label for="contactID" class="form-label">Which ContactID do you want to reply to?</label>
@@ -29,10 +30,10 @@
                                 <label for="replyMsg" class="form-label">Enter your reply message to the contact question (ContactQuestion)</label>
                                 <textarea class="form-control" id="replyMsg" name="replyMsg" min="5" required></textarea>
                             </div>
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <input type="checkbox" class="form-check-input" id="emailOption" name="emailOption">
                                 <label for="emailOption" class="form-check-label">Do you also want to email the contactee this message?</label>
-                            </div>
+                            </div> -->
                             <button type="submit" class="btn btn-style">Submit</button>
                             <p>{{ msg }}</p>
                         </div>
