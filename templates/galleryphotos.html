@@ -18,6 +18,10 @@
           modal.onclick = function() {
             modal.style.display = "none";
           }
+
+          modalImg.onclick = function(event) {
+            event.stopPropagation();
+          }
         }
       </script>
     </head>
