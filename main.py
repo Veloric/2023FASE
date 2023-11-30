@@ -8,10 +8,16 @@ import mysql.connector
 import re
 import random
 import time as t
+from mailjet_rest import Client
 
 # Initialize FLASK
 app = fl(__name__, static_url_path='/static')
 app.secret_key = "Team3Project"
+
+# Mailjet API and Secret Key
+api_key = 'b3d9180a7775b746916f1d9660cc35e9'
+api_secret = '619a4964a6c2b83e0c543aa8acdc6414'
+mailjet = Client(auth=(api_key, api_secret), version='v3.1')
 
 # Database connection functions
 def connectdb():
@@ -119,16 +125,42 @@ def replyContact():
         print(request.form)
         contactID = request.form["contactID"]
         replyMsg = request.form["replyMsg"]
-        # emailOption = request.form["emailOption"]
         cursor.execute("SELECT * FROM Contact WHERE ContactID = %s", [(contactID)])
         userContact = cursor.fetchone()
-        print(userContact)
+        print(userContact) # TESTING
         if userContact:
-            # to = userContact[4]
+            contacteeName = userContact[4].split('@')[0]
 
-            # cursor.execute("DELETE from Contact WHERE ContactID = %s", [(contactID)])
-            # mydb.commit()
-            # print(cursor.rowcount, " record deleted!") # TESTING
+            data = {
+            'Messages': [
+                    {
+                        "From": {
+                            "Email": "meil@go.stockton.edu",
+                            "Name": "L&S Bakery Support Team"
+                        },
+                        "To": [
+                            {
+                                "Email": userContact[4],
+                                "Name": contacteeName
+                            }
+                        ],
+                        "TemplateID": 5379608,
+                        "TemplateLanguage": True,
+                        "Subject": "L&S Contact Reply to " + repr(contacteeName),
+                        "Variables": {
+                            "contactQuestion": userContact[5],
+                            "contacteeName": contacteeName,
+                            "replyContactMsg": replyMsg,
+                            "contactID": userContact[0]
+                        }
+                    }
+                ]
+            }
+
+            print(data)  # TESTING
+            result = mailjet.send.create(data=data) # TESTING
+            print (result.status_code) # TESTING
+            print (result.json()) # TESTING
             msg = "Form received! You may now exit this page."
         else:
             msg = "Sorry the ID inputted was not found!"
@@ -138,6 +170,44 @@ def replyContact():
     disconnectdb(mydb)
 
     return render_template("replyContact.html", msg=msg, contact=contact)
+
+@app.route("/deleteContact", methods=["GET", "POST"])
+def deleteContact():
+
+    if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
+        print("You are not allowed to access this page!")
+        return redirect(url_for("homepage"))
+    
+    msg = ""
+
+    try: 
+        mydb = connectdb()
+        cursor = mydb.cursor()
+
+        cursor.execute('SELECT * from Contact')
+        contact = cursor.fetchall()
+    except:
+        print("An error has occurred while displaying the contact table!")
+
+    if request.method == "POST" and request.form["replyConfirm"] == "1":
+        print(request.form)
+        contactID = request.form["contactID"]
+        cursor.execute("SELECT * FROM Contact WHERE ContactID = %s", [(contactID)])
+        userContact = cursor.fetchone()
+        print(userContact) # TESTING
+        if userContact:
+            cursor.execute("DELETE from Contact WHERE ContactID = %s", [(contactID)])
+            mydb.commit()
+            print(cursor.rowcount, " record deleted!") # TESTING
+            msg = "Form received! You may now exit this page."
+        else:
+            msg = "Sorry the ID inputted was not found!"
+    elif request.method == "POST":
+        msg = "Please fill out the information before submitting!"
+
+    disconnectdb(mydb)
+
+    return render_template("deleteContact.html", msg=msg, contact=contact)
 
 @app.route("/adminPage")
 def adminPage():
