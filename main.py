@@ -725,7 +725,8 @@ def login():
     msg = ""
     mydb = connectdb()
     cursor = mydb.cursor()
-    
+    if "loggedin" in session and session["loggedin"] == True:
+        return(redirect(url_for("profile")))
     if request.method == "POST" and "email" in request.form and "password" in request.form:
         email = request.form["email"]
         password = request.form["password"]
@@ -822,7 +823,7 @@ def viewOrder():
 def viewTodaysOrders():
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         flash("You are not allowed to access this page!", "danger")
-        return redirect(url_for("homepage"))
+        return redirect(url_for("index"))
     
     mydb = connectdb()
     cursor = mydb.cursor()

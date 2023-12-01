@@ -18,16 +18,10 @@
                 </a> -->
         </ul>
     </nav>
-    {% if logged_in %}
-        <div class="profile">
-            <a href="{{ url_for('profile') }}" class="user"><i class="ri-user-fill"></i>Profile</a>
-        </div>
-    {% else %}
         <div class="login">
             <a href="{{ url_for('login') }}" class="user"><i class="ri-user-fill"></i>Sign In</a>
             <a href="{{ url_for('register') }}">Register</a>
         </div>
-    {% endif %}
 {% endmacro %}  
   
 {% macro headerEnd() %}

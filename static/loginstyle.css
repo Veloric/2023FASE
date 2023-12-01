@@ -129,3 +129,20 @@ form {width: 600px;
     text-decoration: none;
     color: var(--main-color);
   }
+
+  .login{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.login a{
+    margin-right: 25px;
+    margin-left: 10px;
+    color: var(--text-color);
+    font-size: 1.0rem;
+    font-weight: 500;
+    transition: all .50s ease;
+}
+.login a:hover{
+    color: var(--main-color)
+}
