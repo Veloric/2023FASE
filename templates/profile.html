@@ -12,6 +12,7 @@
     <script src="{{ url_for('static', filename='alerts.js') }}" defer></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='alerts.js') }}" defer></script>
 
     <!--Code below is a borrowed library from bootdev-->
     <!--It is heavily adjusted/edited to suit the website-->
@@ -56,6 +57,7 @@
     <form action="{{ url_for('profile') }}" method="POST" autocomplete="off">
     
         <div class="row gx-3 mb-3">
+        <input type="hidden" id="profile-form" name="profile-form" value="1">
         
         <div class="col-md-6">
         <label class="small mb-1" for="inputFirstName">First name</label>
@@ -73,6 +75,13 @@
         <div class="mb-3">
         <label class="small mb-1" for="inputEmailAddress">Email address</label>
         <input class="form-control" id="email" name = "email" type="email" placeholder="Enter your email address" value="{{ account[5] }}">
+        </div>
+
+        <div class="row gx-3 mb-3">
+
+        <div class="col-md-6">
+            <label class="small mb-1" for="inputPhone">Password</label>
+            <input class="form-control" type="password" name="password" id="password" placeholder="Password" value="{{ account[4] }}" required>
         </div>
         
         <div class="row gx-3 mb-3">

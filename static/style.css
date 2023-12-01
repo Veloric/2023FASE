@@ -413,3 +413,8 @@ label {
     background-color: rgb(255, 93, 168);
     border-color: rgb(255, 93, 168);
 }
+
+.btn-primary:hover {
+    background-color: #e52c92;
+    border-color: #e52c92;
+}

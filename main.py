@@ -774,18 +774,27 @@ def logout():
 
     return redirect(url_for('login'))
 
-@app.route("/profile")
+@app.route("/profile", methods = ["GET", "POST"])
 def profile():
     #TODO: Test functionality
     mydb = connectdb()
     cursor = mydb.cursor()
     cursor.execute("SELECT * FROM Account WHERE Email = %s", ([session["email"]]))
     account = cursor.fetchone()
-    if request.method == "POST" and "firstname" in request.form and "lastname" in request.form and "email" in request.form and "phone" in request.form:
-        cursor.execute("UPDATE account SET Firstname = %s, LastName = %s, Email = %s, Phone = %s WHERE Email = %s", (request.form["firstname"], request.form["lastname"], request.form["email"], request.form["phone"], [session["email"]]))
+    print(account)
+    if request.method == "POST" and request.form["profile-form"] == "1":
+        print(request.form)
+        firstname = request.form["firstname"]
+        lastname = request.form["lastname"]
+        email = request.form["email"]
+        password = request.form["password"]
+        phone = request.form["phone"]
+        sessionEmail = session["email"]
+        cursor.execute("UPDATE account SET Firstname = %s, LastName = %s, Email = %s, Password=%s, Phone = %s WHERE Email = %s", (firstname, lastname, email, password, phone, sessionEmail))
         mydb.commit()
         session["email"] = request.form["email"]
-        flash("Updated Profile information!")
+        flash("Updated Profile Information!", category='success')
+        print(firstname, lastname, email, phone, sessionEmail)
     disconnectdb(mydb)
     return render_template("profile.html", account = account)
 

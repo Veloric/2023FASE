@@ -64,6 +64,14 @@
     padding-bottom: 4rem;
   }
 
+  .dessert-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3rem;
+  }
+
   .menu-name {
     font-size: 1.25rem;
     text-wrap: wrap;
