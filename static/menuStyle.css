@@ -2,7 +2,7 @@
  .tab {
     overflow: hidden;
     border: 1px solid #fcf5ff;
-    background-color: #e2dce5;
+    background-color: #f3c6e8;
   }
   
   /* Style the buttons that are used to open the tab content */
@@ -18,12 +18,12 @@
   
   /* Change background color of buttons on hover */
   .tab button:hover {
-    background-color: #cdc3d1;
+    background-color: #c887b1;
   }
   
   /* Create an active/current tablink class */
   .tab button.active {
-    background-color: #fcf5ff;
+    background-color: #ff6ebe;
   }
   
   /* Style the tab content */
@@ -42,4 +42,36 @@
   @keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
+  }
+
+  /* Menu pics */
+  .header-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .menu-pics, .menu-cake-pops {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .menu-pics {
+    padding-bottom: 4rem;
+  }
+
+  .menu-name {
+    font-size: 1.25rem;
+    text-wrap: wrap;
+    text-align: center;
+  }
+
+  .menu-img > img {
+    height: 20rem;
+    width: 15rem;
+    border-radius: 0.375rem;
   }

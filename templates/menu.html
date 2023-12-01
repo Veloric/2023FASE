@@ -18,7 +18,9 @@
         {{ headerEnd() }}
 
         <!-- Code taken from w3schools how TO - tabs: https://www.w3schools.com/howto/howto_js_tabs.asp -->
-        <h1>Menu</h1>
+        <div class="header-center">
+            <h1>Menu</h1>
+        </div>
         <div class="tab">
             <button class="tablinks" onclick="openType(event, 'Mini');" id="defaultOpen">Minis</button>
             <button class="tablinks" onclick="openType(event, 'Dessert Trays')">Dessert Trays</button>
@@ -30,7 +32,10 @@
         </div>
 
         <div id="Mini" class="tabcontent">
-            <h3>Minis</h3>
+            <div class="header-center">
+                <h3>Minis</h3>
+            </div>
+
             <!-- <img src="static\images\LS-tarts.jpg" alt="tarts">  -->
             <!-- mini tarts--> 
 
@@ -50,13 +55,13 @@
             <!-- SF CAKES: cannoliCake, carrotCake, funfettiFudgeCake, peanutButterCake, redVelvetCake, cookiesAndCreamCake, cookiesAndCreamCake2, tiramisu -->
             <!-- CAKES: chocolateCheeseCake, crumbCake -->
             
-            <div>
+            <div class="menu-pics">
                 <div>
                     <div class="menu-name">Mini Cannolis</div>
                     <div class="menu-img"><img src="static\images\Menu_Images\miniCannolis.jpg"></div>
                 </div>
                 <div>
-                    <div class="menu-name">Oreo Browni</div>
+                    <div class="menu-name">Oreo Brownie</div>
                     <div class="menu-img"><img src="static\images\Menu_Images\oreoBrownie.jpg"></div>
                 </div>
                 <div>
@@ -77,8 +82,10 @@
                 </div>
                 <div>
                     <div class="menu-name">Cake Pops</div>
-                    <div class="menu-img"><img src="static\images\Menu_Images\cakepopWhiteChocolate.jpg"></div>
-                    <div class="menu-img"><img src="static\images\Menu_Images\cakepopChocolate.jpg"></div>
+                    <div class="menu-cake-pops">
+                        <div class="menu-img"><img src="static\images\Menu_Images\cakepopWhiteChocolate.jpg"></div>
+                        <div class="menu-img"><img src="static\images\Menu_Images\cakepopChocolate.jpg"></div>
+                    </div>
                 </div>
             </div>
 
@@ -99,7 +106,10 @@
         </div>
 
         <div id="Dessert Trays" class="tabcontent">
-            <h3>Dessert Trays</h3>
+            <div class="header-center">
+                <h3>Dessert Trays</h3>
+            </div>
+
             <table class="table table-striped">
                 <thead>
                     <th>Category</th>
@@ -117,7 +127,9 @@
         </div>
 
         <div id="Pies & Cheesecakes" class="tabcontent">
-            <h3>Pies & Cheesecakes</h3>
+            <div class="header-center">
+                <h3>Pies & Cheesecakes</h3>
+            </div>
             
             <table class="table table-striped">
                 <thead>
@@ -136,13 +148,15 @@
         </div>
 
         <div id="Cupcakes" class="tabcontent">
-            <h3>Cupcakes</h3>
+            <div class="header-center">
+                <h3>Cupcakes</h3>
+            </div>
 
             <!-- CUPCAKE: vanillaBirthday, chocolateBirthday, rockinRedVelvet, vanillaGF, lemonGF, chocolateGF
                 cupcakesCarrotRedVelvet1 
                             cupcakeGFTogether 1 and 2, cupcakesCarrotRedVelvet 1 to 3, flowerCupcakes
                             bavarianCreme, cannoli, deathByChocolate,  -->
-            <div>
+            <div class="menu-pics">
                 <div>
                     <div class="menu-name">Vanilla Birthday</div>
                     <div class="menu-img"><img src="static\images\Menu_Images\vanillaBirthday.jpg"></div>
@@ -167,7 +181,14 @@
                     <div class="menu-name">Flower Cupcakes</div>
                     <div class="menu-img"><img src="static\images\Menu_Images\flowerCupcakes.jpg"></div>
                 </div>
-                <!-- need cannoli and death by chocolate -->
+                <div>
+                    <div class="menu-name">Cannoli</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\cannoli.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Death By Chocolate</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\deathByChocolate.jpg"></div>
+                </div>
             </div>
 
 
@@ -188,7 +209,10 @@
         </div>
 
         <div id="Dietary" class="tabcontent">
-            <h3>Dietary Specialties Goodies</h3>
+            <div class="header-center">
+                <h3>Dietary Specialties Goodies</h3>
+            </div>
+
             <table class="table table-striped">
                 <thead>
                     <th>Category</th>
@@ -205,8 +229,13 @@
             </table>
         </div>
 
+        <!-- SF CAKES: cannoliCake, carrotCake, funfettiFudgeCake, peanutButterCake, redVelvetCake, cookiesAndCreamCake, cookiesAndCreamCake2, tiramisu -->
         <div id="Signature" class="tabcontent"> 
-            <div>
+            <div class="header-center">
+                <h3>Signature Flavor Cakes</h3>
+            </div>
+
+            <div class="menu-pics">
                 <div>
                     <div class="menu-name">Cannoli Cake</div>
                     <div class="menu-img"><img src="static\images\Menu_Images\cannoliCake.jpg"></div>
@@ -219,8 +248,10 @@
                     <div class="menu-name">Funfetti Fudge Cake</div>
                     <div class="menu-img"><img src="static\images\Menu_Images\funfettiFudgeCake.jpg"></div>
                 </div> 
-                    <div class="menu-name">Peanut Butter Cake></div>
+                <div>
+                    <div class="menu-name">Peanut Butter Cake</div>
                     <div class="menu-img"><img src="static\images\Menu_Images\peanutButterCake.jpg"></div>
+                </div>
                 <div>
                     <div class="menu-name">Red Velvet Cake</div>
                     <div class="menu-img"><img src="static\images\Menu_Images\redVelvetCake.jpg"></div>
@@ -233,6 +264,7 @@
                     <div class="menu-name">Tiramisu</div>
                     <div class="menu-img"><img src="static\images\Menu_Images\tiramisu.jpg"></div>
                 </div>
+            </div>
 
                 <table class="table table-striped">
                     <thead>
@@ -250,16 +282,22 @@
                 </table>
         </div>
 
-        <div id="Cake" class="tabcontent">
-            <h3>Cakes</h3> 
+        <!-- CAKES: chocolateCheeseCake, crumbCake -->
 
-            <div>
-                <div class="menu-name">Chocolate Cheesecake</div>
-                <div class="menu-img"><img src="static\images\Menu_Images\chocolateCheesecake.jpg"></div>
+        <div id="Cake" class="tabcontent">
+            <div class="header-center">
+                <h3>Cakes</h3> 
             </div>
-            <div>
-                <div class="menu-name">Crumb Cake</div>
-                <div class="menu-img"><img src="static\images\Menu_Images\crumbCake.jpg"></div>
+
+            <div class="menu-pics">
+                <div>
+                    <div class="menu-name">Chocolate Cheesecake</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\chocolateCheesecake.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Crumb Cake</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\crumbCake.jpg"></div>
+                </div>
             </div>
             
             <table class="table table-striped">

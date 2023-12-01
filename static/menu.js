@@ -1,6 +1,6 @@
 function openType(evt, menu) {
     // Declare all variables
-    var i, tabcontent, tablinks;
+    let i, tabcontent, tablinks;
   
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -18,4 +18,11 @@ function openType(evt, menu) {
     document.getElementById(menu).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+(function setMiniDefault() {
+  let mini = document.getElementById("Mini");
+  let miniButton = document.getElementById("defaultOpen");
+  mini.style.display = "block";
+  miniButton.classList.add("active");
+})();
 
