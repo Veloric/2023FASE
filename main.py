@@ -3,11 +3,11 @@
 
 from flask import Flask as fl
 from flask import url_for, request, render_template, redirect, session, flash
-from markupsafe import escape
 import mysql.connector
 import re
 import random
 import time as t
+from datetime import date
 from mailjet_rest import Client
 
 # Initialize FLASK
@@ -774,28 +774,20 @@ def logout():
 
     return redirect(url_for('login'))
 
-#This stores whether or not the user is logged in, and in the navbar html it shows the conditionality
-#So, when the user is logged in they will see the "profile" button, not "sign in" and "register"
-@app.route('/navbar')
-def render_navbar():
-    if 'loggedin' in session and session["loggedin"] == True:
-        return render_template('navbar.html', logged_in=True)
-    else:
-        return render_template('navbar.html', logged_in=False)
-
 @app.route("/profile")
 def profile():
     #TODO: Test functionality
     mydb = connectdb()
     cursor = mydb.cursor()
-    try:
-        cursor.execute("SELECT * FROM Account WHERE Email = %s", (session["email"]))
-        account = cursor.fetchone()
-        return render_template("profile.html", account = account)
-    except:
-        print("An error has occurred while displaying your profile!")
-    finally:
-        disconnectdb(mydb)
+    cursor.execute("SELECT * FROM Account WHERE Email = %s", ([session["email"]]))
+    account = cursor.fetchone()
+    if request.method == "POST" and "firstname" in request.form and "lastname" in request.form and "email" in request.form and "phone" in request.form:
+        cursor.execute("UPDATE account SET Firstname = %s, LastName = %s, Email = %s, Phone = %s WHERE Email = %s", (request.form["firstname"], request.form["lastname"], request.form["email"], request.form["phone"], [session["email"]]))
+        mydb.commit()
+        session["email"] = request.form["email"]
+        flash("Updated Profile information!")
+    disconnectdb(mydb)
+    return render_template("profile.html", account = account)
 
 @app.route('/viewOrder')
 def viewOrder():
@@ -807,15 +799,33 @@ def viewOrder():
     try:
         #Might have to do an if statement for when user is an admin, it selects all
         #orders from every customer and sorts by date. That way admins can see all orders
-        cursor.execute("SELECT * FROM Orders WHERE CustomerEmail = %s", (session["email"]))
+        cursor.execute("SELECT * FROM Orders WHERE CustomerEmail = %s", ([session["email"]]))
         order = cursor.fetchone()
         cursor.execute("SELECT * FROM OrderDetails WHERE ConfirmationNumber = %s", (order[1]))
         orderInfo = cursor.fetchall()
-        return render_template("viewOrder.html", orderHistory = orderInfo)
+        return render_template("viewOrder.html", mostRecentOrder = order, orderInfo = orderInfo)
     except:
         print("An error has occurred while displaying your orders!")
     finally:
         disconnectdb(mydb)
+
+@app.route("/viewTodaysOrders.html")
+def viewTodaysOrders():
+    if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
+        flash("You are not allowed to access this page!", "danger")
+        return redirect(url_for("homepage"))
+    
+    mydb = connectdb()
+    cursor = mydb.cursor()
+    orderInfo = {}
+    
+    cursor.execute("SELECT * FROM orders WHERE OrderDate = %s", (str(date.today())))
+    orders = cursor.fetchall()
+    for item in orders:
+        cursor.execute("SELECT * FROM orderDetails WHERE ConfirmationNumber = %s", (item[1]))
+        orderInfo[item[1]] = cursor.fetchall()
+
+    return render_template("viewTodaysOrders.html", orders = orders, orderInfo = orderInfo)
 
 @app.route("/gallery")
 def gallery():
