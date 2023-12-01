@@ -1,4 +1,5 @@
 {% from 'navbar.html' import navbar, headerEnd %}
+{% from 'alerts.html' import alert %}
 <!DOCTYPE html>
 
 <html lang="en">
@@ -13,11 +14,14 @@
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
         <!-- JavaScript executes after HTML loads -->
         <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
+        <script src="{{ url_for('static', filename='alerts.js') }}" defer></script>
     </head>
     
     <body>
         {{ navbar() }} 
         {{ headerEnd() }}
+
+        {{ alert() }}
 
         <h2>Contact Functions</h2>
         <a href="{{ url_for('replyContact') }}" class="btn btn-style">Reply to Contact Message</a><br><br>

@@ -1,4 +1,5 @@
 {% from 'navbar.html' import navbar, headerEnd %}
+{% from 'alerts.html' import alert %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,10 +12,13 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
         <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
         <script src="{{ url_for('static', filename='contactform.js') }}" defer></script>
+        <script src="{{ url_for('static', filename='alerts.js') }}" defer></script>
     </head>
     <body>
         {{ navbar() }}
         {{ headerEnd() }}
+
+        {{ alert() }}
 
         <div class="contact-container">
             <h1>Contact</h1>
@@ -82,8 +86,6 @@
                         <label for="question" class="form-label">Question<sup><i class="ri-asterisk red-asterisk"></i></sup></label>
                         <textarea id="question" name="question" minlength="5" maxlength="250" class="form-control" required></textarea>
                     </div>
-                
-                    <p>{{msg}}</p>
                     
                     <div class="contact-form-buttons">
                         <button type="submit" class="btn btn-style" value="submitContact">Submit</button>

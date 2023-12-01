@@ -2,7 +2,7 @@
 # This is the main driver for the project; hosts all methods, calls to database, as well as functionally runs the website.
 
 from flask import Flask as fl
-from flask import url_for, request, render_template, redirect, session
+from flask import url_for, request, render_template, redirect, session, flash
 from markupsafe import escape
 import mysql.connector
 import re
@@ -68,12 +68,15 @@ def order():
                 cursor.execute("INSERT INTO OrderDetails (ConfirmationNumber, OrderCategory, Size, Flavor, Quantity, DecorRequests) VALUES(%s, %s, %s, %s, %s, %s)", (str(orderConfirmation), items[i], sizes[i], flavors[i], quantities[i], requests[i]))
         else:
             msg = "You must be logged in to order! Please make an account and try again!"
+            flash(msg, category="danger")
             redirect(url_for("login"))
         mydb.commit()
         disconnectdb(mydb)
         msg = "Order Confirmation Number: " + str(orderConfirmation)
+        flash(msg, category="success")
     elif request.method == "POST":
         msg = "Sorry, something went wrong! Try reloading and ordering again!"
+        flash(msg, category="danger")
 
     return render_template("order.html", msg=msg)
 
@@ -96,8 +99,10 @@ def contact():
         print(cursor.rowcount, " record inserted")
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
+        flash(msg, category="success")
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
+        flash(msg, category="danger")
         # Testing below
         print(request.form, " List of all the data sent")
 
@@ -162,10 +167,13 @@ def replyContact():
             print (result.status_code) # TESTING
             print (result.json()) # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST":
         msg = "Please fill out the information before submitting!"
+        flash(msg, category="danger")
 
     disconnectdb(mydb)
 
@@ -200,10 +208,13 @@ def deleteContact():
             mydb.commit()
             print(cursor.rowcount, " record deleted!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST":
         msg = "Please fill out the information before submitting!"
+        flash(msg, category="danger")
 
     disconnectdb(mydb)
 
@@ -272,6 +283,7 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
+        flash(msg, category="success")
     elif request.method == "POST" and request.form["menuID"] == "2":
         menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
@@ -284,6 +296,7 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
+        flash(msg, category="success")
     elif request.method == "POST" and request.form["menuID"] == "3":
         menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
@@ -296,6 +309,7 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
+        flash(msg, category="success")
     elif request.method == "POST" and request.form["menuID"] == "4":
         menuID = request.form["menuID"]
         sizeName = request.form["sizeName"]
@@ -308,6 +322,7 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
+        flash(msg, category="success")
     elif request.method == "POST" and request.form["menuID"] == "5":
         menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
@@ -320,6 +335,7 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
+        flash(msg, category="success")
     elif request.method == "POST" and request.form["menuID"] == "6":
         menuID = request.form["menuID"]
         categoryName = request.form["categoryName"]
@@ -333,6 +349,7 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
+        flash(msg, category="success")
     elif request.method == "POST" and request.form["menuID"] == "7":
         menuID = request.form["menuID"]
         cakeSize = request.form["cakeSize"]
@@ -348,8 +365,10 @@ def addMenu():
         print(cursor.rowcount, " record inserted!") # TESTING
         disconnectdb(mydb)
         msg = "Form received! You may now exit this page."
+        flash(msg, category="success")
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
+        flash(msg, category="danger")
         # Testing below
         print(request.form, " List of all the data sent")
 
@@ -404,8 +423,10 @@ def editMenu():
             mydb.commit()
             print(cursor.rowcount, " record updated!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "2":
         dessertTrayID = request.form["dessertTrayID"]
         categoryName = request.form["categoryName"]
@@ -418,8 +439,10 @@ def editMenu():
             mydb.commit()
             print(cursor.rowcount, " record updated!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "3":
         PCID = request.form["PCID"]
         categoryName = request.form["categoryName"]
@@ -432,8 +455,10 @@ def editMenu():
             mydb.commit()
             print(cursor.rowcount, " record updated!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "4":
         cupcakeID = request.form["cupcakeID"]
         sizeName = request.form["sizeName"]
@@ -446,8 +471,10 @@ def editMenu():
             mydb.commit()
             print(cursor.rowcount, " record updated!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "5":
         dietaryID = request.form["dietaryID"]
         categoryName = request.form["categoryName"]
@@ -463,8 +490,10 @@ def editMenu():
             print(cursor.rowcount, " record updated!") # TESTING
             disconnectdb(mydb)
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "6":
         SFID = request.form['SFID']
         categoryName = request.form["categoryName"]
@@ -481,8 +510,10 @@ def editMenu():
             print(cursor.rowcount, " record updated!") # TESTING
             disconnectdb(mydb)
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "7":
         cakeID = request.form['cakeID']
         cakeSize = request.form["cakeSize"]
@@ -501,10 +532,13 @@ def editMenu():
             print(cursor.rowcount, " record updated!") # TESTING
             disconnectdb(mydb)
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
+        flash(msg, category="danger")
         # Testing below
         print(request.form, " List of all the data sent")
 
@@ -558,8 +592,10 @@ def deleteMenu():
             mydb.commit()
             print(cursor.rowcount, " record deleted!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "2":
         dessertTrayID = request.form["dessertTrayID"]
         cursor.execute("SELECT * FROM DessertTray WHERE DessertTrayID = %s", [(dessertTrayID)])
@@ -569,8 +605,10 @@ def deleteMenu():
             mydb.commit()
             print(cursor.rowcount, " record deleted!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "3":
         PCID = request.form["PCID"]
         cursor.execute("SELECT * FROM PieAndCheesecake WHERE PCID = %s", [(PCID)])
@@ -580,8 +618,10 @@ def deleteMenu():
             mydb.commit()
             print(cursor.rowcount, " record deleted!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "4":
         cupcakeID = request.form["cupcakeID"]
         cursor.execute("SELECT * FROM Cupcake WHERE CupcakeID = %s", [(cupcakeID)])
@@ -591,8 +631,10 @@ def deleteMenu():
             mydb.commit()
             print(cursor.rowcount, " record deleted!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "5":
         dietaryID = request.form["dietaryID"]
         cursor.execute("SELECT * FROM dietary WHERE dietaryID = %s", [(dietaryID)])
@@ -602,8 +644,10 @@ def deleteMenu():
             mydb.commit()
             print(cursor.rowcount, " record deleted!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "6":
         SFID = request.form["SFID"]
         cursor.execute("SELECT * FROM SignatureFlavorCake WHERE SFID = %s", [(SFID)])
@@ -613,8 +657,10 @@ def deleteMenu():
             mydb.commit()
             print(cursor.rowcount, " record deleted!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST" and request.form["menuID"] == "7":
         cakeID = request.form["cakeID"]
         cursor.execute("SELECT * FROM Cake WHERE cakeID = %s", [(cakeID)])
@@ -624,10 +670,13 @@ def deleteMenu():
             mydb.commit()
             print(cursor.rowcount, " record deleted!") # TESTING
             msg = "Form received! You may now exit this page."
+            flash(msg, category="success")
         else:
             msg = "Sorry, the ID inputted was not found!"
+            flash(msg, category="danger")
     elif request.method == "POST":
         msg = "There was an error handling your request, please try again!"
+        flash(msg, category="danger")
         # Testing below
         print(request.form, " List of all the data sent")
 
@@ -651,18 +700,24 @@ def register():
         account = cursor.fetchone()
         if account:
             msg = "Account already exists, login to your account!"
+            flash(msg, category="danger")
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             msg = "Invalid email! Try again!"
+            flash(msg, category="danger")
         elif not password or not email:
             msg = "Incomplete form, please try again."
+            flash(msg, category="danger")
         else:
             cursor.execute("INSERT INTO ACCOUNT (Firstname, Lastname, Password, Email, Phone) VALUES(%s, %s, %s, %s, %s)", (firstname, lastname, password, email, phone))
             mydb.commit()
             msg = "Sucessfully registered! You may now login!"
+            flash(msg, category="success")
             disconnectdb(mydb)
             return redirect(url_for("login"))
     elif request.method == "POST":
         msg = "Please fill out the information before submitting!"
+        flash(msg, category="danger")
+
     return render_template("register.html", msg = msg)
 
 @app.route("/login", methods = ["GET", "POST"])
@@ -682,6 +737,7 @@ def login():
             session["email"] = email
             session["employee"] = account[6]
             msg = "Sucessfully logged in! You may now order!"
+            flash(msg, category="success")
             disconnectdb(mydb)
             return redirect(url_for("profile"))
         elif account and account[6] == 1:
@@ -690,10 +746,12 @@ def login():
             session["email"] = email
             session["employee"] = account[6]
             msg = "Sucessfully logged in! Redirecting to Admin page!"
+            flash(msg, category="success")
             disconnectdb(mydb)
             return redirect(url_for("adminPage"))
         else:
             msg = "Incorrect login!"
+            flash(msg, category="danger")
 
     return render_template("login.html", msg = msg)
 
@@ -706,9 +764,13 @@ def logout():
         session.pop('id', None)
         session.pop('email', None)
         session.pop('employee', None)
-        print("You've been logged out!")
+        msg = "You've been logged out!"
+        print(msg)
+        flash(msg, category="primary")
     else:
-        print("You're not logged in!")
+        msg = "You're not logged in!"
+        print(msg)
+        flash(msg, category="primary")
 
     return redirect(url_for('login'))
 

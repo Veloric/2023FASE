@@ -124,3 +124,8 @@ form {width: 600px;
   .fas {
     padding-right: 5px;
   }
+
+  a {
+    text-decoration: none;
+    color: var(--main-color);
+  }

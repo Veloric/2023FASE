@@ -1,4 +1,5 @@
 {% from 'navbar.html' import navbar, headerEnd %}
+{% from 'alerts.html' import alert %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Order</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='alerts.js') }}" defer></script>
     <!-- <script src="{{ url_for('static', filename='order.js') }}"> defer</script> -->
 
     <!--Code below is a borrowed library from bootdev-->
@@ -18,6 +20,8 @@
 <body>   
     {{ navbar() }}
     {{ headerEnd() }}
+
+    {{ alert() }}
 
     <div class="container-xl px-4 mt-4">
     

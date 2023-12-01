@@ -1,4 +1,5 @@
 {% from 'navbar.html' import navbar, headerEnd %}
+{% from 'alerts.html' import alert %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,10 +11,13 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
         <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
+        <script src="{{ url_for('static', filename='alerts.js') }}" defer></script>
     </head>
     <body>
         {{ navbar() }}
         {{ headerEnd() }}
+
+        {{ alert() }}
 
             <!-- RETURN TO ADMIN PAGE -->
             <a href="{{ url_for('adminPage') }}" class="btn btn-style">Return to Admin Page</a><br><br>
@@ -33,7 +37,6 @@
                                 <textarea class="form-control" id="replyMsg" name="replyMsg" min="5" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-style">Submit</button>
-                            <p>{{ msg }}</p>
                         </div>
                         
                         <div class="reply-contact-right">
