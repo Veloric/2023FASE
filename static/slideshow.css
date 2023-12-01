@@ -39,6 +39,7 @@
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
+  margin-bottom: 45px; /* Adjust the value as needed */
 }
 
 .active-dot, .dot:hover {
@@ -55,3 +56,78 @@
   from {opacity: .4}
   to {opacity: 1}
 }
+
+/* The images that lead to the gallery */
+
+* {
+  box-sizing: border-box;
+}
+
+.row2 {
+  display: flex;
+  justify-content: center;
+}
+
+.column2 {
+  position: relative;
+  width: 300px;
+  margin: 0 10px; 
+  padding: 0;
+  height: 200px;
+  margin-bottom: 30px; 
+  
+}
+.column2 img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+}
+
+.curved-container {
+  border-radius: 25px; 
+  overflow: hidden; 
+  background-color: #fffbfb; 
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.info-box {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(255, 249, 249);
+  color: #ff6ebe;
+  text-align: center;
+  padding: 20px; 
+  box-sizing: border-box;
+  height: auto; 
+  border-radius: 15px; 
+  overflow: hidden; 
+  
+}
+
+
+.info-box p {
+  margin: 0;
+}
+
+
+.row2:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 50px;
+  background-color: #e486b9;
+  color: #000000; 
+  padding: 15px 30px; 
+  text-decoration: none; 
+}
+
+
