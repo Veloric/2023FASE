@@ -51,7 +51,6 @@
         <script src="{{ url_for('static', filename='order.js') }}"></script>
         <input type = "button" class="add-button" value = "Add Item to Order" onclick="createOrderForm()"></input>
 
-        <div id="totalPrice">Total Price: $0.00</div> <!-- I just put 0 for now -->
         <input type="submit" class = "submit-button" value="Submit Order"></input>
 
         <p class = "orderConfirmation">{{ msg }}</p> <!-- An alert for messages is added at the top, you can delete this if you want -->
