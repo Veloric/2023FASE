@@ -31,6 +31,57 @@
 
         <div id="Mini" class="tabcontent">
             <h3>Minis</h3>
+            <!-- <img src="static\images\LS-tarts.jpg" alt="tarts">  -->
+            <!-- mini tarts--> 
+
+            <!-- MINIDESSERTS: miniCannolis, oreoBrownie, fudgeBrownie, birthdayBrownie, fudgeBrownieExplosion, lemonRicottaCheesecake, 
+                                newYorkCheesecake, cakepopWhiteChocolate, cakepopChocolate -->
+                                
+            <!-- DESSERTTRAY: i dont think this has any -->
+            <!-- DIETARY: i dont think this has any either-->
+            <!-- PIE AND CHEESECAKE: i dont think this has any either -->
+            
+            <!-- CUPCAKE: vanillaBirthday, chocolateBirthday, rockinRedVelvet, vanillaGF, lemonGF, chocolateGF, cupcakesCarrotRedVelvet1 
+                            cupcakeGFTogether 1 and 2, cupcakesCarrotRedVelvet 1 to 3, flowerCupcakes
+                            bavarianCreme, cannoli, deathByChocolate,  -->
+
+            <!-- ########### NOTE READ THIS for later - html notes of categories ########### -->
+            
+            <!-- SF CAKES: cannoliCake, carrotCake, funfettiFudgeCake, peanutButterCake, redVelvetCake, cookiesAndCreamCake, cookiesAndCreamCake2, tiramisu -->
+            <!-- CAKES: chocolateCheeseCake, crumbCake -->
+            
+            <div>
+                <div>
+                    <div class="menu-name">Mini Cannolis</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\miniCannolis.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Oreo Browni</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\oreoBrownie.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Fudge Brownie</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\fudgeBrownie.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Birthday Brownie</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\birthdayBrownie.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Lemon Ricotta Cheesecake</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\lemonRicottaCheesecake.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">New York Cheesecake</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\newYorkCheesecake.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Cake Pops</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\cakepopWhiteChocolate.jpg"></div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\cakepopChocolate.jpg"></div>
+                </div>
+            </div>
+
             <table class="table table-striped">
                     <thead>
                         <th>Category</th>
@@ -86,6 +137,40 @@
 
         <div id="Cupcakes" class="tabcontent">
             <h3>Cupcakes</h3>
+
+            <!-- CUPCAKE: vanillaBirthday, chocolateBirthday, rockinRedVelvet, vanillaGF, lemonGF, chocolateGF
+                cupcakesCarrotRedVelvet1 
+                            cupcakeGFTogether 1 and 2, cupcakesCarrotRedVelvet 1 to 3, flowerCupcakes
+                            bavarianCreme, cannoli, deathByChocolate,  -->
+            <div>
+                <div>
+                    <div class="menu-name">Vanilla Birthday</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\vanillaBirthday.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Chocolate Birthday</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\chocolateBirthday.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Rockin Red Velvet</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\rockinRedVelvet.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Carrot and Red Velvet</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\cupcakesCarrotRedVelvet1.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">GF Cupcakes</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\cupcakeGFTogether2.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Flower Cupcakes</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\flowerCupcakes.jpg"></div>
+                </div>
+                <!-- need cannoli and death by chocolate -->
+            </div>
+
+
             <table class="table table-striped">
                 <thead>
                     <th>Size</th>
@@ -120,26 +205,63 @@
             </table>
         </div>
 
-        <div id="Signature" class="tabcontent">
-            <h3>Signature Flavor Cakes</h3>
-            <table class="table table-striped">
-                <thead>
-                    <th>Size</th>
-                    <th>Servings</th>
-                    <th>Price ($)</th>
-                </thead>
-                {%for item in sf %}
-                    <tr>
-                        {%for index in range(3, item|length) %}
-                            <td>{{ item[index] }}</td>
-                        {%endfor%}
-                    </tr>
-                {%endfor%}
-            </table>
+        <div id="Signature" class="tabcontent"> 
+            <div>
+                <div>
+                    <div class="menu-name">Cannoli Cake</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\cannoliCake.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Carrot Cake</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\carrotCake.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Funfetti Fudge Cake</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\funfettiFudgeCake.jpg"></div>
+                </div> 
+                    <div class="menu-name">Peanut Butter Cake></div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\peanutButterCake.jpg"></div>
+                <div>
+                    <div class="menu-name">Red Velvet Cake</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\redVelvetCake.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Cookies and Cream Cake</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\cookiesAndCreamCake.jpg"></div>
+                </div>
+                <div>
+                    <div class="menu-name">Tiramisu</div>
+                    <div class="menu-img"><img src="static\images\Menu_Images\tiramisu.jpg"></div>
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <th>Size</th>
+                        <th>Servings</th>
+                        <th>Price ($)</th>
+                    </thead>
+                    {%for item in sf %}
+                        <tr>
+                            {%for index in range(3, item|length) %}
+                                <td>{{ item[index] }}</td>
+                            {%endfor%}
+                        </tr>
+                    {%endfor%}
+                </table>
         </div>
 
         <div id="Cake" class="tabcontent">
-            <h3>Cakes</h3>
+            <h3>Cakes</h3> 
+
+            <div>
+                <div class="menu-name">Chocolate Cheesecake</div>
+                <div class="menu-img"><img src="static\images\Menu_Images\chocolateCheesecake.jpg"></div>
+            </div>
+            <div>
+                <div class="menu-name">Crumb Cake</div>
+                <div class="menu-img"><img src="static\images\Menu_Images\crumbCake.jpg"></div>
+            </div>
+            
             <table class="table table-striped">
                 <thead>
                     <th>Size</th>
