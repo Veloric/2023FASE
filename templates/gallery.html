@@ -41,6 +41,51 @@
     <span class="dot" onclick="currentSlide(3)"></span>
     <span class="dot" onclick="currentSlide(4)"></span>
   </div>
-</div>
+
+  <div class="row2">
+    <div class="column2" style="background-color:rgb(255, 170, 192);">
+      <div class="info-box curved-container">
+        <img src="/static/images/luscious-sweet-chocolate-cupcake-1.jpeg" style="width: 300px; height: 200px; object-fit: fill;">
+        <div class="info-box">
+          <br>
+          <p>Want a Chocolate Cupcake?</p>
+          <br>
+          <p>To view more click down below</p>
+          <br>
+          <br>
+          <a href="{{ url_for('galleryphotos') }}" class="button">View Gallery</a>
+        </div>
+      </div>
+    </div>
+    <div class="column2" style="background-color:rgb(255, 170, 192);">
+      <div class="info-box curved-container">
+        <img src="/static/images/LS-gourmet-cake.jpeg" style="width: 300px; height: 200px;">
+        <div class="info-box">
+          <br>
+          <p>Want to see more custom cakes?</p>
+          <br>
+          <p>To view more click down below</p>
+          <br>
+          <a href="{{ url_for('galleryphotos') }}" class="button">View Gallery</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="column2" style="background-color:rgb(255, 170, 192);">
+      <div class="info-box curved-container">
+        <img src="/static/images/luscious-sweet-candy-sweets.jpg" style="width: 300px; height: 200px;">
+        <div class="info-box">
+          <br>
+          <p>Would you like to see more sweets that we offer?</p>
+          <br>
+          <p>To view more click down below</p>
+          <br>
+          <a href="{{ url_for('galleryphotos') }}" class="button">View Gallery</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'footer.html' %}
+  </div>
     </body>
 </html>
