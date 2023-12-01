@@ -57,13 +57,12 @@ def order():
         placed_time = t.localtime()
         timeString = t.strftime("%H:%M", placed_time)
         orderConfirmation = 1 + (random.random() * 125478) #Such a large number that we can't possibly have repeats
-
         mydb = connectdb()
         cursor = mydb.cursor()
         if session["loggedin"] == True:
             cursor.execute("SELECT * FROM Account WHERE Email = %s",[(session["email"])])
             account = cursor.fetchone()
-            cursor.execute("INSERT INTO orders (ConfirmationNumber, OrderPlacedTime, OrderDate, OrderPickupTime, CustomerFirstName, CustomerLastName, CustomerEmail, CustomerPhone) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (str(orderConfirmation), timeString, date, time, account[1], account[2], account[4], account[5]))
+            cursor.execute("INSERT INTO orders (ConfirmationNumber, OrderPlacedTime, OrderDate, OrderPickupTime, CustomerFirstName, CustomerLastName, CustomerEmail, CustomerPhone) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", (str(orderConfirmation), timeString, date, time, account[1], account[2], account[5], account[4]))
             for i in range(len(items)):
                 cursor.execute("INSERT INTO OrderDetails (ConfirmationNumber, OrderCategory, Size, Flavor, Quantity, DecorRequests) VALUES(%s, %s, %s, %s, %s, %s)", (str(orderConfirmation), items[i], sizes[i], flavors[i], quantities[i], requests[i]))
         else:
