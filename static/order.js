@@ -53,15 +53,9 @@ function createOrderForm() {
                     <label for="decorRequests">Decor Requests:</label>
                     <textarea id="decorRequests" name="decorRequests"></textarea>
 
-                    <label for="unitPrice">Unit Price:</label>
-                    <input type="text" id="unitPrice" name="unitPrice" readonly>
-
-                    <label for="ItemTotal">Item Total:</label>
-                    <input type="text" id="ItemTotal" name="ItemTotal" readonly>
-                
                 </div>
             `;
-
+    
     orderForms.appendChild(orderForm);
 
     // Reset the form
@@ -258,13 +252,6 @@ function updateOptions(select) {
 
             /* Have to change this around a bit, but most of the options are there. */
     }
-}
-
-function updateItemTotal() {
-    const unitPrice = parseFloat(document.getElementById("unitPrice").value);
-    const quantity = parseFloat(document.getElementById("quantity").value);
-    const ItemTotal = unitPrice * quantity;
-    document.getElementById("ItemTotal").value = isNaN(ItemTotal) ? '' : ItemTotal.toFixed(2);
 }
 
 /* Dont know if this is needed, but here it is */

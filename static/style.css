@@ -236,26 +236,31 @@ header{
 
 /* Order form container */
 .order-form-container {
-    flex: 1;
-    max-width: 100%;
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: space-between; /* Distribute items along the main axis */
+    align-items: center; /* Center items along the cross axis */
     margin-top: 20px;
     margin-left: 15%;
     margin-bottom: 15px;
     padding: 20px;
     border: 2px solid rgb(255, 140, 199);
     position: relative;
-    display: flex;
-    justify-content: space-between;
     background-color: rgb(255, 192, 227);
     border-radius: 10px;
     box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 10%);
 }
 
-.order-form-container input {
+.order-form-container div {
     flex: 1; 
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+}
+
+.order-form-container select,
+.order-form-container input,
+.order-form-container textarea {
+    width: 100%; 
+    box-sizing: border-box; 
+    margin-bottom: 10px; 
 }
 
 /* Date-time container */
@@ -280,7 +285,7 @@ header{
     font-size: 16px;
     text-align: center;
     width: 100%;
-    background-color: rgb(255, 233, 245);
+    background-color: rgb(255, 216, 238);
     border-radius: 5px;
 }
 
@@ -290,12 +295,30 @@ header{
     margin: 20px auto 0;
     position: relative;
     background-color: rgb(255, 93, 168);
-    color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button {
+    margin-top: 20%;
+    margin-left: 80%;
+    margin-right: 20px; /* Adjusted margin to 20px from the right */
+    padding: 10px 20px;
+    background-color: #ff6ebe; /* Highlight color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #e52c92; 
     transition: background-color 0.3s ease;
 }
 
