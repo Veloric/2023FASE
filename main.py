@@ -747,6 +747,7 @@ def register():
     mydb = connectdb()
     cursor = mydb.cursor()
 
+    #TODO: Suggestion: Confirm password field for form validation.
     if request.method == "POST" and "password" in request.form and "email" in request.form and "firstname" in request.form and "lastname" in request.form and "phone" in request.form:
         password = request.form["password"]
         email = request.form["email"]
@@ -850,6 +851,7 @@ def profile():
     cursor.execute("SELECT * FROM Account WHERE Email = %s", ([session["email"]]))
     account = cursor.fetchone()
     print(account)
+    #TODO: Fix bugs, people could set their emails to an already existing email (may have potential conflicts). Suggestion: User should confirm their old password before they are able to update the page.
     if request.method == "POST" and request.form["profile-form"] == "1":
         print(request.form)
         firstname = request.form["firstname"]

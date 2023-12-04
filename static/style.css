@@ -217,13 +217,16 @@ header{
     background-color: rgb(255, 192, 227);
 }
 
-.btn-style {
+.btn.btn-style {
+    color: var(--text-color);
     font-weight: bold;
     background-color: #ff6ebe;
 }
 
-.btn-style:hover {
+.btn.btn-style:hover, .btn.btn-style:active, .btn.btn-style:focus-visible {
+    color: var(--text-color);
     background-color: #e52c92;
+    border-color: #e52c92;
     transition: 0.2s;
 }
 
@@ -309,6 +312,10 @@ header{
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    filter: brightness(0.8);
 }
 
 .submit-button {
@@ -440,12 +447,13 @@ label {
     margin-right: 1rem;
 }
 
-.btn-primary {
-    background-color: rgb(255, 93, 168);
-    border-color: rgb(255, 93, 168);
+.btn.btn-profile {
+    color: #fff;
+    background-color: #ff5da8;
 }
 
-.btn-primary:hover {
+.btn.btn-profile:hover, .btn.btn-profile:active, .btn.btn-profile:focus-visible {
+    color: #fff;
     background-color: #e52c92;
-    border-color: #e52c92;
+    transition: 0.2s;
 }
