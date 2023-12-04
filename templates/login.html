@@ -3,12 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign In</title>
+    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginstyle.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <script src="{{ url_for('static', filename='alerts.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='alerts.js') }}" defer></script><script src="{{ url_for('static', filename='alerts.js') }}" defer></script>
 </head>
 <body>
   {{ navbar() }}
@@ -18,23 +21,30 @@
 
   <section>
     <h2>Login</h2><br>
-    
-      <form method="post" action="{{ url_for('login') }}" autocomplete="off">
- 
-        <div class="container">
-        <label for="email"><i class="fas fa-envelope"></i> <b>Email</b></label></b></label>
-          <input type="text" name="email" id="email" placeholder="Email" required>
-          <br><br>
-          <label for="password"><i class="fas fa-lock"></i> <b>Password</b></label>
-          </b>
+
+    <form action="{{ url_for('login') }}" method="post" autocomplete="off">
+      <div class="login-register-container">
+          <label for="email">
+              <i class="fas fa-envelope"></i> Email
           </label>
-          <input type="password" name="password" id="password" placeholder="Password" required>
+          <input type="email" name="email" placeholder="Email" id="email" required>
           <br><br>
+
+          <label for="password">
+              <i class="fas fa-lock"></i> Password
+          </label>
+          <input type="password" name="password" placeholder="Password" id="password" required>
+          <br><br>
+          
           <button type="submit">Login</button>
           <br><br>
-          <span>Click Here to<a href="{{ url_for('register') }}"> Register</a></span>
-        </div>
-        </form>   
+
+          <div>
+              <p>Click Here to<a href="{{ url_for('register') }}"> Register</a></p>
+          </div>
+      </div>
+    </form> 
+  </section>
         {% include 'footer.html' %}
   </body>
   </html>

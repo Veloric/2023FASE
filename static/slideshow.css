@@ -99,7 +99,7 @@ body {
 
 .info-box {
   width: 100%;
-  background-color: rgb(255, 249, 249);
+  background-color: rgba(235, 77, 138, 0.2);
   color: #ff6ebe;
   text-align: center;
   padding: 20px;
@@ -126,4 +126,8 @@ body {
   color: #000000;
   padding: 15px 30px;
   text-decoration: none;
+}
+
+.button:hover {
+  filter: brightness(0.8);
 }

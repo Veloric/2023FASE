@@ -41,15 +41,19 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
+    padding: 0 2rem;
+    margin: 0;
 }
 .nav-bar a{
     color: var(--text-color);
     font-size: 1.1rem;
     font-weight: 500;
-    padding: 5px 0;
-    margin: 0px 30px;
+    /* padding: 5px 0; */
+    /* margin: 0px 30px; */
     transition: all .50s ease;
-    white-space: nowrap;
+    text-wrap: nowrap;
+    /* white-space: nowrap; */
 }
 .nav-bar a:hover{
     color: var(--main-color);
@@ -165,6 +169,10 @@ header{
 .social-media-svgs {
     filter: invert(48%) sepia(69%) saturate(828%) hue-rotate(295deg) brightness(102%) contrast(101%);
     font-size: 2.5rem;
+}
+
+.social-media-svgs:hover {
+    filter: invert(48%) sepia(69%) saturate(828%) hue-rotate(295deg) brightness(82%) contrast(101%);
 }
 
 .mail-to-links {

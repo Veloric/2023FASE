@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
   <style>
     body {
       margin: 0;
@@ -12,7 +13,7 @@
     }
 
     #footer {
-      margin-top: auto;
+      margin-top: 2rem;
       width: 100%;
       background-color: rgb(215, 154, 178);
       color: white;
@@ -23,45 +24,39 @@
       height: 10.5rem; /* Adjust the height as needed */
     }
 
-    .icon-container {
+    .footer-icon-container {
       display: flex;
       align-items: center;
     }
 
-    .fa {
+    .ri {
       padding: 6px;
       font-size: 25px;
-      width: 30px;
+      height: 100%;
+      width: 100%;
       text-align: center;
       text-decoration: none;
       margin: 1px 3px;
-    }
-
-    .fa-facebook {
-      margin-right: 30px;
+      border-radius: 0.375rem;
       background-color: #ea4c89;
       color: white;
     }
 
-    .fa-twitter {
+    .margin-right-30 {
       margin-right: 30px;
-      background-color: #ea4c89;
-      color: white;
     }
 
-    .fa-pinterest {
+    .margin-right-90 {
       margin-right: 90px;
-      background-color: #ea4c89;
-      color: white;
     }
 
-    .fa:hover {
-      opacity: 0.7;
+    .ri:hover, .contact-button:hover {
+      filter: brightness(0.8);
     }
 
     .text-container p {
       margin-left: 40px;
-      font-family: 'Garamond', serif;
+      /* font-family: 'Garamond', serif; */
       font-size: 20px;
     }
 
@@ -70,7 +65,7 @@
     }
 
     .contact-info {
-      font-family: 'Garamond', serif;
+      /* font-family: 'Garamond', serif; */
       font-size: 20px;
       color: white;
       text-decoration: none; 
@@ -86,6 +81,10 @@
       border-radius: 5px;
       margin-top: -50px;
     }
+
+    p {
+      margin-bottom: 0;
+    }
   </style>
 </head>
 
@@ -96,10 +95,11 @@
       <p>319 South Pitney Road Galloway, NJ 08205</p>
     </div>
 
-    <div class="icon-container">
-      <a href="https://www.facebook.com/lusciousandsweet/" class="fa fa-facebook"></a>
-      <a href="https://twitter.com/LSBakeshop" class="fa fa-twitter"></a>
-      <a href="https://www.pinterest.com/iconhospitality/luscious-sweet-gourmet-bakery/" class="fa fa-pinterest"></a>
+    <div class="footer-icon-container">
+      <a href="https://www.facebook.com/lusciousandsweet/" class="ri ri-facebook-circle-fill margin-right-30" target="_blank"></a>
+      <a href="https://twitter.com/LSBakeshop" class="ri ri-instagram-line margin-right-30" target="_blank"></a>
+      <a href="https://twitter.com/LSBakeshop" class="ri ri-twitter-x-fill margin-right-30" target="_blank"></a>
+      <a href="https://www.pinterest.com/iconhospitality/luscious-sweet-gourmet-bakery/" class="ri ri-pinterest-fill margin-right-90" target="_blank"></a>
     </div>
 
     <div class="contact-container">
