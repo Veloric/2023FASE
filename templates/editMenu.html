@@ -15,7 +15,7 @@
         <script src="{{ url_for('static', filename='alerts.js') }}" defer></script>
     </head>
     <body>
-        {{ navbar() }}
+        {{ navbar(employee, loggedin) }}
         {{ headerEnd() }}
 
         {{ alert() }}

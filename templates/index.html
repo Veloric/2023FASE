@@ -13,7 +13,7 @@
         <script src="{{ url_for('static', filename='activetab.js') }}" defer></script>
     </head>
     <body>
-        {{ navbar() }} 
+        {{ navbar(employee, loggedin) }} 
         {{ headerEnd() }}
         
         <!-- Include the gallery template here -->

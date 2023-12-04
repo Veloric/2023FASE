@@ -1,4 +1,4 @@
-{% macro navbar() %}
+{% macro navbar(employee, loggedin) %}
 <header>
     <a href="{{ url_for('homepage') }}" class="logo">
         <img src="{{ url_for('static', filename='images/luscious-sweet-gourmet-bakery__logo.png') }}" alt="LS-logo" class="logo-image">
@@ -10,9 +10,16 @@
             <li><a href="{{ url_for('galleryphotos') }}">Gallery</a></li>
             <li><a href="{{ url_for('contact') }}">Contact</a></li>
             <li><a href="{{ url_for('menu') }}">Menu</a></li>
-            <li><a href="{{ url_for('adminPage') }}">Admin Page</a></li>
+            {% if loggedin == True %}
+            <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}" id="nav-logout">Logout</a></li>
+            {% else %}
             <li><a href="{{ url_for('login') }}" class="user"><i class="ri-user-fill"></i>Login</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+            {% if employee == 1 %}
+            <li><a href="{{ url_for('adminPage') }}">Admin Page</a></li>
+            {% endif %}
         </ul>
     </nav>
         <!-- <div class="login">

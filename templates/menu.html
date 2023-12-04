@@ -14,7 +14,7 @@
         <script src="{{ url_for('static', filename='menu.js') }}" defer></script>
     </head>
     <body>
-        {{ navbar() }}
+        {{ navbar(employee, loggedin) }}
         {{ headerEnd() }}
 
         <!-- Code taken from w3schools how TO - tabs: https://www.w3schools.com/howto/howto_js_tabs.asp -->

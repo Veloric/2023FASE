@@ -3,8 +3,6 @@
 (function setActiveTab() {
     let navbar = document.querySelector(".nav-bar");
     let tab = window.location.pathname;
-    console.log(tab);
-    console.log(typeof(tab));
 
     if (tab === "/order") {
         addActive(navbar, 0);
@@ -14,11 +12,11 @@
         addActive(navbar, 3);
     } else if (tab === "/menu") {
         addActive(navbar, 4);
-    } else if (tab === ("/adminPage")) {
+    } else if (tab === ("/profile") || tab === ("/login")) {
         addActive(navbar, 5);
-    } else if (tab === ("/login")) {
+    } else if (tab === ("/logout") || tab === ("/register")) {
         addActive(navbar, 6);
-    } else if (tab === ("/register")) {
+    } else if (tab === ("/adminPage")) {
         addActive(navbar, 7);
     } else if (tab === "/"){
         addActive(navbar, 1);
@@ -28,3 +26,19 @@
 function addActive(navbar, i) {
     navbar.children[i].firstChild.classList.add("active");
 }
+
+(function logOutCSS() {
+    let logout = document.getElementById("nav-logout");
+    if (logout != null) {
+        logout.style.backgroundColor = "#f3c6e8";
+        logout.style.padding = "0.5rem 1rem";
+        logout.style.borderRadius = "0.375rem";
+
+        logout.addEventListener("mouseover", function() {
+            logout.style.backgroundColor = "#c887b1";
+        })
+        logout.addEventListener("mouseout", function() {
+            logout.style.backgroundColor = "#f3c6e8";
+        })
+    }
+})();

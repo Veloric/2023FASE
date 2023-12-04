@@ -38,12 +38,27 @@ def disconnectdb(mydb):
     mydb.close()
 
 
+def updateNavBar(session):
+    employee = session["employee"]
+    loggedin = session["loggedin"]
+    return employee, loggedin
+
 @app.route("/")
 def homepage():
-    return render_template("index.html")
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+    
+    return render_template("index.html", employee=employee, loggedin=loggedin)
 
 @app.route("/order", methods=["GET", "POST"])
 def order():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+    
     msg = ""
     # TODO: Test functionality
     if request.method == "POST" and "item" in request.form and "flavor" in request.form and "size" in request.form and "quantity" in request.form and "decorRequests" in request.form and "day" in request.form and "pickup" in request.form:
@@ -77,10 +92,15 @@ def order():
         msg = "Sorry, something went wrong! Try reloading and ordering again!"
         flash(msg, category="danger")
 
-    return render_template("order.html", msg=msg)
+    return render_template("order.html", msg=msg, employee=employee, loggedin=loggedin)
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+    
     msg = ""
     if request.method == "POST" and "date" in request.form and "time" in request.form and "phone" in request.form and "email" in request.form and "question" in request.form:
         date = request.form["date"]
@@ -105,10 +125,14 @@ def contact():
         # Testing below
         print(request.form, " List of all the data sent")
 
-    return render_template("contact.html", msg=msg)
+    return render_template("contact.html", msg=msg, employee=employee, loggedin=loggedin)
 
 @app.route("/replyContact", methods=["GET", "POST"])
 def replyContact():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         print("You are not allowed to access this page!")
@@ -176,10 +200,14 @@ def replyContact():
 
     disconnectdb(mydb)
 
-    return render_template("replyContact.html", msg=msg, contact=contact)
+    return render_template("replyContact.html", msg=msg, contact=contact, employee=employee, loggedin=loggedin)
 
 @app.route("/deleteContact", methods=["GET", "POST"])
 def deleteContact():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         print("You are not allowed to access this page!")
@@ -217,12 +245,17 @@ def deleteContact():
 
     disconnectdb(mydb)
 
-    return render_template("deleteContact.html", msg=msg, contact=contact)
+    return render_template("deleteContact.html", msg=msg, contact=contact, employee=employee, loggedin=loggedin)
 
 @app.route("/adminPage")
 def adminPage():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+
     if 'employee' in session and session["employee"] == 1:
-        return render_template("adminPage.html")
+        return render_template("adminPage.html", employee=employee, loggedin=loggedin)
     else:
         print("You are not allowed to access this page!")
         return redirect(url_for("homepage"))
@@ -230,6 +263,11 @@ def adminPage():
 
 @app.route("/menu")
 def menu():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+    
     try:
         mydb = connectdb()
         cursor = mydb.cursor()
@@ -256,7 +294,7 @@ def menu():
         cake = cursor.fetchall()
 
         disconnectdb(mydb)
-        return render_template("menu.html", miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf, cake=cake)
+        return render_template("menu.html", miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf, cake=cake, employee=employee, loggedin=loggedin)
     except:
         print("An error has occurred while displaying the menu!")
 
@@ -264,6 +302,10 @@ def menu():
 # ADDING TO MENU
 @app.route("/addMenu", methods=["GET", "POST"])
 def addMenu():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         print("You are not allowed to access this page!")
@@ -371,11 +413,15 @@ def addMenu():
         # Testing below
         print(request.form, " List of all the data sent")
 
-    return render_template("addMenu.html", msg=msg)
+    return render_template("addMenu.html", msg=msg, employee=employee, loggedin=loggedin)
 
 # EDITING THE MENU
 @app.route("/editMenu", methods=["GET", "POST"])
 def editMenu():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         print("You are not allowed to access this page!")
@@ -543,11 +589,15 @@ def editMenu():
 
     disconnectdb(mydb)
 
-    return render_template("editMenu.html", msg=msg, miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf,cake=cake)
+    return render_template("editMenu.html", msg=msg, miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf, cake=cake, employee=employee, loggedin=loggedin)
 
 # DELETING FROM MENU
 @app.route("/deleteMenu", methods=["GET", "POST"])
 def deleteMenu():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         print("You are not allowed to access this page!")
@@ -681,10 +731,18 @@ def deleteMenu():
 
     disconnectdb(mydb)
 
-    return render_template("deleteMenu.html", msg=msg, miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf,cake=cake)
+    return render_template("deleteMenu.html", msg=msg, miniMenu=miniMenu, trays=trays, piecheese=piecheese, cupcake=cupcake, dietary=dietary, sf=sf,cake=cake, employee=employee, loggedin=loggedin)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+
+    if "loggedin" in session and session["loggedin"] == True:
+        return(redirect(url_for("profile")))
+    
     msg = ""
     mydb = connectdb()
     cursor = mydb.cursor()
@@ -717,10 +775,15 @@ def register():
         msg = "Please fill out the information before submitting!"
         flash(msg, category="danger")
 
-    return render_template("register.html", msg = msg)
+    return render_template("register.html", msg = msg, employee=employee, loggedin=loggedin)
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+    
     msg = ""
     mydb = connectdb()
     cursor = mydb.cursor()
@@ -753,7 +816,7 @@ def login():
             msg = "Incorrect login!"
             flash(msg, category="danger")
 
-    return render_template("login.html", msg = msg)
+    return render_template("login.html", msg = msg, employee=employee, loggedin=loggedin)
 
 @app.route("/logout")
 def logout():
@@ -776,6 +839,11 @@ def logout():
 
 @app.route("/profile", methods = ["GET", "POST"])
 def profile():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+
     #TODO: Test functionality
     mydb = connectdb()
     cursor = mydb.cursor()
@@ -796,10 +864,15 @@ def profile():
         flash("Updated Profile Information!", category='success')
         print(firstname, lastname, email, phone, sessionEmail)
     disconnectdb(mydb)
-    return render_template("profile.html", account = account)
+    return render_template("profile.html", account = account, employee=employee, loggedin=loggedin)
 
 @app.route('/viewOrder')
 def viewOrder():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+
     # Most recent Order
     #TODO: Test functionality, and account for all previous orders
     mydb = connectdb()
@@ -812,7 +885,7 @@ def viewOrder():
         order = cursor.fetchone()
         cursor.execute("SELECT * FROM OrderDetails WHERE ConfirmationNumber = %s", (order[1]))
         orderInfo = cursor.fetchall()
-        return render_template("viewOrder.html", mostRecentOrder = order, orderInfo = orderInfo)
+        return render_template("viewOrder.html", mostRecentOrder = order, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
     except:
         print("An error has occurred while displaying your orders!")
     finally:
@@ -820,6 +893,11 @@ def viewOrder():
 
 @app.route("/viewTodaysOrders.html")
 def viewTodaysOrders():
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
         flash("You are not allowed to access this page!", "danger")
         return redirect(url_for("index"))
@@ -834,7 +912,7 @@ def viewTodaysOrders():
         cursor.execute("SELECT * FROM orderDetails WHERE ConfirmationNumber = %s", (item[1]))
         orderInfo[item[1]] = cursor.fetchall()
 
-    return render_template("viewTodaysOrders.html", orders = orders, orderInfo = orderInfo)
+    return render_template("viewTodaysOrders.html", orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
 
 @app.route("/gallery")
 def gallery():
@@ -842,7 +920,12 @@ def gallery():
 
 @app.route("/galleryphotos")
 def galleryphotos():
-    return render_template("galleryphotos.html")
+    employee = 0
+    loggedin = False
+    if 'loggedin' in session:
+        employee, loggedin = updateNavBar(session)
+    
+    return render_template("galleryphotos.html", employee=employee, loggedin=loggedin)
 
 if __name__ == '__main__':
     app.run()
