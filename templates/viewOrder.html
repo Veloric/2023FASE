@@ -19,8 +19,8 @@
     <div class="container-xl px-4 mt-4">
     
         <nav class="nav nav-borders">
-        <a class="nav-link" href="{{ url_for('static', filename='profile.html') }}" target="__blank">Profile</a>
-        <a class="nav-link active ms-0" href="{{ url_for('static', filename='vieworder.html') }}" target="__blank">Your Orders</a>
+            <a class="nav-link active ms-0" href="{{ url_for('profile') }}">Profile</a>
+            <a class="nav-link" href="{{ url_for('viewOrder') }}">Your Orders</a>
         </nav>
         
         <hr class="mt-0 mb-4">

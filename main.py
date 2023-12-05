@@ -890,6 +890,8 @@ def viewOrder():
         return render_template("viewOrder.html", mostRecentOrder = order, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
     except:
         print("An error has occurred while displaying your orders!")
+        flash("You have no recent orders!")
+        return redirect(url_for("profile"))
     finally:
         disconnectdb(mydb)
 
@@ -907,14 +909,20 @@ def viewTodaysOrders():
     mydb = connectdb()
     cursor = mydb.cursor()
     orderInfo = {}
-    
-    cursor.execute("SELECT * FROM orders WHERE OrderDate = %s", (str(date.today())))
-    orders = cursor.fetchall()
-    for item in orders:
-        cursor.execute("SELECT * FROM orderDetails WHERE ConfirmationNumber = %s", (item[1]))
-        orderInfo[item[1]] = cursor.fetchall()
+    try:
+        cursor.execute("SELECT * FROM orders WHERE OrderDate = %s", (str(date.today())))
+        orders = cursor.fetchall()
+        for item in orders:
+            cursor.execute("SELECT * FROM orderDetails WHERE ConfirmationNumber = %s", (item[1]))
+            orderInfo[item[1]] = cursor.fetchall()
 
-    return render_template("viewTodaysOrders.html", orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
+        return render_template("viewTodaysOrders.html", orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
+    except:
+        print("No daily orders, returning to admin page")
+        flash("No daily orders, returning to admin page")
+        return redirect(url_for("adminPage"))
+    finally:
+        disconnectdb(mydb)
 
 @app.route("/gallery")
 def gallery():
