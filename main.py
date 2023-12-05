@@ -800,6 +800,7 @@ def login():
             session["id"] = account[0]
             session["email"] = email
             session["employee"] = account[6]
+            session['deleted'] = False
             msg = "Sucessfully logged in! You may now order!"
             flash(msg, category="success")
             disconnectdb(mydb)
@@ -809,6 +810,7 @@ def login():
             session["id"] = account[0]
             session["email"] = email
             session["employee"] = account[6]
+            session['deleted'] = False
             msg = "Sucessfully logged in! Redirecting to Admin page!"
             flash(msg, category="success")
             disconnectdb(mydb)
@@ -823,12 +825,22 @@ def login():
 def logout():
     #TODO: Allow logging out and removal of session data (non priority)
 
-    if 'loggedin' in session and session["loggedin"] == True:
+    if 'loggedin' in session and session["loggedin"] == True and session["deleted"] == False:
         session.pop('loggedin', None)
         session.pop('id', None)
         session.pop('email', None)
         session.pop('employee', None)
+        session.pop('deleted', None)
         msg = "You've been logged out!"
+        print(msg)
+        flash(msg, category="primary")
+    elif 'loggedin' in session and session["loggedin"] == True and session["deleted"] == True:
+        session.pop('loggedin', None)
+        session.pop('id', None)
+        session.pop('email', None)
+        session.pop('employee', None)
+        session.pop('deleted', None)
+        msg = "Sorry to see you go."
         print(msg)
         flash(msg, category="primary")
     else:
@@ -852,7 +864,7 @@ def profile():
     account = cursor.fetchone()
     print(account)
     #TODO: Fix bugs, people could set their emails to an already existing email (may have potential conflicts). Suggestion: User should confirm their old password before they are able to update the page.
-    if request.method == "POST" and request.form["profile-form"] == "1":
+    if request.method == "POST" and request.form["profile-form"] == "1" and "deleteAccount" not in request.form:
         print(request.form)
         firstname = request.form["firstname"]
         lastname = request.form["lastname"]
@@ -866,13 +878,13 @@ def profile():
         flash("Updated Profile Information!", category='success')
         print(firstname, lastname, email, phone, sessionEmail)
         disconnectdb(mydb)
-    elif request.method == "POST" and request.form.get("deleteProfile"):
+    elif request.method == "POST" and "deleteAccount" in request.form:
         mydb = connectdb()
         cursor = mydb.cursor()
-        cursor.execute("DELETE From account WHERE Email = %s", (sessionEmail))
+        cursor.execute("DELETE From account WHERE Email = %s", ([session["email"]]))
         mydb.commit()
         disconnectdb(mydb)
-        flash("Logging out now. Sorry to see you go.")
+        session["deleted"] = True
         return redirect(url_for("logout"))
     return render_template("profile.html", account = account, employee=employee, loggedin=loggedin)
 
