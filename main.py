@@ -865,7 +865,15 @@ def profile():
         session["email"] = request.form["email"]
         flash("Updated Profile Information!", category='success')
         print(firstname, lastname, email, phone, sessionEmail)
-    disconnectdb(mydb)
+        disconnectdb(mydb)
+    elif request.method == "POST" and request.form.get("deleteProfile"):
+        mydb = connectdb()
+        cursor = mydb.cursor()
+        cursor.execute("DELETE From account WHERE Email = %s", (sessionEmail))
+        mydb.commit()
+        disconnectdb(mydb)
+        flash("Logging out now. Sorry to see you go.")
+        return redirect(url_for("logout"))
     return render_template("profile.html", account = account, employee=employee, loggedin=loggedin)
 
 @app.route('/viewOrder')

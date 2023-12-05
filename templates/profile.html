@@ -81,7 +81,7 @@
 
         <div class="col-md-6">
             <label class="small mb-1" for="inputPhone">Password</label>
-            <input class="form-control" type="password" name="password" id="password" placeholder="Password" value="{{ account[4] }}" required>
+            <input class="form-control" type="password" name="password" id="password" placeholder="Password" value="{{ account[3] }}" required>
         </div>
         
         <div class="row gx-3 mb-3">
@@ -90,7 +90,10 @@
         <label class="small mb-1" for="inputPhone">Phone number</label>
         <input class="form-control" id="phone" name = "phone" type="tel" placeholder="Enter your phone number" value="{{ account[4] }}">
         </div>
-        
+        <div class = "col-md-6">
+            <input type = "checkbox" id = "deleteProfile" name = "deleteAccount">
+            <label for = "deleteProfile">Delete Account?</label>
+        </div>
     </div>
     </div>
 
