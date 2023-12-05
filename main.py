@@ -898,7 +898,7 @@ def viewOrder():
         return render_template("viewOrder.html", mostRecentOrder = order, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
     except:
         print("An error has occurred while displaying your orders!")
-        flash("You have no recent orders!")
+        flash("You have no recent orders!", category="danger")
         return redirect(url_for("profile"))
     finally:
         disconnectdb(mydb)
@@ -911,7 +911,7 @@ def viewTodaysOrders():
         employee, loggedin = updateNavBar(session)
 
     if 'employee' in session and session["employee"] != 1 or 'employee' not in session:
-        flash("You are not allowed to access this page!", "danger")
+        flash("You are not allowed to access this page!", category="danger")
         return redirect(url_for("index"))
     
     mydb = connectdb()
@@ -926,8 +926,8 @@ def viewTodaysOrders():
 
         return render_template("viewTodaysOrders.html", orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
     except:
-        print("No daily orders, returning to admin page")
-        flash("No daily orders, returning to admin page")
+        print("No daily orders, returning to the admin page")
+        flash("No daily orders, returning to the admin page", category="danger")
         return redirect(url_for("adminPage"))
     finally:
         disconnectdb(mydb)

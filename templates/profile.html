@@ -105,6 +105,20 @@
     </div>
     </div>
 
+    <!-- Script for Confirming Profile Deletion -->
+    <script>
+        let deleteProfile = document.getElementById("deleteProfile");
+        deleteProfile.addEventListener("click", confirmDeleteAccount);
+
+        function confirmDeleteAccount() {
+            if (confirm("Are you sure you want to delete this account?")) {
+                deleteProfile.checked = true;
+            } else {
+                deleteProfile.checked = false;
+            }
+        }
+    </script>
+
     <!--The commented JS was included in bootstrap template... feel free to get rid of it or use it-->
 
     <!--<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>-->
