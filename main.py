@@ -768,7 +768,7 @@ def register():
         else:
             cursor.execute("INSERT INTO ACCOUNT (Firstname, Lastname, Password, Email, Phone) VALUES(%s, %s, %s, %s, %s)", (firstname, lastname, password, email, phone))
             mydb.commit()
-            msg = "Sucessfully registered! You may now login!"
+            msg = "Successfully registered! You may now login!"
             flash(msg, category="success")
             disconnectdb(mydb)
             return redirect(url_for("login"))
@@ -801,7 +801,7 @@ def login():
             session["email"] = email
             session["employee"] = account[6]
             session['deleted'] = False
-            msg = "Sucessfully logged in! You may now order!"
+            msg = "Successfully logged in! You may now order!"
             flash(msg, category="success")
             disconnectdb(mydb)
             return redirect(url_for("profile"))
@@ -811,7 +811,7 @@ def login():
             session["email"] = email
             session["employee"] = account[6]
             session['deleted'] = False
-            msg = "Sucessfully logged in! Redirecting to Admin page!"
+            msg = "Successfully logged in! Redirecting to the admin page!"
             flash(msg, category="success")
             disconnectdb(mydb)
             return redirect(url_for("adminPage"))
@@ -941,8 +941,8 @@ def viewTodaysOrders():
             print(orderInfo[item[1]])
         return render_template("viewTodaysOrders.html", today = today, orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
     except:
-        print("No daily orders, returning to the admin page")
-        flash("No daily orders, returning to the admin page", category="danger")
+        print("No daily orders! Redirecting to the admin page!")
+        flash("No daily orders! Redirecting to the admin page!", category="danger")
         # return redirect(url_for("adminPage"))
     finally:
         disconnectdb(mydb)
