@@ -907,6 +907,7 @@ def viewOrder():
         order = cursor.fetchone()
         cursor.execute("SELECT * FROM OrderDetails WHERE ConfirmationNumber = %s", (order[1]))
         orderInfo = cursor.fetchall()
+        print(orderInfo)
         return render_template("viewOrder.html", mostRecentOrder = order, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
     except:
         print("An error has occurred while displaying your orders!")
@@ -930,17 +931,19 @@ def viewTodaysOrders():
     cursor = mydb.cursor()
     orderInfo = {}
     try:
-        cursor.execute("SELECT * FROM orders WHERE OrderDate = %s", (str(date.today())))
+        today = str(date.today())
+        cursor.execute("SELECT * FROM orders WHERE OrderDate = %s", [today])
         orders = cursor.fetchall()
+        print(orders)
         for item in orders:
-            cursor.execute("SELECT * FROM orderDetails WHERE ConfirmationNumber = %s", (item[1]))
+            cursor.execute("SELECT * FROM orderDetails WHERE ConfirmationNumber = %s", [item[1]])
             orderInfo[item[1]] = cursor.fetchall()
-
-        return render_template("viewTodaysOrders.html", orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
+            print(orderInfo[item[1]])
+        return render_template("viewTodaysOrders.html", today = today, orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
     except:
         print("No daily orders, returning to the admin page")
         flash("No daily orders, returning to the admin page", category="danger")
-        return redirect(url_for("adminPage"))
+        # return redirect(url_for("adminPage"))
     finally:
         disconnectdb(mydb)
 
