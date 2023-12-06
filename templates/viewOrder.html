@@ -19,15 +19,15 @@
     <div class="container-xl px-4 mt-4">
     
         <nav class="nav nav-borders">
-            <a class="nav-link active ms-0" href="{{ url_for('profile') }}">Profile</a>
-            <a class="nav-link" href="{{ url_for('viewOrder') }}">Your Orders</a>
+            <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+            <a class="nav-link active ms-0" href="{{ url_for('viewOrder') }}">Your Orders</a>
         </nav>
         
         <hr class="mt-0 mb-4">
-        <div class="row">
-        <div class="col-xl-4">
+        <div class="row"></div>
+        <div class="col-xl-4"></div>
 
-    <h1>Previous Orders</h1>
+    <h1 class="header">Previous Orders</h1>
 
     <label for="orderFilter">Filter Orders:</label>
     <select id="orderFilter">
@@ -38,21 +38,41 @@
 
     <div id="orders">
         <!-- This is where the orders will be dynamically added -->
-         <div class="order">
-            <p>Order History</p>
+        
+        <div class="order">
             <ul>
                 {% for order in orders %}
-                <li>For: {{order[5] }} {{ order[6] }}, Confirmation Number:{{ order[1] }}, Pick Up Time: {{ order[4] }}</li>
+                    <li><b>For:</b> {{ order[5] }} {{ order[6] }}</li>
+                    <li><b>Confirmation Number:</b> {{ order[1] }}</li>
+                    <li><b>Pick Up Time:</b> {{ order[4] }}</li>
                 {%endfor%}
-                </ul>
-                <ul>
-                    {% for key in orderInfo %}
-                        {% for info in orderInfo[key] %}
-                        <li>Item: {{ info[2] }}, Size: {{ info[3] }}, Flavor: {{ info[4] }}, Quantity: {{ info[5] }}, Special Requests: {{ info[6] }}</li>
-                        {%endfor%}
-                    {%endfor%}
-                </ul>
-            </div>
+
+                    <table class="table">
+                        <thead>
+                            <th>Item</th>
+                            <th>Size</th>
+                            <th>Flavor</th>
+                            <th>Quantity</th>
+                            <th>Special Requests</th>
+                        </thead>
+                        <tr>
+                            {% for key in orderInfo %}
+                                {% for info in orderInfo[key] %}
+                                    <tr>
+                                        <td>{{ info[2] }}</td>
+                                        <td>{{ info[3] }}</td>
+                                        <td>{{ info[4] }}</td>
+                                        <td>{{ info[5] }}</td>
+                                        <td>{{ info[6] }}</td>
+                                    </tr>
+                                {%endfor%}
+                            {%endfor%}
+                        </tr>
+                    </table>
+            </ul>
+        </div>
     </div>
+    </div>
+    {% include 'footer.html' %}
 </body>
 </html>
