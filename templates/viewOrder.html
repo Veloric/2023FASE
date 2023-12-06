@@ -39,15 +39,19 @@
     <div id="orders">
         <!-- This is where the orders will be dynamically added -->
          <div class="order">
-             <p>Order for: {{ mostRecentOrder[3] }}</p>
+            <p>Order History</p>
             <ul>
-                <!--Adjust if item price functions arent done-->
-                  <li>{{ orderInfo[2] }} - Quantity: {{ orderInfo[5] }}, Confirmation Number: {{ orderInfo[1] }} </li>
+                {% for order in orders %}
+                <li>For: {{order[5] }} {{ order[6] }}, Confirmation Number:{{ order[1] }}, Pick Up Time: {{ order[4] }}</li>
+                {%endfor%}
                 </ul>
-                <!--Need a function for TotalOrderPrice-->
-                <!--Need that function for both Order page and this page-->
-                <!--<p>Total Order Price: ${{ calculateTotalOrderPrice(order.items).toFixed(2) }}</p>-->
-                <p>Prices are subject to tax calculations. Contact the store to place a deposit.</p>
+                <ul>
+                    {% for key in orderInfo %}
+                        {% for info in orderInfo[key] %}
+                        <li>Item: {{ info[2] }}, Size: {{ info[3] }}, Flavor: {{ info[4] }}, Quantity: {{ info[5] }}, Special Requests: {{ info[6] }}</li>
+                        {%endfor%}
+                    {%endfor%}
+                </ul>
             </div>
     </div>
 </body>

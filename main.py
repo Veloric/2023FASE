@@ -899,22 +899,22 @@ def viewOrder():
     #TODO: Test functionality, and account for all previous orders
     mydb = connectdb()
     cursor = mydb.cursor()
-
+    orderInfo = {}
     try:
-        #Might have to do an if statement for when user is an admin, it selects all
-        #orders from every customer and sorts by date. That way admins can see all orders
-        cursor.execute("SELECT * FROM Orders WHERE CustomerEmail = %s", ([session["email"]]))
-        order = cursor.fetchone()
-        cursor.execute("SELECT * FROM OrderDetails WHERE ConfirmationNumber = %s", (order[1]))
-        orderInfo = cursor.fetchall()
-        print(orderInfo)
-        return render_template("viewOrder.html", mostRecentOrder = order, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
+        cursor.execute("SELECT * FROM orders WHERE CustomerEmail = %s", ([session["email"]]))
+        orders = cursor.fetchall()
+        print(orders)
+        for item in orders:
+            cursor.execute("SELECT * FROM orderDetails WHERE ConfirmationNumber = %s", [item[1]])
+            orderInfo[item[1]] = cursor.fetchall()
+            print(orderInfo[item[1]])
     except:
         print("An error has occurred while displaying your orders!")
         flash("You have no recent orders!", category="danger")
         return redirect(url_for("profile"))
     finally:
         disconnectdb(mydb)
+        return render_template("viewOrder.html", orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
 
 @app.route("/viewTodaysOrders.html")
 def viewTodaysOrders():
@@ -939,13 +939,13 @@ def viewTodaysOrders():
             cursor.execute("SELECT * FROM orderDetails WHERE ConfirmationNumber = %s", [item[1]])
             orderInfo[item[1]] = cursor.fetchall()
             print(orderInfo[item[1]])
-        return render_template("viewTodaysOrders.html", today = today, orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
     except:
         print("No daily orders! Redirecting to the admin page!")
         flash("No daily orders! Redirecting to the admin page!", category="danger")
-        # return redirect(url_for("adminPage"))
+        return redirect(url_for("adminPage"))
     finally:
         disconnectdb(mydb)
+        return render_template("viewTodaysOrders.html", today = today, orders = orders, orderInfo = orderInfo, employee=employee, loggedin=loggedin)
 
 @app.route("/gallery")
 def gallery():

@@ -34,16 +34,16 @@
             <div class="order">
                 <p>Today's Date: {{ today }}</p>
                 <ul>
-                    {%for order in orders %}
+                    {% for order in orders %}
                     <li>For: {{order[5] }} {{ order[6] }}, Confirmation Number:{{ order[1] }}, Pick Up Time: {{ order[4] }}</li>
-                    {%end for%}
+                    {%endfor%}
                     </ul>
                     <ul>
-                        {%for key in orderInfo%}
-                            {for info in orderInfo[key]}
-                            <li>Confirmation Number: {{ info[1] }}, Item: {{ info[2] }}, Size: {{ order[3] }}, Flavor: {{ order[4] }}, Quantity: {{ info[5] }}, Special Requests: {{ info[6] }}</li>
-                            {%end for%}
-                        {%end for%}
+                        {% for key in orderInfo %}
+                            {% for info in orderInfo[key] %}
+                            <li>Item: {{ info[2] }}, Size: {{ info[3] }}, Flavor: {{ info[4] }}, Quantity: {{ info[5] }}, Special Requests: {{ info[6] }}</li>
+                            {%endfor%}
+                        {%endfor%}
                     </ul>
                 </div>
         </div>
